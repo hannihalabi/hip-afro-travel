@@ -1,3 +1,5 @@
+import fs from "node:fs/promises";
+import path from "node:path";
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import HeroVideo from "@/components/HeroVideo";
@@ -146,20 +148,33 @@ const reviews = [
   },
 ];
 
-const galleryImages = [
-  {
-    src: "/images/pic-2.jpeg",
-    alt: "Resenärer på strandpromenad",
-  },
-  {
-    src: "/images/pic-3.jpeg",
-    alt: "Kulturellt möte i Gambia",
-  },
-  {
-    src: "/images/pic-1.jpeg",
-    alt: "Solnedgång och havsutsikt",
-  },
-];
+const galleryImageExtensions = new Set([
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".webp",
+  ".avif",
+]);
+
+async function getLatestGalleryImages() {
+  const galleryDirectory = path.join(process.cwd(), "public", "pic-latest");
+
+  try {
+    const files = await fs.readdir(galleryDirectory);
+
+    return files
+      .filter((file) =>
+        galleryImageExtensions.has(path.extname(file).toLowerCase())
+      )
+      .sort((a, b) => b.localeCompare(a, "sv"))
+      .map((file, index) => ({
+        src: `/pic-latest/${encodeURIComponent(file)}`,
+        alt: `Bild från HIP AFRO TRAVEL i Gambia ${index + 1}`,
+      }));
+  } catch {
+    return [];
+  }
+}
 
 const StarIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -170,7 +185,9 @@ const StarIcon = () => (
   </svg>
 );
 
-export default function Home() {
+export default async function Home() {
+  const galleryImages = await getLatestGalleryImages();
+
   return (
     <div className={styles.page}>
       <header className={styles.header} id="site-header" data-hidden="false">
@@ -308,27 +325,37 @@ export default function Home() {
               </Reveal>
             </div>
             <div className={styles.galleryWrap}>
-              <Reveal className={styles.galleryLoop}>
-                <div className={styles.galleryTrack}>
-                  {galleryImages.concat(galleryImages).map((image, index) => {
-                    const isDuplicate = index >= galleryImages.length;
-                    return (
-                      <div
-                        key={`${image.src}-${index}`}
-                        className={styles.gallerySlide}
-                        aria-hidden={isDuplicate}
-                      >
-                        <Image
-                          src={image.src}
-                          alt={isDuplicate ? "" : image.alt}
-                          fill
-                          sizes="(max-width: 900px) 70vw, 32vw"
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </Reveal>
+              {galleryImages.length > 0 ? (
+                galleryImages.map((image, index) => {
+                  const isWide = index % 6 === 0 || index % 6 === 5;
+
+                  return (
+                    <Reveal
+                      key={image.src}
+                      className={`${styles.galleryItem} ${
+                        isWide ? styles.galleryItemWide : ""
+                      }`}
+                      style={
+                        {
+                          "--reveal-delay": `${(index % 6) * 70}ms`,
+                        } as CSSProperties
+                      }
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        className={styles.galleryImage}
+                        sizes="(max-width: 420px) 94vw, (max-width: 900px) 47vw, (max-width: 1280px) 31vw, 23vw"
+                      />
+                    </Reveal>
+                  );
+                })
+              ) : (
+                <p className={styles.galleryEmpty}>
+                  Inga bilder hittades i <code>/public/pic-latest</code>.
+                </p>
+              )}
             </div>
           </div>
         </section>
