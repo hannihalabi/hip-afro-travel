@@ -3,15 +3,12 @@
 import { useState } from "react";
 import styles from "@/app/page.module.css";
 
-const links = [
-  { href: "#recensioner", label: "Recensioner" },
-  { href: "#bilder", label: "Bilder" },
-  { href: "#boka", label: "Boka" },
-  { href: "#vilka-vi-ar", label: "Vilka vi är" },
-  { href: "#varfor", label: "Varför resan" },
-];
+type NavLink = {
+  href: string;
+  label: string;
+};
 
-export default function MobileMenu() {
+export default function MobileMenu({ links }: { links: NavLink[] }) {
   const [open, setOpen] = useState(false);
 
   const handleToggle = () => setOpen((prev) => !prev);

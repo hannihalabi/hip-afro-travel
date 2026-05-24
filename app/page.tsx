@@ -1,13 +1,22 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import HeaderScroll from "@/components/HeaderScroll";
 import MobileMenu from "@/components/MobileMenu";
 import Reveal from "@/components/Reveal";
 import styles from "./page.module.css";
 
+const navLinks = [
+  { href: "#recensioner", label: "Recensioner" },
+  { href: "#bilder", label: "Bilder" },
+  { href: "#boka", label: "Boka" },
+  { href: "#vilka-vi-ar", label: "Vilka vi är" },
+  { href: "#varfor", label: "Varför resan" },
+];
+
 const tripFacts = [
-  { value: "7 dagar", label: "yoga, hav och kultur" },
+  { value: "7 dagar", label: "återhämtning" },
   { value: "17 000 kr", label: "per person" },
   { value: "Max 12", label: "i gruppen" },
 ];
@@ -19,7 +28,7 @@ const reviews = [
   },
   {
     name: "Maria K.",
-    text: "Yogan, maten och utflykterna blev en perfekt mix. Det kändes personligt, inte som en vanlig paketresa.",
+    text: "Träningen, maten och utflykterna blev en perfekt mix. Det kändes personligt, inte som en vanlig paketresa.",
   },
   {
     name: "Karin L.",
@@ -38,95 +47,122 @@ const reviews = [
 const included = [
   "Flygplatstransfer i Gambia",
   "Boende i huset",
-  "Yogapass och meditation",
+  "Träningspass för alla nivåer",
+  "Stretch, rörelse och breathwork",
   "Utvalda utflykter",
-  "Måltider enligt program",
+  "Närande lokal mat",
   "Svensk och lokal närvaro",
+  "Verktyg att ta med hem",
 ];
 
 const itinerary = [
   {
     day: "Dag 1",
-    title: "Ankomst",
+    title: "Ankomst och landning",
     items: [
       "Upphämtning vid flygplatsen",
-      "Transfer, incheckning och lunch",
-      "Yoga 17.00-18.30 och middag 19.30",
+      "Transfer till huset och incheckning",
+      "Tid att landa, lunch och komma till ro",
+      "Promenad / hike",
+      "Middag kl. 19.30",
     ],
   },
   {
     day: "Dag 2",
-    title: "Örter, yoga och egen tid",
+    title: "Jogg, stretch och beach workout",
     items: [
-      "Morgonmeditation och frukost",
-      "Workshop om baobab, moringa och soursop",
-      "Egen tid, yoga och gemensam middag",
+      "Jogg & stretch",
+      "Frukost",
+      "Workshop om baobab, moringa, soursop och hibiskus",
+      "Egen tid kl. 12.00-17.00",
+      "Beach workout / HIIT-pass",
+      "Middag kl. 19.30",
     ],
   },
   {
     day: "Dag 3",
-    title: "Kartong och Pelikan Island",
+    title: "Kartong och functional movement",
     items: [
-      "Morgonmeditation och frukost",
-      "Utflykt till Kartong och båtutflykt",
-      "Yoga på eftermiddagen och middag",
+      "Dynamisk stretch",
+      "Frukost",
+      "Utflykt till Kartong",
+      "Lunch på egen bekostnad",
+      "Båtutflykt till Lamin Lodge",
+      "Functional movement-pass",
+      "Middag kl. 19.30",
     ],
   },
   {
     day: "Dag 4",
-    title: "Lugn dag vid huset",
+    title: "Workout och funktionell rörelse",
     items: [
-      "Morgonmeditation och frukost",
-      "Egen tid 12.00-17.00",
-      "Yoga 17.00-18.30 och middag 19.30",
+      "Jogg & stretch",
+      "Frukost",
+      "Egen tid kl. 12.00-17.00",
+      "Workout & functional movement",
+      "Middag kl. 19.30",
     ],
   },
   {
     day: "Dag 5",
-    title: "Lamin Lodge",
+    title: "Juffureh",
     items: [
       "Frukost",
-      "Heldagsutflykt till Lamin Lodge",
+      "Heldagsutflykt till Juffureh",
       "Lunch, snacks och dryck ingår",
+      "Fri tid på kvällen",
     ],
   },
   {
     day: "Dag 6",
-    title: "Strandmiddag och avslutning",
+    title: "Self defence och strandmiddag",
     items: [
-      "Morgonmeditation och frukost",
-      "Egen tid och yogapass",
-      "Middag på stranden, campfire och avslutningskväll",
+      "Dynamic stretch",
+      "Frukost",
+      "Egen tid kl. 12.00-17.00",
+      "Self defence & functional movement",
+      "Middag kl. 19.30 på stranden",
+      "Campfire och avslutningskväll",
     ],
   },
   {
     day: "Dag 7",
     title: "Hemresa",
     items: [
-      "Morgonmeditation och frukost",
-      "Egen tid fram till 16.00",
-      "Utcheckning, transfer och flygplats",
+      "Jogg & stretch",
+      "Frukost",
+      "Egen tid kl. 12.00-16.00",
+      "Utcheckning",
+      "Transfer och lämning på flygplatsen",
+      "Hemresa",
     ],
   },
 ];
 
 const benefits = [
   {
-    title: "Allt är kurerat",
-    text: "Du slipper planera. Vi samlar boende, transfer, yoga, mat och utflykter i en tydlig resa.",
+    title: "Nervsystemet får landa",
+    text: "Meditation, mindfulness och andningsövningar hjälper kroppen att växla ned från stress till återhämtning.",
   },
   {
-    title: "Lagom stor grupp",
-    text: "Max 12 personer gör resan social och personlig utan att kännas trång eller opersonlig.",
+    title: "Näring direkt från jorden",
+    text: "Färska lokala råvaror, frukt, grönsaker, fisk, skaldjur och växtbaserade alternativ lagas med omsorg.",
   },
   {
-    title: "Genuint Gambia",
-    text: "Du får uppleva strand, byliv, natur och lokala möten med människor som känner platsen.",
+    title: "Verktyg som följer med hem",
+    text: "Du får rörelsepass, stretch, andningstekniker och kostinspiration som kan stötta balansen även efter resan.",
   },
   {
-    title: "Återhämtning på riktigt",
-    text: "Programmet växlar mellan yoga, meditation, egen tid och upplevelser så kroppen hinner landa.",
+    title: "Kom precis som du är",
+    text: "Inga förkunskaper krävs. Programmet anpassas för olika nivåer och bygger på vila, närvaro och trygg guidning.",
   },
+];
+
+const teacherHighlights = [
+  "Certifierad Kundaliniyogalärare sedan 2013",
+  "Yoga, breathwork och meditation",
+  "Över 20 år med yoga och mindfulness",
+  "Insprängt med Tai Chi, näring och positivt mindset",
 ];
 
 const curatedImages = [
@@ -177,6 +213,26 @@ async function getGalleryImages() {
   }
 }
 
+function SectionHeader({
+  kicker,
+  title,
+  children,
+}: {
+  kicker: string;
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className={styles.sectionHeader}>
+      <Reveal>
+        <p className={styles.kicker}>{kicker}</p>
+        <h2>{title}</h2>
+      </Reveal>
+      <p>{children}</p>
+    </div>
+  );
+}
+
 export default async function Home() {
   const galleryImages = await getGalleryImages();
 
@@ -190,16 +246,16 @@ export default async function Home() {
               Hip Afro Travel
             </a>
             <nav className={`${styles.desktopNav} ${styles.desktopOnly}`}>
-              <a href="#recensioner">Recensioner</a>
-              <a href="#bilder">Bilder</a>
-              <a href="#boka">Boka</a>
-              <a href="#vilka-vi-ar">Vilka vi är</a>
-              <a href="#varfor">Varför resan</a>
+              {navLinks.map((link) => (
+                <a href={link.href} key={link.href}>
+                  {link.label}
+                </a>
+              ))}
             </nav>
             <a className={`${styles.navCta} ${styles.desktopOnly}`} href="#boka">
               Boka resa
             </a>
-            <MobileMenu />
+            <MobileMenu links={navLinks} />
           </div>
         </div>
       </header>
@@ -225,11 +281,11 @@ export default async function Home() {
           <div className={styles.heroShade} />
           <div className={`${styles.container} ${styles.heroInner}`}>
             <Reveal className={styles.heroCopy}>
-              <p className={styles.kicker}>Gruppresa till Gambia</p>
-              <h1>7 dagar i Gambia med yoga och värme.</h1>
+              <p className={styles.kicker}>Gambia | Träningsresa</p>
+              <h1>7 dagar i Gambia med träning och återhämtning.</h1>
               <p className={styles.heroLead}>
-                En trygg gruppresa med hav, utflykter, meditation och tid att
-                landa.
+                Jogg, stretch, HIIT, functional movement, self defence, sol,
+                hav och närande mat från naturen. En vecka skapad för kroppen.
               </p>
               <div className={styles.heroActions}>
                 <a className={styles.primaryButton} href="#boka">
@@ -253,16 +309,13 @@ export default async function Home() {
 
         <section className={styles.reviewSection} id="recensioner">
           <div className={styles.container}>
-            <div className={styles.sectionHeader}>
-              <Reveal>
-                <p className={styles.kicker}>Recensioner</p>
-                <h2>Det som får människor att boka igen.</h2>
-              </Reveal>
-              <p>
-                Korta röster från resenärer som uppskattat tryggheten,
-                gruppkänslan och att Gambia får kännas på riktigt.
-              </p>
-            </div>
+            <SectionHeader
+              kicker="Recensioner"
+              title="Det som får människor att boka igen."
+            >
+              Korta röster från resenärer som uppskattat tryggheten,
+              gruppkänslan och att Gambia får kännas på riktigt.
+            </SectionHeader>
             <div className={styles.reviewScroller} aria-label="Recensioner">
               {reviews.map((review) => (
                 <article className={styles.reviewCard} key={review.name}>
@@ -277,16 +330,13 @@ export default async function Home() {
 
         <section className={styles.gallerySection} id="bilder">
           <div className={styles.container}>
-            <div className={styles.sectionHeader}>
-              <Reveal>
-                <p className={styles.kicker}>Bilder</p>
-                <h2>Sol, människor, mat och dagar som känns levande.</h2>
-              </Reveal>
-              <p>
-                Riktiga bilder från materialet i projektet. Mindre säljtext,
-                mer känsla.
-              </p>
-            </div>
+            <SectionHeader
+              kicker="Bilder"
+              title="Sol, människor, mat och dagar som känns levande."
+            >
+              Riktiga bilder från materialet i projektet. Mindre säljtext,
+              mer känsla.
+            </SectionHeader>
             <div className={styles.galleryGrid}>
               {galleryImages.map((image, index) => (
                 <Reveal
@@ -316,8 +366,9 @@ export default async function Home() {
                 <h2>En enkel gruppresa. Ett tydligt pris.</h2>
                 <p>
                   Resan kostar <strong>17 000 kr per person</strong>. Du får en
-                  vecka med yoga, meditation, utflykter, lokala möten och tid
-                  för återhämtning.
+                  vecka med träning, stretch, breathwork, utflykter, lokala
+                  möten och tid för återhämtning. Passen anpassas för olika
+                  nivåer.
                 </p>
                 <div className={styles.priceLine}>
                   <span>17 000 kr</span>
@@ -360,8 +411,8 @@ export default async function Home() {
                   </label>
                   <button type="submit">Boka resa</button>
                   <p>
-                    Vi återkommer med datum, betalningsupplägg och praktiska
-                    detaljer innan du bekräftar din plats.
+                    Vi återkommer med datum, betalningsupplägg, platsstatus och
+                    praktiska detaljer innan du bekräftar din resa.
                   </p>
                 </form>
               </Reveal>
@@ -369,26 +420,27 @@ export default async function Home() {
 
             <div className={styles.programBlock}>
               <div className={styles.programHeader}>
-                <p className={styles.kicker}>Dagsprogram</p>
+                <p className={styles.kicker}>Träningsresa – Dagsprogram</p>
                 <h3>Veckan i korthet.</h3>
               </div>
               <div className={styles.programGrid}>
                 {itinerary.map((day, index) => (
-                  <details
-                    className={styles.dayCard}
-                    key={day.day}
-                    open={index === 0}
-                  >
-                    <summary>
-                      <span>{day.day}</span>
-                      <strong>{day.title}</strong>
-                    </summary>
-                    <ul>
-                      {day.items.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </details>
+                  <article className={styles.dayCard} key={day.day}>
+                    <div className={styles.dayMarker} aria-hidden="true">
+                      <span>{index + 1}</span>
+                    </div>
+                    <div className={styles.dayContent}>
+                      <div className={styles.dayCardHeader}>
+                        <span>{day.day}</span>
+                        <h4>{day.title}</h4>
+                      </div>
+                      <ul>
+                        {day.items.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </article>
                 ))}
               </div>
             </div>
@@ -410,16 +462,31 @@ export default async function Home() {
               </Reveal>
               <Reveal className={styles.aboutCopy}>
                 <p className={styles.kicker}>Vilka vi är</p>
-                <h2>En liten resebyrå med hjärtat i Gambia.</h2>
+                <h2>Hip Afro Travel och Ewa guidar dig genom veckan.</h2>
                 <p>
                   Hip Afro Travel skapar gruppresor där resenärer får känna
                   landet genom människor, mat, rörelse, musik och natur. Vi
                   bygger resan för dig som vill ha trygg struktur utan att
                   tappa närheten till platsen.
                 </p>
+                <div className={styles.teacherCard}>
+                  <h3>Om Ewa</h3>
+                  <p>
+                    Ewa är svensk yoga-, breathwork- och meditationslärare med
+                    bas i Barcelona sedan över 20 år. Hennes resa började i
+                    Australien, och sedan 2013 är hon certifierad
+                    Kundaliniyogalärare. I undervisningen väver hon även in Tai
+                    Chi, näring och ett positivt mindset.
+                  </p>
+                  <ul>
+                    {teacherHighlights.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
                 <div className={styles.aboutProof}>
                   <span>Lokala kontakter</span>
-                  <span>Svensk reseledning</span>
+                  <span>Träning & återhämtning</span>
                   <span>Små grupper</span>
                 </div>
               </Reveal>
@@ -429,16 +496,13 @@ export default async function Home() {
 
         <section className={styles.benefitSection} id="varfor">
           <div className={styles.container}>
-            <div className={styles.sectionHeader}>
-              <Reveal>
-                <p className={styles.kicker}>Varför resan är bra</p>
-                <h2>För dig som vill komma bort, men inte resa planlöst.</h2>
-              </Reveal>
-              <p>
-                Resan är byggd för att kännas enkel att säga ja till: tydligt
-                pris, tydligt program och mycket mänsklig värme.
-              </p>
-            </div>
+            <SectionHeader
+              kicker="Varför resan är bra"
+              title="För dig som känner att kroppen ber om en paus."
+            >
+              Tempot får sjunka. Sömnen, energin och kroppen får stöd genom
+              rörelse, stillhet, andning och näring.
+            </SectionHeader>
             <div className={styles.benefitGrid}>
               {benefits.map((benefit) => (
                 <Reveal className={styles.benefitCard} key={benefit.title}>
@@ -464,7 +528,7 @@ export default async function Home() {
         <div className={styles.container}>
           <div className={styles.footerInner}>
             <strong>Hip Afro Travel</strong>
-            <span>Gruppresor till Gambia med yoga, kultur och värme.</span>
+            <span>Gruppresor till Gambia med träning, kultur och värme.</span>
           </div>
         </div>
       </footer>

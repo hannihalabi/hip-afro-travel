@@ -280,7 +280,8 @@
   min-height: 88px;
   padding: 16px;
   display: grid;
-  align-content: center;
+  grid-template-rows: auto 1fr;
+  align-content: start;
   gap: 4px;
   background: rgba(255, 255, 255, 0.08);
 }
@@ -289,11 +290,13 @@
   display: block;
   font-family: var(--font-display);
   font-size: 1.35rem;
+  line-height: 1.1;
 }
 
 .heroFact span {
   color: rgba(255, 255, 255, 0.78);
   font-size: 0.88rem;
+  line-height: 1.35;
 }
 
 .reviewSection,
@@ -419,7 +422,8 @@
 .bookingCopy,
 .bookingForm,
 .benefitCard,
-.dayCard {
+.dayCard,
+.teacherCard {
   border: 1px solid rgba(30, 32, 26, 0.1);
   border-radius: 8px;
   background: #fff;
@@ -527,7 +531,9 @@
 }
 
 .programHeader {
-  margin-bottom: 18px;
+  max-width: 620px;
+  margin: 0 auto 24px;
+  text-align: center;
 }
 
 .programHeader h3 {
@@ -537,44 +543,42 @@
 
 .programGrid {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .dayCard {
-  min-height: 94px;
-  padding: 0;
-}
-
-.dayCard summary {
-  min-height: 94px;
-  padding: 16px;
+  min-height: 100%;
+  padding: 18px;
   display: grid;
-  align-content: center;
+  align-content: start;
+  gap: 14px;
+}
+
+.dayCardHeader {
+  display: grid;
   gap: 6px;
-  cursor: pointer;
-  list-style: none;
 }
 
-.dayCard summary::-webkit-details-marker {
-  display: none;
-}
-
-.dayCard summary span {
+.dayCardHeader span {
   color: var(--color-coral);
   font-size: 0.8rem;
   font-weight: 900;
 }
 
-.dayCard summary strong {
+.dayCard h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
   line-height: 1.2;
 }
 
 .dayCard ul {
   margin: 0;
-  padding: 0 16px 16px 32px;
+  padding-left: 18px;
   color: var(--color-muted);
   font-size: 0.92rem;
+  line-height: 1.45;
 }
 
 .aboutGrid {
@@ -601,6 +605,41 @@
 .aboutCopy {
   display: grid;
   gap: 18px;
+}
+
+.teacherCard {
+  padding: 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.teacherCard h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+}
+
+.teacherCard p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.teacherCard ul {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  list-style: none;
+}
+
+.teacherCard li {
+  padding: 9px 11px;
+  border-radius: 8px;
+  background: var(--color-soft-green);
+  color: var(--color-green);
+  font-size: 0.86rem;
+  font-weight: 800;
 }
 
 .aboutProof {
@@ -758,6 +797,8 @@
     gap: 14px;
     width: 100%;
     max-width: 350px;
+    margin: 0 auto;
+    text-align: center;
   }
 
   .hero h1 {
@@ -776,6 +817,7 @@
   .heroFacts {
     grid-template-columns: repeat(3, 1fr);
     margin-top: 8px;
+    text-align: center;
   }
 
   .heroFact {
@@ -802,6 +844,14 @@
   .sectionHeader {
     margin-bottom: 24px;
     gap: 12px;
+    text-align: center;
+  }
+
+  .sectionHeader p,
+  .bookingCopy p,
+  .aboutCopy p {
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .sectionHeader h2,
@@ -837,7 +887,26 @@
     padding: 20px;
   }
 
+  .bookingCopy,
+  .aboutCopy,
+  .teacherCard,
+  .benefitCard,
+  .finalCta,
+  .footerInner {
+    text-align: center;
+  }
+
+  .priceLine,
+  .aboutProof {
+    justify-content: center;
+  }
+
+  .includedList li {
+    justify-content: center;
+  }
+
   .includedList,
+  .teacherCard ul,
   .programGrid,
   .benefitGrid {
     grid-template-columns: 1fr;
