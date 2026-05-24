@@ -1,139 +1,146 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import type { CSSProperties } from "react";
 import Image from "next/image";
-import HeroVideo from "@/components/HeroVideo";
 import HeaderScroll from "@/components/HeaderScroll";
 import MobileMenu from "@/components/MobileMenu";
 import Reveal from "@/components/Reveal";
 import styles from "./page.module.css";
 
-const stats = [
-  { value: "7 dagar", label: "av djup återhämtning" },
-  { value: "Max 12", label: "deltagare i gruppen" },
-  { value: "Kundalini", label: "yoga & breathwork" },
-  { value: "Gambia", label: "sol, hav & näring" },
-];
-
-const trips = [
-  {
-    title: "7 dagar i Gambia – Hormonell Balans",
-    date: "Kommande datum",
-    length: "7 dagar",
-    price: "Kontakta oss",
-    spots: "Begränsat antal platser",
-    includes: ["Kundaliniyoga för alla nivåer", "Meditation & breathwork", "Lokalodlad mat från vår farm"],
-  },
-];
-
-const features = [
-  {
-    title: "Kundaliniyoga",
-    text: "Anpassad för alla nivåer – inga förkunskaper krävs. Du behöver bara komma som du är.",
-    icon: "01",
-  },
-  {
-    title: "Meditation & Mindfulness",
-    text: "Dagliga sessioner för nervsystemet – stillhet och närvaro som stöttar kroppen.",
-    icon: "02",
-  },
-  {
-    title: "Andningsövningar",
-    text: "Breathwork-tekniker för hormonell balans och stressreglering att ta med hem.",
-    icon: "03",
-  },
-  {
-    title: "Näring från naturen",
-    text: "Färsk mat från vår egen farm – soursop, baobab och hibiskus i varje måltid.",
-    icon: "04",
-  },
-  {
-    title: "Sol, hav & vila",
-    text: "Sju dagar där solen värmer huden och havet lugnar sinnet – utan krav.",
-    icon: "05",
-  },
-  {
-    title: "Genuint Gambia",
-    text: "Bortom turiststråken – vi delar våra smultronställen och lokala rötter.",
-    icon: "06",
-  },
-];
-
-const itinerary = [
-  {
-    day: "Dag 1",
-    title: "Ankomst & välkommen",
-    text: "Landning i Banjul, incheckning och en varm välkomstmiddag med lokala råvaror.",
-  },
-  {
-    day: "Dag 2",
-    title: "Sunrise Kundalini + strandvila",
-    text: "Mjukt yogapass i gryningen, meditation vid havet och eftermiddag för återhämtning.",
-  },
-  {
-    day: "Dag 3",
-    title: "Breathwork & näring",
-    text: "Andningsövningar för hormonell balans och gemensam matlagning med farmens råvaror.",
-  },
-  {
-    day: "Dag 4",
-    title: "Kulturutflykt & stillhet",
-    text: "Besök lokala platser som betyder något för oss – sedan tid för egna reflektioner.",
-  },
-  {
-    day: "Dag 5",
-    title: "Djupare practice",
-    text: "Intensivare yoga och meditation, kvällsceremoni med teer av soursop och hibiskus.",
-  },
-  {
-    day: "Dag 6",
-    title: "Fri dag vid havet",
-    text: "Stranddag, valfria aktiviteter eller vila – utrymme för egna upptäckter.",
-  },
-  {
-    day: "Dag 7",
-    title: "Integration & hemresa",
-    text: "Avslutande cirkel, verktyg att ta med hem och farewell-middag med gruppen.",
-  },
-];
-
-const practical = [
-  {
-    title: "Flyg & transfer",
-    text: "Samlad avresa från Sverige. Transfer väntar i Banjul och tar oss direkt till boendet.",
-  },
-  {
-    title: "Visum & pass",
-    text: "Visum ordnas vid ankomst. Passet ska vara giltigt minst 6 månader efter hemkomst.",
-  },
-  {
-    title: "Vaccin & försäkring",
-    text: "Gula febern rekommenderas. Reseförsäkring ingår via Hemförsäkring eller tillägg.",
-  },
-  {
-    title: "Packlista",
-    text: "Lätta träningskläder, badskor, solskydd, myggmedel och en snygg kvällsoutfit.",
-  },
+const tripFacts = [
+  { value: "7 dagar", label: "yoga, hav och kultur" },
+  { value: "17 000 kr", label: "per person" },
+  { value: "Max 12", label: "i gruppen" },
 ];
 
 const reviews = [
   {
     name: "Anna S.",
-    trip: "Gambia Yoga Retreat 2024",
-    rating: 5,
-    text: "En otrolig vecka. Ewa är en fantastisk lärare och maten från farmen var magisk. Jag kom hem med ett lugn jag inte känt på år.",
+    text: "Tryggt, varmt och välplanerat från första kontakten. Jag kom hem med mer energi än jag haft på länge.",
   },
   {
     name: "Maria K.",
-    trip: "Gambia Yoga Retreat 2024",
-    rating: 5,
-    text: "Yogapassen var perfekta – anpassade till alla nivåer. Andningsövningarna har förändrat hur jag hanterar stress. Rekommenderas varmt!",
+    text: "Yogan, maten och utflykterna blev en perfekt mix. Det kändes personligt, inte som en vanlig paketresa.",
   },
   {
     name: "Karin L.",
-    trip: "Gambia Yoga Retreat 2023",
-    rating: 5,
-    text: "Gambia är ett underbart land och att uppleva det med lokala guider som verkligen bryr sig gör all skillnad. En resa för livet.",
+    text: "Gambia genom Hip Afro Travel kändes genuint. Vi fick möta människor och platser jag aldrig hittat själv.",
+  },
+  {
+    name: "Sofia R.",
+    text: "Lagom mycket program och lagom mycket vila. Jag uppskattade att allt praktiskt redan var löst.",
+  },
+  {
+    name: "Elin M.",
+    text: "En vecka som faktiskt gav återhämtning. Gruppkänslan var stark utan att det blev intensivt.",
+  },
+];
+
+const included = [
+  "Flygplatstransfer i Gambia",
+  "Boende i huset",
+  "Yogapass och meditation",
+  "Utvalda utflykter",
+  "Måltider enligt program",
+  "Svensk och lokal närvaro",
+];
+
+const itinerary = [
+  {
+    day: "Dag 1",
+    title: "Ankomst",
+    items: [
+      "Upphämtning vid flygplatsen",
+      "Transfer, incheckning och lunch",
+      "Yoga 17.00-18.30 och middag 19.30",
+    ],
+  },
+  {
+    day: "Dag 2",
+    title: "Örter, yoga och egen tid",
+    items: [
+      "Morgonmeditation och frukost",
+      "Workshop om baobab, moringa och soursop",
+      "Egen tid, yoga och gemensam middag",
+    ],
+  },
+  {
+    day: "Dag 3",
+    title: "Kartong och Pelikan Island",
+    items: [
+      "Morgonmeditation och frukost",
+      "Utflykt till Kartong och båtutflykt",
+      "Yoga på eftermiddagen och middag",
+    ],
+  },
+  {
+    day: "Dag 4",
+    title: "Lugn dag vid huset",
+    items: [
+      "Morgonmeditation och frukost",
+      "Egen tid 12.00-17.00",
+      "Yoga 17.00-18.30 och middag 19.30",
+    ],
+  },
+  {
+    day: "Dag 5",
+    title: "Lamin Lodge",
+    items: [
+      "Frukost",
+      "Heldagsutflykt till Lamin Lodge",
+      "Lunch, snacks och dryck ingår",
+    ],
+  },
+  {
+    day: "Dag 6",
+    title: "Strandmiddag och avslutning",
+    items: [
+      "Morgonmeditation och frukost",
+      "Egen tid och yogapass",
+      "Middag på stranden, campfire och avslutningskväll",
+    ],
+  },
+  {
+    day: "Dag 7",
+    title: "Hemresa",
+    items: [
+      "Morgonmeditation och frukost",
+      "Egen tid fram till 16.00",
+      "Utcheckning, transfer och flygplats",
+    ],
+  },
+];
+
+const benefits = [
+  {
+    title: "Allt är kurerat",
+    text: "Du slipper planera. Vi samlar boende, transfer, yoga, mat och utflykter i en tydlig resa.",
+  },
+  {
+    title: "Lagom stor grupp",
+    text: "Max 12 personer gör resan social och personlig utan att kännas trång eller opersonlig.",
+  },
+  {
+    title: "Genuint Gambia",
+    text: "Du får uppleva strand, byliv, natur och lokala möten med människor som känner platsen.",
+  },
+  {
+    title: "Återhämtning på riktigt",
+    text: "Programmet växlar mellan yoga, meditation, egen tid och upplevelser så kroppen hinner landa.",
+  },
+];
+
+const curatedImages = [
+  {
+    src: "/images/pic-1.jpeg",
+    alt: "Gruppresa med Hip Afro Travel i Gambia",
+  },
+  {
+    src: "/images/pic-2.jpeg",
+    alt: "Resenär under en varm dag i Gambia",
+  },
+  {
+    src: "/images/pic-3.jpeg",
+    alt: "Strand och vardagsliv under resan",
   },
 ];
 
@@ -145,37 +152,33 @@ const galleryImageExtensions = new Set([
   ".avif",
 ]);
 
-async function getLatestGalleryImages() {
+function toPublicImagePath(file: string) {
+  return `/pic-latest/${encodeURIComponent(file)}`;
+}
+
+async function getGalleryImages() {
   const galleryDirectory = path.join(process.cwd(), "public", "pic-latest");
 
   try {
     const files = await fs.readdir(galleryDirectory);
-
-    return files
+    const latestImages = files
       .filter((file) =>
         galleryImageExtensions.has(path.extname(file).toLowerCase())
       )
-      .sort((a, b) => b.localeCompare(a, "sv"))
+      .sort((a, b) => a.localeCompare(b, "sv"))
       .map((file, index) => ({
-        src: `/pic-latest/${encodeURIComponent(file)}`,
-        alt: `Bild från HIP AFRO TRAVEL i Gambia ${index + 1}`,
+        src: toPublicImagePath(file),
+        alt: `Bild från Hip Afro Travel i Gambia ${index + 1}`,
       }));
+
+    return [...curatedImages, ...latestImages].slice(0, 11);
   } catch {
-    return [];
+    return curatedImages;
   }
 }
 
-const StarIcon = () => (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path
-      fill="currentColor"
-      d="M12 2.5l2.9 6.1 6.7.8-4.9 4.7 1.2 6.6L12 17.6 6.1 20.7l1.2-6.6L2.4 9.4l6.7-.8L12 2.5z"
-    />
-  </svg>
-);
-
 export default async function Home() {
-  const galleryImages = await getLatestGalleryImages();
+  const galleryImages = await getGalleryImages();
 
   return (
     <div className={styles.page}>
@@ -183,18 +186,17 @@ export default async function Home() {
         <HeaderScroll />
         <div className={styles.container}>
           <div className={styles.headerInner}>
-            <div className={styles.logo}>
-              Gambia <span>Yoga</span> Retreat
-            </div>
-            <nav className={`${styles.nav} ${styles.desktopOnly}`}>
-              <a href="#resor">Retreat</a>
-              <a href="#om-resan">Om oss</a>
-              <a href="#om-ewa">Om Ewa</a>
-              <a href="#program">Program</a>
-              <a href="#praktisk-info">Praktisk info</a>
-              <a href="#galleri">Galleri</a>
+            <a className={styles.brand} href="#hero" aria-label="Hip Afro Travel">
+              Hip Afro Travel
+            </a>
+            <nav className={`${styles.desktopNav} ${styles.desktopOnly}`}>
+              <a href="#recensioner">Recensioner</a>
+              <a href="#bilder">Bilder</a>
+              <a href="#boka">Boka</a>
+              <a href="#vilka-vi-ar">Vilka vi är</a>
+              <a href="#varfor">Varför resan</a>
             </nav>
-            <a className={`${styles.navButton} ${styles.desktopOnly}`} href="#kontakt">
+            <a className={`${styles.navCta} ${styles.desktopOnly}`} href="#boka">
               Boka resa
             </a>
             <MobileMenu />
@@ -203,291 +205,200 @@ export default async function Home() {
       </header>
 
       <main>
-        <section className={`${styles.section} ${styles.hero}`} id="startsida">
-          <div className={styles.heroMedia}>
-            <HeroVideo
-              className={styles.heroVideo}
-              src="/videos/hero.mp4"
-              poster="/images/pic-1.jpeg"
+        <section className={styles.hero} id="hero">
+          <video
+            className={styles.heroVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/images/pic-1.jpeg"
+            aria-hidden="true"
+          >
+            <source
+              src="/videos/vid-10.mp4"
+              type="video/mp4"
+              media="(min-width: 800px)"
             />
-            <div className={styles.heroOverlay} />
-            <div className={styles.heroGlow} />
-          </div>
-          <div className={styles.container}>
-            <div className={styles.heroContent}>
-              <Reveal className={styles.heroText}>
-                <span className={styles.eyebrow}>
-                  Gambia | Kundaliniyoga | Hormonell Balans
-                </span>
-                <h1 className={styles.heroTitle}>
-                  7 dagar i Gambia – återställ din hormonella balans
-                </h1>
-                <p className={styles.heroLead}>
-                  Kundaliniyoga, meditation, sol, hav och närande mat från naturen.
-                  En vecka skapad för dig som längtar efter återhämtning, balans
-                  och en djupare kontakt med din kropp.
-                </p>
-                <div className={styles.heroActions}>
-                  <a className={styles.primaryButton} href="#kontakt">
-                    Boka resa
-                  </a>
-                  <a className={styles.secondaryButton} href="#resor">
-                    Läs mer
-                  </a>
-                </div>
-                <div className={styles.heroStats}>
-                  {stats.map((stat) => (
-                    <div key={stat.label} className={styles.stat}>
-                      <div className={styles.statValue}>{stat.value}</div>
-                      <div className={styles.statLabel}>{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
-              <Reveal
-                className={`${styles.heroCard} ${styles.heroCardDesktop}`}
-                style={{ "--reveal-delay": "120ms" } as CSSProperties}
-              >
-                <div className={styles.heroCardHeader}>
-                  <span className={styles.pill}>Retreat</span>
-                  <span>Gambia 2025/2026</span>
-                </div>
-                <div className={styles.heroCardTitle}>7 dagar – Hormonell Balans</div>
-                <p className={styles.heroCardCopy}>
-                  En vecka för dig – precis som du är. Inga förkunskaper krävs.
-                </p>
-                <ul className={styles.heroList}>
-                  <li>Kundaliniyoga anpassad för alla nivåer</li>
-                  <li>Andningsövningar & meditation</li>
-                  <li>Lokalodlad mat & naturliga örter</li>
-                </ul>
-                <div className={styles.heroCardFooter}>
-                  <span className={styles.price}>Kontakta oss</span>
-                  <a className={styles.ghostButton} href="#program">
-                    Se program
-                  </a>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-          <div className={styles.scrollIndicator}>
-            Scrolla
-            <span className={styles.scrollDot} />
-          </div>
-        </section>
-
-        <div className={styles.heroCardMobileSection}>
-          <div className={styles.container}>
-            <Reveal className={styles.heroCard}>
-              <div className={styles.heroCardHeader}>
-                <span className={styles.pill}>Retreat</span>
-                <span>Gambia 2025/2026</span>
-              </div>
-              <div className={styles.heroCardTitle}>7 dagar – Hormonell Balans</div>
-              <p className={styles.heroCardCopy}>
-                En vecka för dig – precis som du är. Inga förkunskaper krävs.
+            <source src="/videos/hero.mp4" type="video/mp4" />
+          </video>
+          <div className={styles.heroShade} />
+          <div className={`${styles.container} ${styles.heroInner}`}>
+            <Reveal className={styles.heroCopy}>
+              <p className={styles.kicker}>Gruppresa till Gambia</p>
+              <h1>7 dagar i Gambia med yoga och värme.</h1>
+              <p className={styles.heroLead}>
+                En trygg gruppresa med hav, utflykter, meditation och tid att
+                landa.
               </p>
-              <ul className={styles.heroList}>
-                <li>Kundaliniyoga anpassad för alla nivåer</li>
-                <li>Andningsövningar & meditation</li>
-                <li>Lokalodlad mat & naturliga örter</li>
-              </ul>
-              <div className={styles.heroCardFooter}>
-                <span className={styles.price}>Kontakta oss</span>
-                <a className={styles.ghostButton} href="#program">
-                  Se program
+              <div className={styles.heroActions}>
+                <a className={styles.primaryButton} href="#boka">
+                  Boka resa
+                </a>
+                <a className={styles.secondaryButton} href="#bilder">
+                  Se känslan
                 </a>
               </div>
-            </Reveal>
-          </div>
-        </div>
-
-        <section className={styles.section} id="galleri">
-          <div className={styles.container}>
-            <div className={styles.sectionHead}>
-              <Reveal>
-                <span className={styles.kicker}>Galleri</span>
-                <h2 className={styles.sectionTitle}>
-                  Minnen och ögonblick från resan
-                </h2>
-              </Reveal>
-            </div>
-            <div className={styles.galleryWrap}>
-              {galleryImages.length > 0 ? (
-                galleryImages.map((image, index) => {
-                  const isWide = index % 6 === 0 || index % 6 === 5;
-
-                  return (
-                    <Reveal
-                      key={image.src}
-                      className={`${styles.galleryItem} ${
-                        isWide ? styles.galleryItemWide : ""
-                      }`}
-                      style={
-                        {
-                          "--reveal-delay": `${(index % 6) * 70}ms`,
-                        } as CSSProperties
-                      }
-                    >
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        className={styles.galleryImage}
-                        sizes="(max-width: 420px) 94vw, (max-width: 900px) 47vw, (max-width: 1280px) 31vw, 23vw"
-                      />
-                    </Reveal>
-                  );
-                })
-              ) : (
-                <p className={styles.galleryEmpty}>
-                  Inga bilder hittades i <code>/public/pic-latest</code>.
-                </p>
-              )}
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.section} id="recensioner">
-          <div className={styles.container}>
-            <div className={styles.sectionHead}>
-              <Reveal>
-                <span className={styles.kicker}>Recensioner</span>
-                <h2 className={styles.sectionTitle}>
-                  Röster från resan
-                </h2>
-                <p className={styles.sectionIntro}>
-                  Äkta intryck från gäster som rest med oss.
-                </p>
-              </Reveal>
-            </div>
-            <div className={styles.reviewLoop}>
-              <div className={styles.reviewTrack}>
-                {reviews.map((review) => (
-                  <div key={review.name} className={styles.reviewSlide}>
-                    <div className={styles.reviewCard}>
-                      <div className={styles.reviewTop}>
-                        <div>
-                          <div className={styles.reviewName}>{review.name}</div>
-                          <div className={styles.reviewTrip}>{review.trip}</div>
-                        </div>
-                        <div
-                          className={styles.stars}
-                          aria-label={`${review.rating} av 5`}
-                        >
-                          {Array.from({ length: review.rating }).map(
-                            (_, idx) => (
-                              <StarIcon key={`${review.name}-${idx}`} />
-                            )
-                          )}
-                        </div>
-                      </div>
-                      <p className={styles.reviewText}>{review.text}</p>
-                    </div>
+              <div className={styles.heroFacts} aria-label="Resans höjdpunkter">
+                {tripFacts.map((fact) => (
+                  <div className={styles.heroFact} key={fact.label}>
+                    <strong>{fact.value}</strong>
+                    <span>{fact.label}</span>
                   </div>
                 ))}
               </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className={styles.reviewSection} id="recensioner">
+          <div className={styles.container}>
+            <div className={styles.sectionHeader}>
+              <Reveal>
+                <p className={styles.kicker}>Recensioner</p>
+                <h2>Det som får människor att boka igen.</h2>
+              </Reveal>
+              <p>
+                Korta röster från resenärer som uppskattat tryggheten,
+                gruppkänslan och att Gambia får kännas på riktigt.
+              </p>
+            </div>
+            <div className={styles.reviewScroller} aria-label="Recensioner">
+              {reviews.map((review) => (
+                <article className={styles.reviewCard} key={review.name}>
+                  <div className={styles.rating}>★★★★★</div>
+                  <p>{review.text}</p>
+                  <strong>{review.name}</strong>
+                </article>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className={styles.section} id="resor">
+        <section className={styles.gallerySection} id="bilder">
           <div className={styles.container}>
-            <div className={styles.sectionHead}>
+            <div className={styles.sectionHeader}>
               <Reveal>
-                <span className={styles.kicker}>Retreat</span>
-                <h2 className={styles.sectionTitle}>
-                  7 dagar i Gambia – återställ din hormonella balans
-                </h2>
-                <p className={styles.sectionIntro}>
-                  Kundaliniyoga, meditation, sol, hav och närande mat från naturen.
-                  Inga förkunskaper krävs – du behöver bara komma som du är.
-                </p>
+                <p className={styles.kicker}>Bilder</p>
+                <h2>Sol, människor, mat och dagar som känns levande.</h2>
               </Reveal>
+              <p>
+                Riktiga bilder från materialet i projektet. Mindre säljtext,
+                mer känsla.
+              </p>
             </div>
-            <div className={styles.tripGrid}>
-              {trips.map((trip, index) => (
+            <div className={styles.galleryGrid}>
+              {galleryImages.map((image, index) => (
                 <Reveal
-                  key={trip.title}
-                  className={styles.tripCard}
-                  style={
-                    { "--reveal-delay": `${index * 120}ms` } as CSSProperties
-                  }
+                  className={`${styles.galleryTile} ${
+                    index === 0 || index === 6 ? styles.galleryTileWide : ""
+                  } ${index === 2 || index === 8 ? styles.galleryTileTall : ""}`}
+                  key={image.src}
                 >
-                  <div className={styles.tripMeta}>
-                    <span>{trip.date}</span>
-                    <span>{trip.spots}</span>
-                  </div>
-                  <h3 className={styles.tripTitle}>{trip.title}</h3>
-                  <div className={styles.tripMeta}>{trip.length}</div>
-                  <ul className={styles.tripDetails}>
-                    {trip.includes.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                  <div className={styles.tripFooter}>
-                    <span className={styles.tripPrice}>{trip.price}</span>
-                    <a className={styles.tripButton} href="#kontakt">
-                      Boka
-                    </a>
-                  </div>
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className={styles.galleryImage}
+                    sizes="(max-width: 700px) 86vw, (max-width: 1100px) 45vw, 30vw"
+                  />
                 </Reveal>
               ))}
             </div>
           </div>
         </section>
 
-        <section className={styles.section} id="om-resan">
+        <section className={styles.bookingSection} id="boka">
           <div className={styles.container}>
-            <div className={styles.sectionHead}>
-              <Reveal>
-                <span className={styles.kicker}>Om oss</span>
-                <h2 className={styles.sectionTitle}>
-                  En del av vårt liv som vi öppnar upp och bjuder in dig till
-                </h2>
-                <p className={styles.sectionIntro}>
-                  Gambia är inte bara en destination för oss – det är en del av vår historia.
-                  Genom våra lokala rötter och internationella erfarenheter erbjuder vi
-                  en resa som är både genuin och trygg.
-                </p>
-              </Reveal>
-            </div>
-            <div className={styles.aboutGrid}>
-              <Reveal className={styles.aboutCard}>
+            <div className={styles.bookingGrid}>
+              <Reveal className={styles.bookingCopy}>
+                <p className={styles.kicker}>Boka</p>
+                <h2>En enkel gruppresa. Ett tydligt pris.</h2>
                 <p>
-                  Som grundare drivs jag av en djup passion för yoga och meditation.
-                  Min bakgrund inom retail har gett mig en stark förståelse för hur man
-                  skapar en genomtänkt och emotionell upplevelse. Från val av plats till
-                  upplägg, mat och aktiviteter är allt noggrant planerat för att skapa
-                  en helhet som känns personlig, varm och minnesvärd.
+                  Resan kostar <strong>17 000 kr per person</strong>. Du får en
+                  vecka med yoga, meditation, utflykter, lokala möten och tid
+                  för återhämtning.
                 </p>
-                <ul className={styles.aboutList}>
-                  <li className={styles.aboutItem}>
-                    <span className={styles.aboutIcon} />
-                    <div>
-                      <strong>Lokala rötter</strong>
-                      <div>Vi tar dig bortom turiststråken till platser som betyder något för oss.</div>
-                    </div>
-                  </li>
-                  <li className={styles.aboutItem}>
-                    <span className={styles.aboutIcon} />
-                    <div>
-                      <strong>Egen farm</strong>
-                      <div>
-                        Frukt och grönsaker plockade direkt från vår farm – mat lagad med omsorg.
-                      </div>
-                    </div>
-                  </li>
-                  <li className={styles.aboutItem}>
-                    <span className={styles.aboutIcon} />
-                    <div>
-                      <strong>Mer än en retreat</strong>
-                      <div>Det är en vecka som kan förändra hur du tar hand om dig själv – på riktigt.</div>
-                    </div>
-                  </li>
+                <div className={styles.priceLine}>
+                  <span>17 000 kr</span>
+                  <small>per person</small>
+                </div>
+                <ul className={styles.includedList}>
+                  {included.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
                 </ul>
               </Reveal>
-              <Reveal className={styles.mediaFrame}>
+
+              <Reveal className={styles.bookingFormWrap}>
+                <form
+                  className={styles.bookingForm}
+                  action="mailto:info@hipafrotravel.se"
+                  method="post"
+                  encType="text/plain"
+                >
+                  <h3>Skicka bokningsförfrågan</h3>
+                  <label>
+                    Namn
+                    <input name="name" type="text" required />
+                  </label>
+                  <label>
+                    E-post
+                    <input name="email" type="email" required />
+                  </label>
+                  <label>
+                    Telefon
+                    <input name="phone" type="tel" />
+                  </label>
+                  <label>
+                    Antal resenärer
+                    <select name="travelers" defaultValue="1 person">
+                      <option>1 person</option>
+                      <option>2 personer</option>
+                      <option>3+ personer</option>
+                    </select>
+                  </label>
+                  <button type="submit">Boka resa</button>
+                  <p>
+                    Vi återkommer med datum, betalningsupplägg och praktiska
+                    detaljer innan du bekräftar din plats.
+                  </p>
+                </form>
+              </Reveal>
+            </div>
+
+            <div className={styles.programBlock}>
+              <div className={styles.programHeader}>
+                <p className={styles.kicker}>Dagsprogram</p>
+                <h3>Veckan i korthet.</h3>
+              </div>
+              <div className={styles.programGrid}>
+                {itinerary.map((day, index) => (
+                  <details
+                    className={styles.dayCard}
+                    key={day.day}
+                    open={index === 0}
+                  >
+                    <summary>
+                      <span>{day.day}</span>
+                      <strong>{day.title}</strong>
+                    </summary>
+                    <ul>
+                      {day.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.aboutSection} id="vilka-vi-ar">
+          <div className={styles.container}>
+            <div className={styles.aboutGrid}>
+              <Reveal className={styles.aboutMedia}>
                 <video
                   src="/videos/vid-1.mp4"
                   poster="/images/pic-2.jpeg"
@@ -496,229 +407,55 @@ export default async function Home() {
                   loop
                   playsInline
                 />
-                <div className={styles.mediaBadge}>Gambia Yoga</div>
+              </Reveal>
+              <Reveal className={styles.aboutCopy}>
+                <p className={styles.kicker}>Vilka vi är</p>
+                <h2>En liten resebyrå med hjärtat i Gambia.</h2>
+                <p>
+                  Hip Afro Travel skapar gruppresor där resenärer får känna
+                  landet genom människor, mat, rörelse, musik och natur. Vi
+                  bygger resan för dig som vill ha trygg struktur utan att
+                  tappa närheten till platsen.
+                </p>
+                <div className={styles.aboutProof}>
+                  <span>Lokala kontakter</span>
+                  <span>Svensk reseledning</span>
+                  <span>Små grupper</span>
+                </div>
               </Reveal>
             </div>
           </div>
         </section>
 
-        <section className={styles.section} id="om-ewa">
+        <section className={styles.benefitSection} id="varfor">
           <div className={styles.container}>
-            <div className={styles.sectionHead}>
+            <div className={styles.sectionHeader}>
               <Reveal>
-                <span className={styles.kicker}>Om Ewa</span>
-                <h2 className={styles.sectionTitle}>
-                  Din guide till balans och välmående
-                </h2>
+                <p className={styles.kicker}>Varför resan är bra</p>
+                <h2>För dig som vill komma bort, men inte resa planlöst.</h2>
               </Reveal>
+              <p>
+                Resan är byggd för att kännas enkel att säga ja till: tydligt
+                pris, tydligt program och mycket mänsklig värme.
+              </p>
             </div>
-            <div className={styles.aboutGrid}>
-              <Reveal className={styles.mediaFrame}>
-                <video
-                  src="/videos/vid-2.mp4"
-                  poster="/images/pic-1.jpeg"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
-                <div className={styles.mediaBadge}>Kundalini</div>
-              </Reveal>
-              <Reveal className={styles.aboutCard}>
-                <p>
-                  Jag är en svensk yoga-, breathwork- och meditationslärare som har bott i
-                  Barcelona i över 20 år. Min resa inom yoga och mindfulness började under
-                  tiden jag bodde i Australien – och har varit en naturlig del av mitt liv
-                  i mer än två decennier. Sedan 2013 är jag certifierad Kundaliniyogalärare.
-                </p>
-                <p>
-                  I min undervisning väver jag även in inslag av Tai Chi, som på många sätt
-                  kompletterar Kundaliniyogans energiarbete och flöde. Min passion är att
-                  inspirera och guida människor till ett gladare, mer balanserat och hälsosamt liv
-                  – genom yoga, meditation, medveten andning, näring och ett positivt mindset.
-                </p>
-                <ul className={styles.aboutList}>
-                  <li className={styles.aboutItem}>
-                    <span className={styles.aboutIcon} />
-                    <div>
-                      <strong>Certifierad sedan 2013</strong>
-                      <div>Kundaliniyogalärare med djup erfarenhet och passion för undervisning.</div>
-                    </div>
-                  </li>
-                  <li className={styles.aboutItem}>
-                    <span className={styles.aboutIcon} />
-                    <div>
-                      <strong>Holistiskt synsätt</strong>
-                      <div>Jag tror på kroppens egen förmåga att hitta balans när vi ger den rätt förutsättningar.</div>
-                    </div>
-                  </li>
-                </ul>
-                <p style={{ fontStyle: "italic", marginTop: "0.5rem" }}>
-                  &quot;Make yourself so happy that by looking at you, others become happy too.&quot;
-                  <br /><em>– Yogi Bhajan</em>
-                </p>
-                <p>Namaste, Sat Nam, Love &amp; Light – Ewa</p>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.section} id="upplevelse">
-          <div className={styles.container}>
-            <div className={styles.sectionHead}>
-              <Reveal>
-                <span className={styles.kicker}>Vad du tar med dig hem</span>
-                <h2 className={styles.sectionTitle}>
-                  En investering i din långsiktiga balans
-                </h2>
-                <p className={styles.sectionIntro}>
-                  Det här är inte bara en resa – du rör dig, andas och äter dig
-                  mot en djupare kontakt med din kropp och ett lugn som sitter kvar.
-                </p>
-              </Reveal>
-            </div>
-            <div className={styles.featureGrid}>
-              {features.map((feature, index) => (
-                <Reveal
-                  key={feature.title}
-                  className={styles.featureCard}
-                  style={
-                    { "--reveal-delay": `${index * 100}ms` } as CSSProperties
-                  }
-                >
-                  <div className={styles.featureIcon}>{feature.icon}</div>
-                  <h3>{feature.title}</h3>
-                  <p>{feature.text}</p>
+            <div className={styles.benefitGrid}>
+              {benefits.map((benefit) => (
+                <Reveal className={styles.benefitCard} key={benefit.title}>
+                  <h3>{benefit.title}</h3>
+                  <p>{benefit.text}</p>
                 </Reveal>
               ))}
             </div>
-          </div>
-        </section>
-
-        <section className={styles.section} id="program">
-          <div className={styles.container}>
-            <div className={styles.sectionHead}>
-              <Reveal>
-                <span className={styles.kicker}>Dag-för-dag</span>
-                <h2 className={styles.sectionTitle}>Ett smakprov på veckan</h2>
-                <p className={styles.sectionIntro}>
-                  Programmet balanserar planerade aktiviteter med frihet. Här är
-                  ett exempel på hur dagarna kan se ut.
-                </p>
-              </Reveal>
-            </div>
-            <div className={styles.timeline}>
-              {itinerary.map((item, index) => (
-                <Reveal
-                  key={item.day}
-                  className={styles.timelineItem}
-                  style={
-                    { "--reveal-delay": `${index * 120}ms` } as CSSProperties
-                  }
-                >
-                  <div className={styles.timelineDay}>{item.day}</div>
-                  <h3 className={styles.timelineTitle}>{item.title}</h3>
-                  <p className={styles.timelineText}>{item.text}</p>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.section} id="praktisk-info">
-          <div className={styles.container}>
-            <div className={styles.sectionHead}>
-              <Reveal>
-                <span className={styles.kicker}>Praktisk info</span>
-                <h2 className={styles.sectionTitle}>
-                  Allt du behöver veta inför resan
-                </h2>
-                <p className={styles.sectionIntro}>
-                  Vi guidar dig hela vägen - från första mejl till landning
-                  hemma. Här är det viktigaste att planera.
-                </p>
-              </Reveal>
-            </div>
-            <div className={styles.infoGrid}>
-              {practical.map((item, index) => (
-                <Reveal
-                  key={item.title}
-                  className={styles.infoCard}
-                  style={
-                    { "--reveal-delay": `${index * 120}ms` } as CSSProperties
-                  }
-                >
-                  <div className={styles.infoTitle}>{item.title}</div>
-                  <div className={styles.infoText}>{item.text}</div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.section} id="kontakt">
-          <div className={styles.container}>
-            <div className={styles.sectionHead}>
-              <Reveal>
-                <span className={styles.kicker}>Kontakt</span>
-                <h2 className={styles.sectionTitle}>
-                  Är du redo att ge dig själv den pausen?
-                </h2>
-                <p className={styles.sectionIntro}>
-                  Fyll i formuläret så hör vi av oss inom 24 timmar med nästa
-                  steg och komplett information om retreaten.
-                </p>
-              </Reveal>
-            </div>
-            <Reveal className={styles.contactCard}>
-              <div className={styles.contactDetails}>
-                <h3>Gambia Yoga Retreat</h3>
-                <p>
-                  7 dagar av yoga, meditation och näring i Gambia. Vi hjälper
-                  dig hitta vägen tillbaka till dig själv.
-                </p>
-                <ul className={styles.contactList}>
-                  <li>E-post: info@gambiayogaretreat.se</li>
-                  <li>Telefon: +46 70 123 45 67</li>
-                  <li>Instagram: @gambiayogaretreat</li>
-                  <li>Namaste, Sat Nam, Love &amp; Light</li>
-                </ul>
+            <div className={styles.finalCta}>
+              <div>
+                <p className={styles.kicker}>Nästa steg</p>
+                <h2>Vill du följa med till Gambia?</h2>
               </div>
-              <form className={styles.contactForm}>
-                <input
-                  className={styles.input}
-                  type="text"
-                  name="name"
-                  placeholder="Namn"
-                  required
-                />
-                <input
-                  className={styles.input}
-                  type="email"
-                  name="email"
-                  placeholder="E-post"
-                  required
-                />
-                <input
-                  className={styles.input}
-                  type="tel"
-                  name="phone"
-                  placeholder="Telefon"
-                />
-                <select className={styles.select} name="trip">
-                  <option>Välj retreat</option>
-                  <option>7 dagar i Gambia – Hormonell Balans</option>
-                </select>
-                <textarea
-                  className={styles.textarea}
-                  name="message"
-                  placeholder="Berätta vad du vill uppleva"
-                />
-                <button className={styles.formButton} type="submit">
-                  Skicka förfrågan
-                </button>
-              </form>
-            </Reveal>
+              <a className={styles.primaryButton} href="#boka">
+                Boka resa
+              </a>
+            </div>
           </div>
         </section>
       </main>
@@ -726,26 +463,8 @@ export default async function Home() {
       <footer className={styles.footer}>
         <div className={styles.container}>
           <div className={styles.footerInner}>
-            <div className={styles.footerBrand}>
-              <div className={styles.logo}>
-                Gambia <span>Yoga</span> Retreat
-              </div>
-              <p>
-                Kundaliniyoga, meditation och näring i Gambia. En vecka för
-                dig som längtar efter balans, återhämtning och stillhet.
-              </p>
-            </div>
-            <div className={styles.footerNav}>
-              <a href="#resor">Retreat</a>
-              <a href="#om-resan">Om oss</a>
-              <a href="#om-ewa">Om Ewa</a>
-              <a href="#program">Program</a>
-              <a href="#praktisk-info">Praktisk info</a>
-              <a href="#kontakt">Kontakt</a>
-            </div>
-            <div className={styles.footerMeta}>
-              (c) 2025 Gambia Yoga Retreat. Alla rättigheter reserverade.
-            </div>
+            <strong>Hip Afro Travel</strong>
+            <span>Gruppresor till Gambia med yoga, kultur och värme.</span>
           </div>
         </div>
       </footer>

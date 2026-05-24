@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "HIP AFRO TRAVEL | Gambiaresor med kultur & community",
+  title: "Hip Afro Travel | Gruppresor till Gambia",
   description:
-    "Upplev Gambia med HIP AFRO TRAVEL - temaresor med kultur, gemenskap och äventyr. Se datum, paket och praktisk info.",
+    "Boka en 7-dagars gruppresa till Gambia med yoga, kultur, utflykter och återhämtning. 17 000 kr per person.",
 };
 
 export default function RootLayout({

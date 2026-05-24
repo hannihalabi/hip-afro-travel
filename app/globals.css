@@ -2,25 +2,15 @@
 
 :root {
   color-scheme: light;
-  --color-night: #fff0f3;
-  --color-ink: #2a1a20;
-  --color-slate: #7a5a65;
-  --color-sand: #fce4ea;
-  --color-cream: #ffffff;
-  --color-coral: #c0516a;
-  --color-mango: #d4496a;
-  --color-lagoon: #b83259;
-  --color-leaf: #e07090;
-  --surface-1: rgba(255, 240, 243, 0.92);
-  --surface-2: rgba(255, 228, 234, 0.92);
-  --surface-3: rgba(255, 215, 225, 0.92);
-  --border-soft: rgba(180, 80, 100, 0.12);
-  --border-strong: rgba(192, 81, 106, 0.32);
-  --radius-xl: 28px;
-  --radius-lg: 22px;
-  --radius-md: 16px;
-  --shadow-soft: 0 26px 60px rgba(180, 60, 90, 0.14);
-  --shadow-card: 0 20px 50px rgba(180, 60, 90, 0.10);
+  --color-paper: #f8f5ee;
+  --color-white: #ffffff;
+  --color-ink: #1d201a;
+  --color-muted: #66695f;
+  --color-green: #264f37;
+  --color-soft-green: #e9f1e8;
+  --color-coral: #b54b38;
+  --color-gold: #e2a928;
+  --color-soft-gold: #f7ebc8;
   --font-body: Arial, Helvetica, sans-serif;
   --font-display: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
@@ -42,26 +32,15 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  background-color: #fff0f3;
-  background-image: radial-gradient(
-      circle at 18% -5%,
-      rgba(212, 73, 106, 0.10),
-      transparent 55%
-    ),
-    radial-gradient(
-      circle at 85% 15%,
-      rgba(192, 81, 106, 0.08),
-      transparent 60%
-    ),
-    linear-gradient(180deg, #fff0f3 0%, #fde8ee 50%, #fff0f3 100%);
+  background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body), system-ui, sans-serif;
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
-img {
+img,
+video {
   max-width: 100%;
-  height: auto;
 }
 
 a {

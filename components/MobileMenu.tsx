@@ -4,11 +4,11 @@ import { useState } from "react";
 import styles from "@/app/page.module.css";
 
 const links = [
-  { href: "#om-resan", label: "Om resan" },
-  { href: "#resor", label: "Resor" },
-  { href: "#program", label: "Program" },
-  { href: "#praktisk-info", label: "Praktisk info" },
-  { href: "#galleri", label: "Galleri" },
+  { href: "#recensioner", label: "Recensioner" },
+  { href: "#bilder", label: "Bilder" },
+  { href: "#boka", label: "Boka" },
+  { href: "#vilka-vi-ar", label: "Vilka vi är" },
+  { href: "#varfor", label: "Varför resan" },
 ];
 
 export default function MobileMenu() {
@@ -52,7 +52,7 @@ export default function MobileMenu() {
           </a>
         ))}
         <a
-          href="#kontakt"
+          href="#boka"
           className={styles.mobileCta}
           onClick={handleClose}
         >

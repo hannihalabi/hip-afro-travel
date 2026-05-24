@@ -9,6 +9,7 @@ const useRepoPrefix = isProd && isGitHubPagesBuild;
 
 const nextConfig: NextConfig = {
   output: "export",
+  devIndicators: false,
   images: { unoptimized: true },
   basePath: useRepoPrefix ? `/${repo}` : "",
   assetPrefix: useRepoPrefix ? `/${repo}/` : "",
