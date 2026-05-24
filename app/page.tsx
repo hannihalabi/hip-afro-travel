@@ -9,68 +9,52 @@ import Reveal from "@/components/Reveal";
 import styles from "./page.module.css";
 
 const stats = [
-  { value: "12 dagar", label: "på plats i Gambia" },
-  { value: "Max 16", label: "resenärer i gruppen" },
-  { value: "4.9/5", label: "snittbetyg från gäster" },
-  { value: "16 995 kr", label: "pris per person" },
+  { value: "7 dagar", label: "av djup återhämtning" },
+  { value: "Max 12", label: "deltagare i gruppen" },
+  { value: "Kundalini", label: "yoga & breathwork" },
+  { value: "Gambia", label: "sol, hav & näring" },
 ];
 
 const trips = [
   {
-    title: "Gambia Flow Week",
-    date: "15-26 okt 2025",
-    length: "12 dagar",
-    price: "19 900 kr",
-    spots: "9 platser kvar",
-    includes: ["Boende vid stranden", "Afro dance + styrka", "Kulturkvällar"],
-  },
-  {
-    title: "Roots & Rhythm Escape",
-    date: "5-14 feb 2026",
-    length: "10 dagar",
-    price: "17 900 kr",
-    spots: "12 platser kvar",
-    includes: ["Workshops med lokala artister", "Dagliga workouts", "Marknad & safari"],
-  },
-  {
-    title: "Family & Community",
-    date: "20-30 april 2026",
-    length: "11 dagar",
-    price: "18 500 kr",
-    spots: "6 platser kvar",
-    includes: ["Familjevänligt upplägg", "Trygga transfers", "Community-aktiviteter"],
+    title: "7 dagar i Gambia – Hormonell Balans",
+    date: "Kommande datum",
+    length: "7 dagar",
+    price: "Kontakta oss",
+    spots: "Begränsat antal platser",
+    includes: ["Kundaliniyoga för alla nivåer", "Meditation & breathwork", "Lokalodlad mat från vår farm"],
   },
 ];
 
 const features = [
   {
-    title: "Kultur på riktigt",
-    text: "Möt lokala guider, artister och entreprenörer som öppnar dörrar till Gambia.",
+    title: "Kundaliniyoga",
+    text: "Anpassad för alla nivåer – inga förkunskaper krävs. Du behöver bara komma som du är.",
     icon: "01",
   },
   {
-    title: "Rörelse varje dag",
-    text: "Afro dance, styrka och flow sessions i soluppgången - nivåanpassat.",
+    title: "Meditation & Mindfulness",
+    text: "Dagliga sessioner för nervsystemet – stillhet och närvaro som stöttar kroppen.",
     icon: "02",
   },
   {
-    title: "Community först",
-    text: "Små grupper, gemensamma middagar och kvällar med musik och storytelling.",
+    title: "Andningsövningar",
+    text: "Breathwork-tekniker för hormonell balans och stressreglering att ta med hem.",
     icon: "03",
   },
   {
-    title: "Hållbar närvaro",
-    text: "Vi samarbetar lokalt och prioriterar upplevelser som ger tillbaka.",
+    title: "Näring från naturen",
+    text: "Färsk mat från vår egen farm – soursop, baobab och hibiskus i varje måltid.",
     icon: "04",
   },
   {
-    title: "Trygg logistik",
-    text: "Samlad transfer, svensk värd och tydlig planering hela vägen.",
+    title: "Sol, hav & vila",
+    text: "Sju dagar där solen värmer huden och havet lugnar sinnet – utan krav.",
     icon: "05",
   },
   {
-    title: "Plats för vila",
-    text: "Återhämtning, strandtid och utrymme för egna upptäckter ingår alltid.",
+    title: "Genuint Gambia",
+    text: "Bortom turiststråken – vi delar våra smultronställen och lokala rötter.",
     icon: "06",
   },
 ];
@@ -78,33 +62,38 @@ const features = [
 const itinerary = [
   {
     day: "Dag 1",
-    title: "Ankomst & välkomstmiddag",
-    text: "Vi landar i Banjul, checkar in vid havet och möts för en gemensam middag.",
+    title: "Ankomst & välkommen",
+    text: "Landning i Banjul, incheckning och en varm välkomstmiddag med lokala råvaror.",
   },
   {
     day: "Dag 2",
-    title: "Sunrise flow + marknad",
-    text: "Mjuk rörelse i gryningen och en färgstark marknadsrunda med lokala smaker.",
+    title: "Sunrise Kundalini + strandvila",
+    text: "Mjukt yogapass i gryningen, meditation vid havet och eftermiddag för återhämtning.",
   },
   {
     day: "Dag 3",
-    title: "Stranddag & återhämtning",
-    text: "Fokusera på vila, hav och valfria aktiviteter med gruppen.",
+    title: "Breathwork & näring",
+    text: "Andningsövningar för hormonell balans och gemensam matlagning med farmens råvaror.",
   },
   {
     day: "Dag 4",
-    title: "Kulturutflykt & musikstudio",
-    text: "Besök byar och kulturcenter, avsluta med musik och rytmworkshop.",
+    title: "Kulturutflykt & stillhet",
+    text: "Besök lokala platser som betyder något för oss – sedan tid för egna reflektioner.",
   },
   {
     day: "Dag 5",
-    title: "Afro pulse + beach night",
-    text: "Intensivare pass på dagen, gemensam kväll med grill och dans.",
+    title: "Djupare practice",
+    text: "Intensivare yoga och meditation, kvällsceremoni med teer av soursop och hibiskus.",
   },
   {
     day: "Dag 6",
-    title: "Fri dag eller safari",
-    text: "Valfri utflykt till naturreservat eller egen tid vid kusten.",
+    title: "Fri dag vid havet",
+    text: "Stranddag, valfria aktiviteter eller vila – utrymme för egna upptäckter.",
+  },
+  {
+    day: "Dag 7",
+    title: "Integration & hemresa",
+    text: "Avslutande cirkel, verktyg att ta med hem och farewell-middag med gruppen.",
   },
 ];
 
@@ -129,22 +118,22 @@ const practical = [
 
 const reviews = [
   {
-    name: "Sofia L.",
-    trip: "Gambia Flow 2024",
+    name: "Anna S.",
+    trip: "Gambia Yoga Retreat 2024",
     rating: 5,
-    text: "En perfekt mix av träning, kultur och vila. Kände mig trygg och inspirerad hela tiden.",
+    text: "En otrolig vecka. Ewa är en fantastisk lärare och maten från farmen var magisk. Jag kom hem med ett lugn jag inte känt på år.",
   },
   {
-    name: "Amir K.",
-    trip: "Roots & Rhythm 2024",
+    name: "Maria K.",
+    trip: "Gambia Yoga Retreat 2024",
     rating: 5,
-    text: "Communityn var magisk. Lokala möten och musiken gjorde resan unik.",
+    text: "Yogapassen var perfekta – anpassade till alla nivåer. Andningsövningarna har förändrat hur jag hanterar stress. Rekommenderas varmt!",
   },
   {
-    name: "Linnea M.",
-    trip: "Family & Community 2023",
+    name: "Karin L.",
+    trip: "Gambia Yoga Retreat 2023",
     rating: 5,
-    text: "Barnen älskade aktiviteterna och vi vuxna fick tid för oss själva. Rekommenderas varmt.",
+    text: "Gambia är ett underbart land och att uppleva det med lokala guider som verkligen bryr sig gör all skillnad. En resa för livet.",
   },
 ];
 
@@ -195,11 +184,12 @@ export default async function Home() {
         <div className={styles.container}>
           <div className={styles.headerInner}>
             <div className={styles.logo}>
-              HIP <span>AFRO</span> TRAVEL
+              Gambia <span>Yoga</span> Retreat
             </div>
             <nav className={`${styles.nav} ${styles.desktopOnly}`}>
-              <a href="#om-resan">Om resan</a>
-              <a href="#resor">Resor</a>
+              <a href="#resor">Retreat</a>
+              <a href="#om-resan">Om oss</a>
+              <a href="#om-ewa">Om Ewa</a>
               <a href="#program">Program</a>
               <a href="#praktisk-info">Praktisk info</a>
               <a href="#galleri">Galleri</a>
@@ -227,15 +217,15 @@ export default async function Home() {
             <div className={styles.heroContent}>
               <Reveal className={styles.heroText}>
                 <span className={styles.eyebrow}>
-                  Gambia | Kultur | Community
+                  Gambia | Kundaliniyoga | Hormonell Balans
                 </span>
                 <h1 className={styles.heroTitle}>
-                  Upplev Gambia där afro-energi möter stilla stränder
+                  7 dagar i Gambia – återställ din hormonella balans
                 </h1>
                 <p className={styles.heroLead}>
-                  HIP AFRO TRAVEL skapar temaresor med rörelse, musik och
-                  gemenskap. Träning i soluppgången, lokala möten och kvällar som
-                  känns långt efter att du landat hemma.
+                  Kundaliniyoga, meditation, sol, hav och närande mat från naturen.
+                  En vecka skapad för dig som längtar efter återhämtning, balans
+                  och en djupare kontakt med din kropp.
                 </p>
                 <div className={styles.heroActions}>
                   <a className={styles.primaryButton} href="#kontakt">
@@ -259,21 +249,20 @@ export default async function Home() {
                 style={{ "--reveal-delay": "120ms" } as CSSProperties}
               >
                 <div className={styles.heroCardHeader}>
-                  <span className={styles.pill}>Nästa resa</span>
-                  <span>15-26 okt 2025</span>
+                  <span className={styles.pill}>Retreat</span>
+                  <span>Gambia 2025/2026</span>
                 </div>
-                <div className={styles.heroCardTitle}>Gambia Flow Week</div>
+                <div className={styles.heroCardTitle}>7 dagar – Hormonell Balans</div>
                 <p className={styles.heroCardCopy}>
-                  Balanserad mix av träning, kultur och vila - med boende nära
-                  havet och guider på plats.
+                  En vecka för dig – precis som du är. Inga förkunskaper krävs.
                 </p>
                 <ul className={styles.heroList}>
-                  <li>Boende i Kotu nära stranden</li>
-                  <li>Afro-pass & strandträning varje dag</li>
-                  <li>Kulturkvällar med lokala artister</li>
+                  <li>Kundaliniyoga anpassad för alla nivåer</li>
+                  <li>Andningsövningar & meditation</li>
+                  <li>Lokalodlad mat & naturliga örter</li>
                 </ul>
                 <div className={styles.heroCardFooter}>
-                  <span className={styles.price}>från 19 900 kr</span>
+                  <span className={styles.price}>Kontakta oss</span>
                   <a className={styles.ghostButton} href="#program">
                     Se program
                   </a>
@@ -291,21 +280,20 @@ export default async function Home() {
           <div className={styles.container}>
             <Reveal className={styles.heroCard}>
               <div className={styles.heroCardHeader}>
-                <span className={styles.pill}>Nästa resa</span>
-                <span>15-26 okt 2025</span>
+                <span className={styles.pill}>Retreat</span>
+                <span>Gambia 2025/2026</span>
               </div>
-              <div className={styles.heroCardTitle}>Gambia Flow Week</div>
+              <div className={styles.heroCardTitle}>7 dagar – Hormonell Balans</div>
               <p className={styles.heroCardCopy}>
-                Balanserad mix av träning, kultur och vila - med boende nära
-                havet och guider på plats.
+                En vecka för dig – precis som du är. Inga förkunskaper krävs.
               </p>
               <ul className={styles.heroList}>
-                <li>Boende i Kotu nära stranden</li>
-                <li>Afro-pass & strandträning varje dag</li>
-                <li>Kulturkvällar med lokala artister</li>
+                <li>Kundaliniyoga anpassad för alla nivåer</li>
+                <li>Andningsövningar & meditation</li>
+                <li>Lokalodlad mat & naturliga örter</li>
               </ul>
               <div className={styles.heroCardFooter}>
-                <span className={styles.price}>från 19 900 kr</span>
+                <span className={styles.price}>Kontakta oss</span>
                 <a className={styles.ghostButton} href="#program">
                   Se program
                 </a>
@@ -407,13 +395,13 @@ export default async function Home() {
           <div className={styles.container}>
             <div className={styles.sectionHead}>
               <Reveal>
-                <span className={styles.kicker}>Resor & paket</span>
+                <span className={styles.kicker}>Retreat</span>
                 <h2 className={styles.sectionTitle}>
-                  Kommande resor med afro-vibe
+                  7 dagar i Gambia – återställ din hormonella balans
                 </h2>
                 <p className={styles.sectionIntro}>
-                  Välj den resa som matchar din energi. Alla paket inkluderar
-                  boende, community, aktiviteter och lokala upplevelser.
+                  Kundaliniyoga, meditation, sol, hav och närande mat från naturen.
+                  Inga förkunskaper krävs – du behöver bara komma som du är.
                 </p>
               </Reveal>
             </div>
@@ -453,47 +441,48 @@ export default async function Home() {
           <div className={styles.container}>
             <div className={styles.sectionHead}>
               <Reveal>
-                <span className={styles.kicker}>Om HIP AFRO TRAVEL</span>
+                <span className={styles.kicker}>Om oss</span>
                 <h2 className={styles.sectionTitle}>
-                  Resor som känns - från första trumslag till sista våg
+                  En del av vårt liv som vi öppnar upp och bjuder in dig till
                 </h2>
                 <p className={styles.sectionIntro}>
-                  Vi tror på resor som bygger community och ger utrymme för både
-                  energi och återhämtning. Gambia är basen där kultur, rytm och
-                  värme möter ett tryggt upplägg.
+                  Gambia är inte bara en destination för oss – det är en del av vår historia.
+                  Genom våra lokala rötter och internationella erfarenheter erbjuder vi
+                  en resa som är både genuin och trygg.
                 </p>
               </Reveal>
             </div>
             <div className={styles.aboutGrid}>
               <Reveal className={styles.aboutCard}>
                 <p>
-                  Vår filosofi är enkel: skapa en helhetsupplevelse där du kan
-                  landa, röra dig och möta människor på riktigt. Därför jobbar vi
-                  med lokala värdar, små grupper och genomtänkt logistik.
+                  Som grundare drivs jag av en djup passion för yoga och meditation.
+                  Min bakgrund inom retail har gett mig en stark förståelse för hur man
+                  skapar en genomtänkt och emotionell upplevelse. Från val av plats till
+                  upplägg, mat och aktiviteter är allt noggrant planerat för att skapa
+                  en helhet som känns personlig, varm och minnesvärd.
                 </p>
                 <ul className={styles.aboutList}>
                   <li className={styles.aboutItem}>
                     <span className={styles.aboutIcon} />
                     <div>
-                      <strong>Lokala samarbeten</strong>
-                      <div>Guidade upplevelser och kulturmöten varje resa.</div>
+                      <strong>Lokala rötter</strong>
+                      <div>Vi tar dig bortom turiststråken till platser som betyder något för oss.</div>
                     </div>
                   </li>
                   <li className={styles.aboutItem}>
                     <span className={styles.aboutIcon} />
                     <div>
-                      <strong>Värdar på plats</strong>
+                      <strong>Egen farm</strong>
                       <div>
-                        Svenska instruktörer och gambiska guider som tar hand om
-                        gruppen.
+                        Frukt och grönsaker plockade direkt från vår farm – mat lagad med omsorg.
                       </div>
                     </div>
                   </li>
                   <li className={styles.aboutItem}>
                     <span className={styles.aboutIcon} />
                     <div>
-                      <strong>Små grupper</strong>
-                      <div>Max 16 resenärer för äkta gemenskap.</div>
+                      <strong>Mer än en retreat</strong>
+                      <div>Det är en vecka som kan förändra hur du tar hand om dig själv – på riktigt.</div>
                     </div>
                   </li>
                 </ul>
@@ -507,7 +496,68 @@ export default async function Home() {
                   loop
                   playsInline
                 />
-                <div className={styles.mediaBadge}>Afro Pulse</div>
+                <div className={styles.mediaBadge}>Gambia Yoga</div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.section} id="om-ewa">
+          <div className={styles.container}>
+            <div className={styles.sectionHead}>
+              <Reveal>
+                <span className={styles.kicker}>Om Ewa</span>
+                <h2 className={styles.sectionTitle}>
+                  Din guide till balans och välmående
+                </h2>
+              </Reveal>
+            </div>
+            <div className={styles.aboutGrid}>
+              <Reveal className={styles.mediaFrame}>
+                <video
+                  src="/videos/vid-2.mp4"
+                  poster="/images/pic-1.jpeg"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                />
+                <div className={styles.mediaBadge}>Kundalini</div>
+              </Reveal>
+              <Reveal className={styles.aboutCard}>
+                <p>
+                  Jag är en svensk yoga-, breathwork- och meditationslärare som har bott i
+                  Barcelona i över 20 år. Min resa inom yoga och mindfulness började under
+                  tiden jag bodde i Australien – och har varit en naturlig del av mitt liv
+                  i mer än två decennier. Sedan 2013 är jag certifierad Kundaliniyogalärare.
+                </p>
+                <p>
+                  I min undervisning väver jag även in inslag av Tai Chi, som på många sätt
+                  kompletterar Kundaliniyogans energiarbete och flöde. Min passion är att
+                  inspirera och guida människor till ett gladare, mer balanserat och hälsosamt liv
+                  – genom yoga, meditation, medveten andning, näring och ett positivt mindset.
+                </p>
+                <ul className={styles.aboutList}>
+                  <li className={styles.aboutItem}>
+                    <span className={styles.aboutIcon} />
+                    <div>
+                      <strong>Certifierad sedan 2013</strong>
+                      <div>Kundaliniyogalärare med djup erfarenhet och passion för undervisning.</div>
+                    </div>
+                  </li>
+                  <li className={styles.aboutItem}>
+                    <span className={styles.aboutIcon} />
+                    <div>
+                      <strong>Holistiskt synsätt</strong>
+                      <div>Jag tror på kroppens egen förmåga att hitta balans när vi ger den rätt förutsättningar.</div>
+                    </div>
+                  </li>
+                </ul>
+                <p style={{ fontStyle: "italic", marginTop: "0.5rem" }}>
+                  &quot;Make yourself so happy that by looking at you, others become happy too.&quot;
+                  <br /><em>– Yogi Bhajan</em>
+                </p>
+                <p>Namaste, Sat Nam, Love &amp; Light – Ewa</p>
               </Reveal>
             </div>
           </div>
@@ -517,13 +567,13 @@ export default async function Home() {
           <div className={styles.container}>
             <div className={styles.sectionHead}>
               <Reveal>
-                <span className={styles.kicker}>Upplevelsen</span>
+                <span className={styles.kicker}>Vad du tar med dig hem</span>
                 <h2 className={styles.sectionTitle}>
-                  Det här gör resan unik
+                  En investering i din långsiktiga balans
                 </h2>
                 <p className={styles.sectionIntro}>
-                  En kombination av träning, kultur och community - med plats
-                  för vila och egna upptäckter.
+                  Det här är inte bara en resa – du rör dig, andas och äter dig
+                  mot en djupare kontakt med din kropp och ett lugn som sitter kvar.
                 </p>
               </Reveal>
             </div>
@@ -612,26 +662,26 @@ export default async function Home() {
               <Reveal>
                 <span className={styles.kicker}>Kontakt</span>
                 <h2 className={styles.sectionTitle}>
-                  Redo att resa? Vi hjälper dig hela vägen.
+                  Är du redo att ge dig själv den pausen?
                 </h2>
                 <p className={styles.sectionIntro}>
                   Fyll i formuläret så hör vi av oss inom 24 timmar med nästa
-                  steg och komplett program.
+                  steg och komplett information om retreaten.
                 </p>
               </Reveal>
             </div>
             <Reveal className={styles.contactCard}>
               <div className={styles.contactDetails}>
-                <h3>HIP AFRO TRAVEL</h3>
+                <h3>Gambia Yoga Retreat</h3>
                 <p>
-                  Gambiaresor med kultur, träning och community. Vi hjälper dig
-                  hitta rätt resa och upplägg.
+                  7 dagar av yoga, meditation och näring i Gambia. Vi hjälper
+                  dig hitta vägen tillbaka till dig själv.
                 </p>
                 <ul className={styles.contactList}>
-                  <li>E-post: info@hipafrotravel.se</li>
+                  <li>E-post: info@gambiayogaretreat.se</li>
                   <li>Telefon: +46 70 123 45 67</li>
-                  <li>Instagram: @hipafrotravel</li>
-                  <li>Facebook: HIP AFRO TRAVEL</li>
+                  <li>Instagram: @gambiayogaretreat</li>
+                  <li>Namaste, Sat Nam, Love &amp; Light</li>
                 </ul>
               </div>
               <form className={styles.contactForm}>
@@ -656,10 +706,8 @@ export default async function Home() {
                   placeholder="Telefon"
                 />
                 <select className={styles.select} name="trip">
-                  <option>Välj resa</option>
-                  <option>Gambia Flow Week</option>
-                  <option>Roots & Rhythm Escape</option>
-                  <option>Family & Community</option>
+                  <option>Välj retreat</option>
+                  <option>7 dagar i Gambia – Hormonell Balans</option>
                 </select>
                 <textarea
                   className={styles.textarea}
@@ -680,22 +728,23 @@ export default async function Home() {
           <div className={styles.footerInner}>
             <div className={styles.footerBrand}>
               <div className={styles.logo}>
-                HIP <span>AFRO</span> TRAVEL
+                Gambia <span>Yoga</span> Retreat
               </div>
               <p>
-                Temaresor till Gambia med fokus på kultur, gemenskap och
-                upplevelser som stannar kvar.
+                Kundaliniyoga, meditation och näring i Gambia. En vecka för
+                dig som längtar efter balans, återhämtning och stillhet.
               </p>
             </div>
             <div className={styles.footerNav}>
-              <a href="#om-resan">Om resan</a>
-              <a href="#resor">Resor</a>
+              <a href="#resor">Retreat</a>
+              <a href="#om-resan">Om oss</a>
+              <a href="#om-ewa">Om Ewa</a>
               <a href="#program">Program</a>
               <a href="#praktisk-info">Praktisk info</a>
               <a href="#kontakt">Kontakt</a>
             </div>
             <div className={styles.footerMeta}>
-              (c) 2025 HIP AFRO TRAVEL. Alla rättigheter reserverade.
+              (c) 2025 Gambia Yoga Retreat. Alla rättigheter reserverade.
             </div>
           </div>
         </div>
