@@ -7,6 +7,17 @@ import MobileMenu from "@/components/MobileMenu";
 import Reveal from "@/components/Reveal";
 import styles from "./page.module.css";
 
+const repo = "hip-afro-travel";
+const isGitHubPagesBuild =
+  process.env.GITHUB_ACTIONS === "true" ||
+  process.env.DEPLOY_TARGET === "github-pages";
+const publicAssetPrefix =
+  process.env.NODE_ENV === "production" && isGitHubPagesBuild ? `/${repo}` : "";
+
+function publicAsset(src: `/${string}`) {
+  return `${publicAssetPrefix}${src}`;
+}
+
 const navLinks = [
   { href: "#recensioner", label: "Recensioner" },
   { href: "#bilder", label: "Bilder" },
@@ -167,15 +178,15 @@ const teacherHighlights = [
 
 const curatedImages = [
   {
-    src: "/images/pic-1.jpeg",
+    src: publicAsset("/images/pic-1.jpeg"),
     alt: "Gruppresa med Hip Afro Travel i Gambia",
   },
   {
-    src: "/images/pic-2.jpeg",
+    src: publicAsset("/images/pic-2.jpeg"),
     alt: "Resenär under en varm dag i Gambia",
   },
   {
-    src: "/images/pic-3.jpeg",
+    src: publicAsset("/images/pic-3.jpeg"),
     alt: "Strand och vardagsliv under resan",
   },
 ];
@@ -189,7 +200,7 @@ const galleryImageExtensions = new Set([
 ]);
 
 function toPublicImagePath(file: string) {
-  return `/pic-latest/${encodeURIComponent(file)}`;
+  return publicAsset(`/pic-latest/${encodeURIComponent(file)}`);
 }
 
 async function getGalleryImages() {
@@ -268,15 +279,15 @@ export default async function Home() {
             muted
             loop
             playsInline
-            poster="/images/pic-1.jpeg"
+            poster={publicAsset("/images/pic-1.jpeg")}
             aria-hidden="true"
           >
             <source
-              src="/videos/vid-10.mp4"
+              src={publicAsset("/videos/vid-10.mp4")}
               type="video/mp4"
               media="(min-width: 800px)"
             />
-            <source src="/videos/hero.mp4" type="video/mp4" />
+            <source src={publicAsset("/videos/hero.mp4")} type="video/mp4" />
           </video>
           <div className={styles.heroShade} />
           <div className={`${styles.container} ${styles.heroInner}`}>
@@ -452,8 +463,8 @@ export default async function Home() {
             <div className={styles.aboutGrid}>
               <Reveal className={styles.aboutMedia}>
                 <video
-                  src="/videos/vid-1.mp4"
-                  poster="/images/pic-2.jpeg"
+                  src={publicAsset("/videos/vid-1.mp4")}
+                  poster={publicAsset("/images/pic-2.jpeg")}
                   autoPlay
                   muted
                   loop
