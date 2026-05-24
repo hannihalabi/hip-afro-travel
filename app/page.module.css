@@ -422,7 +422,6 @@
 .bookingCopy,
 .bookingForm,
 .benefitCard,
-.dayCard,
 .teacherCard {
   border: 1px solid rgba(30, 32, 26, 0.1);
   border-radius: 8px;
@@ -543,16 +542,73 @@
 
 .programGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  max-width: 880px;
+  margin: 0 auto;
+  gap: 0;
 }
 
 .dayCard {
-  min-height: 100%;
-  padding: 18px;
   display: grid;
-  align-content: start;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 16px;
+  position: relative;
+  padding: 0 0 18px;
+}
+
+.dayCard::before {
+  content: "";
+  position: absolute;
+  top: 44px;
+  bottom: -4px;
+  left: 28px;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(181, 75, 56, 0.28),
+    rgba(229, 160, 30, 0.14)
+  );
+}
+
+.dayCard:last-child {
+  padding-bottom: 0;
+}
+
+.dayCard:last-child::before {
+  display: none;
+}
+
+.dayMarker {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.dayMarker span {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(181, 75, 56, 0.24);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--color-coral);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 900;
+  box-shadow: 0 10px 24px rgba(181, 75, 56, 0.12);
+}
+
+.dayContent {
+  min-width: 0;
+  padding: 18px 20px;
+  display: grid;
   gap: 14px;
+  border: 1px solid rgba(30, 32, 26, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 16px 38px rgba(30, 32, 26, 0.07);
 }
 
 .dayCardHeader {
@@ -579,6 +635,10 @@
   color: var(--color-muted);
   font-size: 0.92rem;
   line-height: 1.45;
+}
+
+.dayCard li::marker {
+  color: rgba(181, 75, 56, 0.72);
 }
 
 .aboutGrid {
@@ -760,7 +820,6 @@
     position: static;
   }
 
-  .programGrid,
   .benefitGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -907,9 +966,27 @@
 
   .includedList,
   .teacherCard ul,
-  .programGrid,
   .benefitGrid {
     grid-template-columns: 1fr;
+  }
+
+  .dayCard {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .dayCard::before {
+    left: 20px;
+  }
+
+  .dayMarker span {
+    width: 30px;
+    height: 30px;
+    font-size: 0.84rem;
+  }
+
+  .dayContent {
+    padding: 16px;
   }
 
   .aboutMedia {
