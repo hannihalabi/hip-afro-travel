@@ -19,40 +19,17 @@ function publicAsset(src: `/${string}`) {
 }
 
 const navLinks = [
-  { href: "#recensioner", label: "Recensioner" },
+  { href: "#resor", label: "Resor" },
   { href: "#bilder", label: "Bilder" },
   { href: "#boka", label: "Boka" },
-  { href: "#vilka-vi-ar", label: "Vilka vi är" },
-  { href: "#varfor", label: "Varför resan" },
+  { href: "#ewa", label: "Ewa" },
+  { href: "#varfor", label: "Varför boka" },
 ];
 
 const tripFacts = [
-  { value: "7 dagar", label: "återhämtning" },
-  { value: "17 000 kr", label: "per person" },
-  { value: "Max 12", label: "i gruppen" },
-];
-
-const reviews = [
-  {
-    name: "Anna S.",
-    text: "Tryggt, varmt och välplanerat från första kontakten. Jag kom hem med mer energi än jag haft på länge.",
-  },
-  {
-    name: "Maria K.",
-    text: "Träningen, maten och utflykterna blev en perfekt mix. Det kändes personligt, inte som en vanlig paketresa.",
-  },
-  {
-    name: "Karin L.",
-    text: "Gambia genom Hip Afro Travel kändes genuint. Vi fick möta människor och platser jag aldrig hittat själv.",
-  },
-  {
-    name: "Sofia R.",
-    text: "Lagom mycket program och lagom mycket vila. Jag uppskattade att allt praktiskt redan var löst.",
-  },
-  {
-    name: "Elin M.",
-    text: "En vecka som faktiskt gav återhämtning. Gruppkänslan var stark utan att det blev intensivt.",
-  },
+  { value: "3 resor", label: "för vintern 2026/2027" },
+  { value: "Feb 2027", label: "två fasta veckor redan öppna" },
+  { value: "17 000 kr", label: "del i dubbelrum" },
 ];
 
 const included = [
@@ -66,106 +43,123 @@ const included = [
   "Verktyg att ta med hem",
 ];
 
+const launchTrips = [
+  {
+    id: "zimzon",
+    label: "Resa 1",
+    title: "Träningsresa med Zimzon",
+    dates: "Datum presenteras snart",
+    price: "Pris presenteras snart",
+    room: "Intresseanmälan öppen",
+    host: "Zimzon",
+    summary:
+      "En energifylld träningsvecka i Gambia för dig som vill resa i grupp, röra på kroppen och möta platsen med värme, rytm och närvaro.",
+    highlights: [
+      "Träning och rörelse",
+      "Små grupper och trygg struktur",
+      "Sol, hav och återhämtning",
+      "Zimzon i tydligt fokus när rätt media är på plats",
+    ],
+    mediaType: "image",
+    mediaSrc: publicAsset("/images/pic-1.jpeg"),
+    mediaPoster: undefined,
+    mediaAlt: "Träningsresa med Zimzon i Gambia",
+    note: "Zimzons foto och film läggs in här så snart rätt material finns i projektet.",
+  },
+  {
+    id: "ewa-hormonal",
+    label: "Resa 2",
+    title: "Kundalini yoga Hormonell Balans med Ewa",
+    dates: "14-21 februari 2027",
+    price: "17 000 kr",
+    room: "Del i dubbelrum",
+    host: "Ewa",
+    summary:
+      "En vecka för dig som vill ge kroppen lugn, hormonell balans och återhämtning genom kundaliniyoga, andning, meditation och värme.",
+    highlights: [
+      "Kundaliniyoga",
+      "Hormonell balans",
+      "Breathwork och meditation",
+      "Närvaro, vila och återhämtning",
+    ],
+    mediaType: "video",
+    mediaSrc: publicAsset("/videos/vid-1.mp4"),
+    mediaPoster: publicAsset("/images/pic-2.jpeg"),
+    mediaAlt: "Kundalini yoga och hormonell balans med Ewa",
+    note: undefined,
+  },
+  {
+    id: "delta",
+    label: "Resa 3",
+    title: "Träningsresa med Delta från Gladiatorerna",
+    dates: "21-28 februari 2027",
+    price: "17 000 kr per person",
+    room: "Del i dubbelrum",
+    host: "Delta",
+    summary:
+      "En träningsresa med tydlig energi och karaktär där Delta står i centrum. Veckan kombinerar styrka, disciplin, rörelseglädje och Gambia.",
+    highlights: [
+      "Träningspass med Delta",
+      "Fokus på styrka och disciplin",
+      "Sol, strand och gruppkänsla",
+      "Tid för återhämtning mellan passen",
+    ],
+    mediaType: "video",
+    mediaSrc: publicAsset("/delta/WhatsApp Video 2026-05-03 at 20.25.10.mp4"),
+    mediaPoster: publicAsset(
+      "/delta/WhatsApp Image 2026-05-03 at 20.25.05.jpeg"
+    ),
+    mediaAlt: "Delta från Gladiatorerna",
+    note: undefined,
+  },
+];
+
 const itinerary = [
   {
-    day: "Dag 1",
-    title: "Ankomst och landning",
+    day: "01",
+    title: "Träningsresa med Zimzon",
     items: [
-      "Upphämtning vid flygplatsen",
-      "Transfer till huset och incheckning",
-      "Tid att landa, lunch och komma till ro",
-      "Promenad / hike",
-      "Middag kl. 19.30",
+      "Datum presenteras snart",
+      "Intresseanmälan öppen",
+      "Rörelse, gruppkänsla och Gambia i centrum",
     ],
   },
   {
-    day: "Dag 2",
-    title: "Jogg, stretch och beach workout",
+    day: "02",
+    title: "Kundalini yoga Hormonell Balans med Ewa",
     items: [
-      "Jogg & stretch",
-      "Frukost",
-      "Workshop om baobab, moringa, soursop och hibiskus",
-      "Egen tid kl. 12.00-17.00",
-      "Beach workout / HIIT-pass",
-      "Middag kl. 19.30",
+      "14-21 februari 2027",
+      "17 000 kr, del i dubbelrum",
+      "Kundaliniyoga, återhämtning och hormonell balans",
     ],
   },
   {
-    day: "Dag 3",
-    title: "Kartong och functional movement",
+    day: "03",
+    title: "Träningsresa med Delta från Gladiatorerna",
     items: [
-      "Dynamisk stretch",
-      "Frukost",
-      "Utflykt till Kartong",
-      "Lunch på egen bekostnad",
-      "Båtutflykt till Lamin Lodge",
-      "Functional movement-pass",
-      "Middag kl. 19.30",
-    ],
-  },
-  {
-    day: "Dag 4",
-    title: "Workout och funktionell rörelse",
-    items: [
-      "Jogg & stretch",
-      "Frukost",
-      "Egen tid kl. 12.00-17.00",
-      "Workout & functional movement",
-      "Middag kl. 19.30",
-    ],
-  },
-  {
-    day: "Dag 5",
-    title: "Juffureh",
-    items: [
-      "Frukost",
-      "Heldagsutflykt till Juffureh",
-      "Lunch, snacks och dryck ingår",
-      "Fri tid på kvällen",
-    ],
-  },
-  {
-    day: "Dag 6",
-    title: "Self defence och strandmiddag",
-    items: [
-      "Dynamic stretch",
-      "Frukost",
-      "Egen tid kl. 12.00-17.00",
-      "Self defence & functional movement",
-      "Middag kl. 19.30 på stranden",
-      "Campfire och avslutningskväll",
-    ],
-  },
-  {
-    day: "Dag 7",
-    title: "Hemresa",
-    items: [
-      "Jogg & stretch",
-      "Frukost",
-      "Egen tid kl. 12.00-16.00",
-      "Utcheckning",
-      "Transfer och lämning på flygplatsen",
-      "Hemresa",
+      "21-28 februari 2027",
+      "17 000 kr per person, del i dubbelrum",
+      "Träningsfokus med Delta och tid för återhämtning",
     ],
   },
 ];
 
 const benefits = [
   {
-    title: "Nervsystemet får landa",
-    text: "Meditation, mindfulness och andningsövningar hjälper kroppen att växla ned från stress till återhämtning.",
+    title: "Tre tydliga upplägg",
+    text: "Varje vecka har sin egen profil, så du kan välja den energi, ledare och träning som passar dig bäst.",
   },
   {
-    title: "Näring direkt från jorden",
-    text: "Färska lokala råvaror, frukt, grönsaker, fisk, skaldjur och växtbaserade alternativ lagas med omsorg.",
+    title: "Små grupper och trygg struktur",
+    text: "Hip Afro Travel håller upplägget personligt med tydlig struktur, lokala kontakter och varm närvaro på plats.",
   },
   {
-    title: "Verktyg som följer med hem",
-    text: "Du får rörelsepass, stretch, andningstekniker och kostinspiration som kan stötta balansen även efter resan.",
+    title: "Värme, rörelse och vila",
+    text: "Gambia ger plats för både energi och återhämtning, med sol, hav, rörelse och tid att komma ned i kroppen.",
   },
   {
-    title: "Kom precis som du är",
-    text: "Inga förkunskaper krävs. Programmet anpassas för olika nivåer och bygger på vila, närvaro och trygg guidning.",
+    title: "Profiler med eget uttryck",
+    text: "Zimzon, Ewa och Delta sätter olika ton på sina veckor, men känslan av närvaro och resa på riktigt är densamma.",
   },
 ];
 
@@ -231,7 +225,7 @@ function SectionHeader({
 }: {
   kicker: string;
   title: string;
-  children: ReactNode;
+  children?: ReactNode;
 }) {
   return (
     <div className={styles.sectionHeader}>
@@ -239,7 +233,7 @@ function SectionHeader({
         <p className={styles.kicker}>{kicker}</p>
         <h2>{title}</h2>
       </Reveal>
-      <p>{children}</p>
+      {children ? <p>{children}</p> : null}
     </div>
   );
 }
@@ -292,21 +286,22 @@ export default async function Home() {
           <div className={styles.heroShade} />
           <div className={`${styles.container} ${styles.heroInner}`}>
             <Reveal className={styles.heroCopy}>
-              <p className={styles.kicker}>Gambia | Träningsresa</p>
-              <h1>7 dagar i Gambia med träning och återhämtning.</h1>
+              <p className={styles.kicker}>Vinter 2026/2027 | Nya resor</p>
+              <h1>Hip Afro Travel lanserar sina första tre resor.</h1>
               <p className={styles.heroLead}>
-                Jogg, stretch, HIIT, functional movement, self defence, sol,
-                hav och närande mat från naturen. En vecka skapad för kroppen.
+                Först ut kommer en träningsresa med Zimzon, Kundalini yoga
+                Hormonell Balans med Ewa och en träningsresa med Delta från
+                Gladiatorerna. Tre olika energier, samma värme i Gambia.
               </p>
               <div className={styles.heroActions}>
-                <a className={styles.primaryButton} href="#boka">
-                  Boka resa
+                <a className={styles.primaryButton} href="#resor">
+                  Se resorna
                 </a>
-                <a className={styles.secondaryButton} href="#bilder">
-                  Se känslan
+                <a className={styles.secondaryButton} href="#boka">
+                  Skicka intresse
                 </a>
               </div>
-              <div className={styles.heroFacts} aria-label="Resans höjdpunkter">
+              <div className={styles.heroFacts} aria-label="Lanseringens höjdpunkter">
                 {tripFacts.map((fact) => (
                   <div className={styles.heroFact} key={fact.label}>
                     <strong>{fact.value}</strong>
@@ -318,22 +313,62 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className={styles.reviewSection} id="recensioner">
+        <section className={styles.launchSection} id="resor">
           <div className={styles.container}>
             <SectionHeader
-              kicker="Recensioner"
-              title="Det som får människor att boka igen."
+              kicker="Lansering vinter 2026/2027"
+              title="Tre lanseringar. Tre olika energier."
             >
-              Korta röster från resenärer som uppskattat tryggheten,
-              gruppkänslan och att Gambia får kännas på riktigt.
+              Hip Afro Travel lanserar sina första tre resor till Gambia.
+              Uppläggen får olika ton genom Zimzon, Ewa och Delta, men bygger
+              på samma känsla av värme, rörelse och liten grupp.
             </SectionHeader>
-            <div className={styles.reviewScroller} aria-label="Recensioner">
-              {reviews.map((review) => (
-                <article className={styles.reviewCard} key={review.name}>
-                  <div className={styles.rating}>★★★★★</div>
-                  <p>{review.text}</p>
-                  <strong>{review.name}</strong>
-                </article>
+            <div className={styles.launchGrid}>
+              {launchTrips.map((trip) => (
+                <Reveal className={styles.launchCard} key={trip.id}>
+                  <div className={styles.launchMedia}>
+                    {trip.mediaType === "video" ? (
+                      <video
+                        src={trip.mediaSrc}
+                        poster={trip.mediaPoster}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        aria-label={trip.mediaAlt}
+                      />
+                    ) : (
+                      <Image
+                        src={trip.mediaSrc}
+                        alt={trip.mediaAlt}
+                        fill
+                        className={styles.launchImage}
+                        sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                      />
+                    )}
+                  </div>
+                  <div className={styles.launchCardBody}>
+                    <div className={styles.launchMeta}>
+                      <span>{trip.label}</span>
+                      <strong>{trip.host}</strong>
+                    </div>
+                    <h3>{trip.title}</h3>
+                    <p>{trip.summary}</p>
+                    <div className={styles.launchStats}>
+                      <span>{trip.dates}</span>
+                      <span>{trip.price}</span>
+                      <span>{trip.room}</span>
+                    </div>
+                    {trip.note ? (
+                      <p className={styles.launchNote}>{trip.note}</p>
+                    ) : null}
+                    <ul className={styles.launchHighlights}>
+                      {trip.highlights.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -343,10 +378,10 @@ export default async function Home() {
           <div className={styles.container}>
             <SectionHeader
               kicker="Bilder"
-              title="Sol, människor, mat och dagar som känns levande."
+              title="Material från Gambia och kommande lanseringar."
             >
-              Riktiga bilder från materialet i projektet. Mindre säljtext,
-              mer känsla.
+              Bilderna ger känslan av platsen, värmen och rytmen som resorna
+              bygger vidare på under vintern 2026/2027.
             </SectionHeader>
             <div className={styles.galleryGrid}>
               {galleryImages.map((image, index) => (
@@ -374,16 +409,16 @@ export default async function Home() {
             <div className={styles.bookingGrid}>
               <Reveal className={styles.bookingCopy}>
                 <p className={styles.kicker}>Boka</p>
-                <h2>En enkel gruppresa. Ett tydligt pris.</h2>
+                <h2>Tre resor. Ett tydligt upplägg.</h2>
                 <p>
-                  Resan kostar <strong>17 000 kr per person</strong>. Du får en
-                  vecka med träning, stretch, breathwork, utflykter, lokala
-                  möten och tid för återhämtning. Passen anpassas för olika
-                  nivåer.
+                  Hip Afro Travel öppnar nu för intresseanmälan till de första
+                  tre resorna för vintern 2026/2027. Två av veckorna ligger
+                  redan fast i februari 2027 och delar samma trygga bas i
+                  Gambia.
                 </p>
                 <div className={styles.priceLine}>
-                  <span>17 000 kr</span>
-                  <small>per person</small>
+                  <span>Från 17 000 kr</span>
+                  <small>del i dubbelrum</small>
                 </div>
                 <ul className={styles.includedList}>
                   {included.map((item) => (
@@ -399,7 +434,7 @@ export default async function Home() {
                   method="post"
                   encType="text/plain"
                 >
-                  <h3>Skicka bokningsförfrågan</h3>
+                  <h3>Skicka intresseanmälan</h3>
                   <label>
                     Namn
                     <input name="name" type="text" required />
@@ -413,6 +448,14 @@ export default async function Home() {
                     <input name="phone" type="tel" />
                   </label>
                   <label>
+                    Vilken resa gäller det?
+                    <select name="trip" defaultValue={launchTrips[0].title}>
+                      {launchTrips.map((trip) => (
+                        <option key={trip.id}>{trip.title}</option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
                     Antal resenärer
                     <select name="travelers" defaultValue="1 person">
                       <option>1 person</option>
@@ -420,10 +463,10 @@ export default async function Home() {
                       <option>3+ personer</option>
                     </select>
                   </label>
-                  <button type="submit">Boka resa</button>
+                  <button type="submit">Skicka intresse</button>
                   <p>
-                    Vi återkommer med datum, betalningsupplägg, platsstatus och
-                    praktiska detaljer innan du bekräftar din resa.
+                    Vi återkommer med platsstatus, nästa steg och praktiska
+                    detaljer innan du bekräftar din resa.
                   </p>
                 </form>
               </Reveal>
@@ -431,8 +474,8 @@ export default async function Home() {
 
             <div className={styles.programBlock}>
               <div className={styles.programHeader}>
-                <p className={styles.kicker}>Träningsresa – Dagsprogram</p>
-                <h3>Veckan i korthet.</h3>
+                <p className={styles.kicker}>Lanseringen i korthet</p>
+                <h3>Så ser vintern ut.</h3>
               </div>
               <div className={styles.programGrid}>
                 {itinerary.map((day, index) => (
@@ -458,7 +501,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className={styles.aboutSection} id="vilka-vi-ar">
+        <section className={styles.aboutSection} id="ewa">
           <div className={styles.container}>
             <div className={styles.aboutGrid}>
               <Reveal className={styles.aboutMedia}>
@@ -472,13 +515,13 @@ export default async function Home() {
                 />
               </Reveal>
               <Reveal className={styles.aboutCopy}>
-                <p className={styles.kicker}>Vilka vi är</p>
-                <h2>Hip Afro Travel och Ewa guidar dig genom veckan.</h2>
+                <p className={styles.kicker}>Ewa</p>
+                <h2>Ewa leder veckan för hormonell balans i februari 2027.</h2>
                 <p>
-                  Hip Afro Travel skapar gruppresor där resenärer får känna
-                  landet genom människor, mat, rörelse, musik och natur. Vi
-                  bygger resan för dig som vill ha trygg struktur utan att
-                  tappa närheten till platsen.
+                  Resan 14-21 februari 2027 är skapad för dig som vill ge
+                  nervsystemet lugn och kroppen stöd genom kundaliniyoga,
+                  breathwork, meditation och värme. Upplägget bär Ewas sätt att
+                  undervisa: tydligt, jordnära och närvarande.
                 </p>
                 <div className={styles.teacherCard}>
                   <h3>Om Ewa</h3>
@@ -496,8 +539,8 @@ export default async function Home() {
                   </ul>
                 </div>
                 <div className={styles.aboutProof}>
-                  <span>Lokala kontakter</span>
-                  <span>Träning & återhämtning</span>
+                  <span>Kundaliniyoga</span>
+                  <span>Andning & återhämtning</span>
                   <span>Små grupper</span>
                 </div>
               </Reveal>
@@ -508,11 +551,12 @@ export default async function Home() {
         <section className={styles.benefitSection} id="varfor">
           <div className={styles.container}>
             <SectionHeader
-              kicker="Varför resan är bra"
-              title="För dig som känner att kroppen ber om en paus."
+              kicker="Varför boka"
+              title="Tre resor med olika uttryck, samma känsla av Gambia."
             >
-              Tempot får sjunka. Sömnen, energin och kroppen får stöd genom
-              rörelse, stillhet, andning och näring.
+              Du väljer inte bara datum. Du väljer ledare, energi och fokus,
+              samtidigt som grunden är densamma: varm miljö, liten grupp och
+              Hip Afro Travels närvaro på plats.
             </SectionHeader>
             <div className={styles.benefitGrid}>
               {benefits.map((benefit) => (
@@ -525,10 +569,10 @@ export default async function Home() {
             <div className={styles.finalCta}>
               <div>
                 <p className={styles.kicker}>Nästa steg</p>
-                <h2>Vill du följa med till Gambia?</h2>
+                <h2>Vill du få första tjing på någon av resorna?</h2>
               </div>
               <a className={styles.primaryButton} href="#boka">
-                Boka resa
+                Skicka intresse
               </a>
             </div>
           </div>
@@ -539,7 +583,7 @@ export default async function Home() {
         <div className={styles.container}>
           <div className={styles.footerInner}>
             <strong>Hip Afro Travel</strong>
-            <span>Gruppresor till Gambia med träning, kultur och värme.</span>
+            <span>Tre lanseringar till Gambia för vintern 2026/2027.</span>
           </div>
         </div>
       </footer>
