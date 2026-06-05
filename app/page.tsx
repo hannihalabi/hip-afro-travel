@@ -424,6 +424,7 @@ export default async function Home() {
                   <span>Från 17 000 kr</span>
                   <small>del i dubbelrum</small>
                 </div>
+                <p>Flyg bokas separat och ingår inte i priset.</p>
                 <ul className={styles.includedList}>
                   {included.map((item) => (
                     <li key={item}>{item}</li>
@@ -596,6 +597,10 @@ export default async function Home() {
           <div className={styles.footerInner}>
             <strong>Hip Afro Travel</strong>
             <span>Tre lanseringar till Gambia för vintern 2026/2027.</span>
+            <span>
+              Hip Afro Travel drivs som enskild firma. Planering,
+              administration och kundkontakt sker i Sverige.
+            </span>
             <a href="tel:0701507074">070-1507074</a>
             <a href="mailto:Jennifer.dixon@hipafrotravel.com">
               Jennifer.dixon@hipafrotravel.com
