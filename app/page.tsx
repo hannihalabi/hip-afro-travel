@@ -45,26 +45,26 @@ const included = [
 
 const launchTrips = [
   {
-    id: "zimzon",
+    id: "ewa-hormonal-november",
     label: "Resa 1",
-    title: "Träningsresa med Zimzon",
-    dates: "Datum presenteras snart",
-    price: "Pris presenteras snart",
-    room: "Intresseanmälan öppen",
-    host: "Zimzon",
+    title: "Kundalini yoga Hormonell Balans med Ewa",
+    dates: "8-15 november 2026",
+    price: "17 000 kr",
+    room: "Del i dubbelrum",
+    host: "Ewa",
     summary:
-      "En energifylld träningsvecka i Gambia för dig som vill resa i grupp, röra på kroppen och möta platsen med värme, rytm och närvaro.",
+      "En vecka för dig som vill ge kroppen lugn, hormonell balans och återhämtning genom kundaliniyoga, andning, meditation och värme.",
     highlights: [
-      "Träning och rörelse",
-      "Små grupper och trygg struktur",
-      "Sol, hav och återhämtning",
-      "Zimzon i tydligt fokus när rätt media är på plats",
+      "Kundaliniyoga",
+      "Hormonell balans",
+      "Breathwork och meditation",
+      "Närvaro, vila och återhämtning",
     ],
     mediaType: "image",
     mediaSrc: publicAsset("/images/pic-1.jpeg"),
     mediaPoster: undefined,
-    mediaAlt: "Träningsresa med Zimzon i Gambia",
-    note: "Zimzons foto och film läggs in här så snart rätt material finns i projektet.",
+    mediaAlt: "Kundalini yoga Hormonell Balans med Ewa i Gambia",
+    note: undefined,
   },
   {
     id: "ewa-hormonal",
@@ -82,10 +82,10 @@ const launchTrips = [
       "Breathwork och meditation",
       "Närvaro, vila och återhämtning",
     ],
-    mediaType: "video",
-    mediaSrc: publicAsset("/videos/vid-1.mp4"),
-    mediaPoster: publicAsset("/images/pic-2.jpeg"),
-    mediaAlt: "Kundalini yoga och hormonell balans med Ewa",
+    mediaType: "image",
+    mediaSrc: publicAsset("/images/ewa.jpeg"),
+    mediaPoster: undefined,
+    mediaAlt: "Kundalini yoga Hormonell Balans med Ewa",
     note: undefined,
   },
   {
@@ -104,12 +104,10 @@ const launchTrips = [
       "Sol, strand och gruppkänsla",
       "Tid för återhämtning mellan passen",
     ],
-    mediaType: "video",
-    mediaSrc: publicAsset("/delta/WhatsApp Video 2026-05-03 at 20.25.10.mp4"),
-    mediaPoster: publicAsset(
-      "/delta/WhatsApp Image 2026-05-03 at 20.25.05.jpeg"
-    ),
-    mediaAlt: "Delta från Gladiatorerna",
+    mediaType: "image",
+    mediaSrc: publicAsset("/images/delta.jpeg"),
+    mediaPoster: undefined,
+    mediaAlt: "Träningsresa med Delta från Gladiatorerna",
     note: undefined,
   },
 ];
@@ -117,11 +115,11 @@ const launchTrips = [
 const itinerary = [
   {
     day: "01",
-    title: "Träningsresa med Zimzon",
+    title: "Kundalini yoga Hormonell Balans med Ewa",
     items: [
-      "Datum presenteras snart",
-      "Intresseanmälan öppen",
-      "Rörelse, gruppkänsla och Gambia i centrum",
+      "8-15 november 2026",
+      "17 000 kr, del i dubbelrum",
+      "Kundaliniyoga, återhämtning och hormonell balans",
     ],
   },
   {
@@ -147,7 +145,7 @@ const itinerary = [
 const benefits = [
   {
     title: "Tre tydliga upplägg",
-    text: "Varje vecka har sin egen profil, så du kan välja den energi, ledare och träning som passar dig bäst.",
+    text: "Varje vecka har sin egen profil, så du kan välja det datum, den ledare och det fokus som passar dig bäst.",
   },
   {
     title: "Små grupper och trygg struktur",
@@ -159,7 +157,7 @@ const benefits = [
   },
   {
     title: "Profiler med eget uttryck",
-    text: "Zimzon, Ewa och Delta sätter olika ton på sina veckor, men känslan av närvaro och resa på riktigt är densamma.",
+    text: "Ewa och Delta sätter olika ton på sina veckor, men känslan av närvaro och resa på riktigt är densamma.",
   },
 ];
 
@@ -289,9 +287,9 @@ export default async function Home() {
               <p className={styles.kicker}>Vinter 2026/2027 | Nya resor</p>
               <h1>Hip Afro Travel lanserar sina första tre resor.</h1>
               <p className={styles.heroLead}>
-                Först ut kommer en träningsresa med Zimzon, Kundalini yoga
-                Hormonell Balans med Ewa och en träningsresa med Delta från
-                Gladiatorerna. Tre olika energier, samma värme i Gambia.
+                Först ut kommer två veckor med Kundalini yoga Hormonell Balans
+                med Ewa och en träningsresa med Delta från Gladiatorerna. Tre
+                olika upplägg, samma värme i Gambia.
               </p>
               <div className={styles.heroActions}>
                 <a className={styles.primaryButton} href="#resor">
@@ -320,8 +318,8 @@ export default async function Home() {
               title="Tre lanseringar. Tre olika energier."
             >
               Hip Afro Travel lanserar sina första tre resor till Gambia.
-              Uppläggen får olika ton genom Zimzon, Ewa och Delta, men bygger
-              på samma känsla av värme, rörelse och liten grupp.
+              Uppläggen får olika ton genom Ewa och Delta, men bygger på samma
+              känsla av värme, rörelse och liten grupp.
             </SectionHeader>
             <div className={styles.launchGrid}>
               {launchTrips.map((trip) => (
@@ -412,9 +410,15 @@ export default async function Home() {
                 <h2>Tre resor. Ett tydligt upplägg.</h2>
                 <p>
                   Hip Afro Travel öppnar nu för intresseanmälan till de första
-                  tre resorna för vintern 2026/2027. Två av veckorna ligger
-                  redan fast i februari 2027 och delar samma trygga bas i
-                  Gambia.
+                  tre resorna för vintern 2026/2027. En vecka ligger i november
+                  2026 och två veckor ligger fast i februari 2027 med samma
+                  trygga bas i Gambia.
+                </p>
+                <p>
+                  Kontakt: <a href="tel:0701507074">070-1507074</a> och{" "}
+                  <a href="mailto:Jennifer.dixon@hipafrotravel.com">
+                    Jennifer.dixon@hipafrotravel.com
+                  </a>
                 </p>
                 <div className={styles.priceLine}>
                   <span>Från 17 000 kr</span>
@@ -468,6 +472,14 @@ export default async function Home() {
                     Vi återkommer med platsstatus, nästa steg och praktiska
                     detaljer innan du bekräftar din resa.
                   </p>
+                  <p>
+                    Du kan också kontakta oss direkt på{" "}
+                    <a href="tel:0701507074">070-1507074</a> eller{" "}
+                    <a href="mailto:Jennifer.dixon@hipafrotravel.com">
+                      Jennifer.dixon@hipafrotravel.com
+                    </a>
+                    .
+                  </p>
                 </form>
               </Reveal>
             </div>
@@ -516,12 +528,12 @@ export default async function Home() {
               </Reveal>
               <Reveal className={styles.aboutCopy}>
                 <p className={styles.kicker}>Ewa</p>
-                <h2>Ewa leder veckan för hormonell balans i februari 2027.</h2>
+                <h2>Ewa leder två veckor för hormonell balans.</h2>
                 <p>
-                  Resan 14-21 februari 2027 är skapad för dig som vill ge
-                  nervsystemet lugn och kroppen stöd genom kundaliniyoga,
-                  breathwork, meditation och värme. Upplägget bär Ewas sätt att
-                  undervisa: tydligt, jordnära och närvarande.
+                  Resorna 8-15 november 2026 och 14-21 februari 2027 är skapade
+                  för dig som vill ge nervsystemet lugn och kroppen stöd genom
+                  kundaliniyoga, breathwork, meditation och värme. Upplägget
+                  bär Ewas sätt att undervisa: tydligt, jordnära och närvarande.
                 </p>
                 <div className={styles.teacherCard}>
                   <h3>Om Ewa</h3>
@@ -584,6 +596,10 @@ export default async function Home() {
           <div className={styles.footerInner}>
             <strong>Hip Afro Travel</strong>
             <span>Tre lanseringar till Gambia för vintern 2026/2027.</span>
+            <a href="tel:0701507074">070-1507074</a>
+            <a href="mailto:Jennifer.dixon@hipafrotravel.com">
+              Jennifer.dixon@hipafrotravel.com
+            </a>
           </div>
         </div>
       </footer>
