@@ -61,7 +61,7 @@ const launchTrips = [
       "Närvaro, vila och återhämtning",
     ],
     mediaType: "image",
-    mediaSrc: publicAsset("/images/pic-1.jpeg"),
+    mediaSrc: publicAsset("/images/ewa.jpeg"),
     mediaPoster: undefined,
     mediaAlt: "Kundalini yoga Hormonell Balans med Ewa i Gambia",
     note: undefined,
