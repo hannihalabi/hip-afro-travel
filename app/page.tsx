@@ -356,6 +356,7 @@ export default async function Home() {
                       <span>{trip.dates}</span>
                       <span>{trip.price}</span>
                       <span>{trip.room}</span>
+                      <span>Flyg bokas separat</span>
                     </div>
                     {trip.note ? (
                       <p className={styles.launchNote}>{trip.note}</p>
