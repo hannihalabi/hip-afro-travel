@@ -242,6 +242,7 @@
   margin: 0;
   font-family: var(--font-display);
   line-height: 1.02;
+  text-wrap: balance;
 }
 
 .hero h1 {
@@ -291,6 +292,7 @@
   font-family: var(--font-display);
   font-size: 1.35rem;
   line-height: 1.1;
+  white-space: nowrap;
 }
 
 .heroFact span {
@@ -336,6 +338,7 @@
   margin: 0;
   color: var(--color-muted);
   font-size: 1rem;
+  line-height: 1.65;
 }
 
 .reviewScroller {
@@ -546,24 +549,44 @@
 }
 
 .priceLine {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
+  display: grid;
+  gap: 8px;
   padding: 18px 0;
   border-top: 1px solid rgba(30, 32, 26, 0.1);
   border-bottom: 1px solid rgba(30, 32, 26, 0.1);
 }
 
-.priceLine span {
+.priceMain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.priceEyebrow {
+  color: var(--color-green);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.priceAmount {
+  margin: 0;
   font-family: var(--font-display);
   font-size: 2.4rem;
   font-weight: 900;
+  line-height: 0.96;
   color: var(--color-green);
+  white-space: nowrap;
 }
 
 .priceLine small {
   color: var(--color-muted);
-  font-weight: 800;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.45;
 }
 
 .includedList {
@@ -633,6 +656,7 @@
   margin: 0;
   color: var(--color-muted);
   font-size: 0.88rem;
+  line-height: 1.55;
 }
 
 .programBlock {
@@ -1085,8 +1109,11 @@
   .teacherCard,
   .benefitCard,
   .launchCardBody,
-  .finalCta,
   .footerInner {
+    text-align: left;
+  }
+
+  .finalCta {
     text-align: center;
   }
 
@@ -1094,12 +1121,13 @@
   .aboutProof,
   .launchMeta,
   .launchStats {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .includedList li,
   .launchHighlights li {
-    justify-content: center;
+    justify-content: flex-start;
+    text-align: left;
   }
 
   .includedList,
@@ -1107,6 +1135,57 @@
   .teacherCard ul,
   .benefitGrid {
     grid-template-columns: 1fr;
+  }
+
+  .bookingCopy h2,
+  .aboutCopy h2 {
+    font-size: 1.86rem;
+    text-align: left;
+  }
+
+  .bookingCopy p,
+  .aboutCopy p {
+    margin-right: 0;
+    margin-left: 0;
+    text-align: left;
+  }
+
+  .bookingCopy a,
+  .bookingForm a,
+  .footerInner a {
+    overflow-wrap: anywhere;
+  }
+
+  .priceLine {
+    gap: 10px;
+  }
+
+  .priceMain {
+    display: grid;
+    gap: 4px;
+    align-items: start;
+  }
+
+  .priceEyebrow {
+    font-size: 0.96rem;
+  }
+
+  .priceAmount {
+    font-size: clamp(2.35rem, 12vw, 3.2rem);
+  }
+
+  .launchMeta {
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .launchStats {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .launchStats span {
+    justify-content: flex-start;
   }
 
   .dayCard {

@@ -287,9 +287,9 @@ export default async function Home() {
               <p className={styles.kicker}>Vinter 2026/2027 | Nya resor</p>
               <h1>Hip Afro Travel lanserar sina första tre resor.</h1>
               <p className={styles.heroLead}>
-                Först ut kommer två veckor med Kundalini yoga Hormonell Balans
+                Först ut kommer två resor med Kundalini yoga Hormonell Balans
                 med Ewa och en träningsresa med Delta från Gladiatorerna. Tre
-                olika upplägg, samma värme i Gambia.
+                tydliga upplägg, samma värme i Gambia.
               </p>
               <div className={styles.heroActions}>
                 <a className={styles.primaryButton} href="#resor">
@@ -422,8 +422,11 @@ export default async function Home() {
                   </a>
                 </p>
                 <div className={styles.priceLine}>
-                  <span>Från 17 000 kr</span>
-                  <small>del i dubbelrum</small>
+                  <div className={styles.priceMain}>
+                    <span className={styles.priceEyebrow}>Från</span>
+                    <strong className={styles.priceAmount}>17 000 kr</strong>
+                  </div>
+                  <small>Pris per person, del i dubbelrum</small>
                 </div>
                 <p>Flyg bokas separat och ingår inte i priset.</p>
                 <ul className={styles.includedList}>
