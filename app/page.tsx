@@ -42,6 +42,92 @@ const trustPoints = [
   { icon: "✈️", label: "Flyg bokas separat" },
 ];
 
+const ewaItinerary = [
+  {
+    day: "Dag 1",
+    title: "Ankomst & välkommen",
+    text: "Transfer från flygplatsen, incheckning, gemensam middag och introduktion till veckan.",
+  },
+  {
+    day: "Dag 2",
+    title: "Landa i kroppen",
+    text: "Kundaliniyoga, frukost, tid vid havet och ett mjukt pass med breathwork.",
+  },
+  {
+    day: "Dag 3",
+    title: "Hormonell balans",
+    text: "Yoga och meditation med fokus på återhämtning, följt av workshop och egen tid.",
+  },
+  {
+    day: "Dag 4",
+    title: "Upptäck Gambia",
+    text: "Utvald gemensam utflykt, lokala smaker och en lugn kväll tillbaka vid boendet.",
+  },
+  {
+    day: "Dag 5",
+    title: "Fördjupning",
+    text: "Morgonpraktik, breathwork och gott om utrymme för vila, strand och reflektion.",
+  },
+  {
+    day: "Dag 6",
+    title: "Kultur & gemenskap",
+    text: "Ett mjukare pass, lokal upplevelse och gemensam middag med gruppen.",
+  },
+  {
+    day: "Dag 7",
+    title: "Integrera veckan",
+    text: "Avslutande yogapass, fri tid och en gemensam cirkel som knyter ihop upplevelsen.",
+  },
+  {
+    day: "Dag 8",
+    title: "Hemresa",
+    text: "Frukost, utcheckning och gemensam transfer till flygplatsen.",
+  },
+];
+
+const deltaItinerary = [
+  {
+    day: "Dag 1",
+    title: "Ankomst & välkommen",
+    text: "Transfer från flygplatsen, incheckning, gemensam middag och genomgång av veckan.",
+  },
+  {
+    day: "Dag 2",
+    title: "Kom igång",
+    text: "Första styrkepasset med Delta, frukost och återhämtning vid strand eller pool.",
+  },
+  {
+    day: "Dag 3",
+    title: "Styrka & energi",
+    text: "Träning anpassad efter nivå, gemensam måltid och eftermiddag för egen tid.",
+  },
+  {
+    day: "Dag 4",
+    title: "Aktiv återhämtning",
+    text: "Rörlighet och stretch följt av en utvald gemensam utflykt i Gambia.",
+  },
+  {
+    day: "Dag 5",
+    title: "Utmaning & lagkänsla",
+    text: "Ett energifyllt gruppass med Delta, återhämtning och gemensam reflektion.",
+  },
+  {
+    day: "Dag 6",
+    title: "Träning möter kultur",
+    text: "Morgonpass, lokal upplevelse och en avslappnad kväll tillsammans med gruppen.",
+  },
+  {
+    day: "Dag 7",
+    title: "Finalpass",
+    text: "Veckans avslutande träningspass, fri tid och gemensam avslutningsmiddag.",
+  },
+  {
+    day: "Dag 8",
+    title: "Hemresa",
+    text: "Frukost, utcheckning och gemensam transfer till flygplatsen.",
+  },
+];
+
 const launchTrips = [
   {
     id: "ewa-november",
@@ -65,6 +151,7 @@ const launchTrips = [
     mediaSrc: publicAsset("/images/ewa.jpeg"),
     mediaPoster: undefined as string | undefined,
     mediaAlt: "Ewa i meditation under palmerna vid havet",
+    itinerary: ewaItinerary,
   },
   {
     id: "ewa-februari",
@@ -88,6 +175,7 @@ const launchTrips = [
     mediaSrc: publicAsset("/images/ewa.jpeg"),
     mediaPoster: undefined as string | undefined,
     mediaAlt: "Kundaliniyoga vid havet i Gambia",
+    itinerary: ewaItinerary,
   },
   {
     id: "delta",
@@ -113,6 +201,7 @@ const launchTrips = [
     ),
     mediaPoster: publicAsset("/images/delta.jpeg"),
     mediaAlt: "Delta från Gladiatorerna tränar",
+    itinerary: deltaItinerary,
   },
 ];
 
@@ -122,7 +211,11 @@ const included = [
   { icon: "🏋️", label: "Träning alla nivåer" },
   { icon: "🫁", label: "Stretch & breathwork" },
   { icon: "🛶", label: "Utvalda utflykter" },
-  { icon: "🍲", label: "Närande lokal mat" },
+  {
+    icon: "🍽️",
+    label: "Matmeny för alla",
+    detail: "Fisk · Kött · Vegetariskt · Veganskt",
+  },
   { icon: "🇸🇪", label: "Svensk & lokal värd" },
   { icon: "🎁", label: "Verktyg att ta hem" },
 ];
@@ -464,6 +557,32 @@ export default function Home() {
                         </span>
                       ))}
                     </div>
+                    <details className={styles.tripDetails}>
+                      <summary>
+                        <span>
+                          <strong>Läs mer om resan</strong>
+                          <small>Se upplägget dag för dag</small>
+                        </span>
+                        <span className={styles.detailsIcon} aria-hidden="true" />
+                      </summary>
+                      <div className={styles.itinerary}>
+                        <p className={styles.itineraryNote}>
+                          Preliminärt upplägg – tider och aktiviteter kan
+                          justeras efter väder och lokala förutsättningar.
+                        </p>
+                        <ol className={styles.itineraryList}>
+                          {trip.itinerary.map((item) => (
+                            <li key={item.day}>
+                              <span>{item.day}</span>
+                              <div>
+                                <strong>{item.title}</strong>
+                                <p>{item.text}</p>
+                              </div>
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    </details>
                     <div className={styles.launchFooter}>
                       <div className={styles.launchPrice}>
                         <strong>{trip.price}</strong>
@@ -504,7 +623,10 @@ export default function Home() {
                   <span className={styles.includedIcon} aria-hidden="true">
                     {item.icon}
                   </span>
-                  <span>{item.label}</span>
+                  <span className={styles.includedCopy}>
+                    <strong>{item.label}</strong>
+                    {item.detail ? <small>{item.detail}</small> : null}
+                  </span>
                 </Reveal>
               ))}
             </div>
@@ -767,8 +889,8 @@ export default function Home() {
           <span>Från</span>
           <strong>17 000 kr</strong>
         </div>
-        <a className={styles.stickyButton} href="#boka">
-          Boka nu
+        <a className={styles.stickyButton} href="#resor">
+          Välj resa
           <ArrowIcon />
         </a>
       </div>

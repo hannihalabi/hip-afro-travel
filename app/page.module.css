@@ -693,6 +693,161 @@
   white-space: nowrap;
 }
 
+.tripDetails {
+  border: 1px solid var(--color-sand);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+  overflow: hidden;
+}
+
+.tripDetails summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 15px 16px;
+  color: var(--color-palm-deep);
+  cursor: pointer;
+  list-style: none;
+  transition: background 0.2s ease;
+}
+
+.tripDetails summary::-webkit-details-marker {
+  display: none;
+}
+
+.tripDetails summary:hover {
+  background: var(--color-palm-soft);
+}
+
+.tripDetails summary > span:first-child {
+  display: grid;
+  gap: 2px;
+}
+
+.tripDetails summary strong {
+  font-size: 0.94rem;
+  font-weight: 800;
+}
+
+.tripDetails summary small {
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.detailsIcon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--color-palm);
+  color: #fff;
+  transition: transform 0.25s ease;
+}
+
+.detailsIcon::before,
+.detailsIcon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.detailsIcon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.tripDetails[open] .detailsIcon {
+  transform: rotate(45deg);
+}
+
+.itinerary {
+  padding: 0 16px 18px;
+  border-top: 1px solid var(--color-sand);
+}
+
+.itineraryNote {
+  margin: 14px 0 16px;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.itineraryList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.itineraryList li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 12px;
+  padding-bottom: 18px;
+}
+
+.itineraryList li:last-child {
+  padding-bottom: 0;
+}
+
+.itineraryList li::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  bottom: 2px;
+  left: 25px;
+  width: 2px;
+  background: var(--color-sand);
+}
+
+.itineraryList li:last-child::before {
+  display: none;
+}
+
+.itineraryList li > span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  align-self: start;
+  min-height: 28px;
+  border-radius: var(--radius-pill);
+  background: var(--color-gold-soft);
+  color: var(--color-sunset-deep);
+  font-size: 0.68rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.itineraryList li div {
+  min-width: 0;
+}
+
+.itineraryList li strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.itineraryList li p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
 .launchFooter {
   margin-top: auto;
   display: flex;
@@ -797,6 +952,23 @@
   border-radius: 14px;
   background: var(--color-gold-soft);
   font-size: 1.4rem;
+}
+
+.includedCopy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.includedCopy strong {
+  font: inherit;
+}
+
+.includedCopy small {
+  color: var(--color-muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .flightNote {
