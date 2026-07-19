@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Serverless-API:t har egna beroenden och lintas inte härifrån.
+    "server/**",
   ]),
 ]);
 

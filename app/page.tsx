@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
+import CheckoutButton from "@/components/CheckoutButton";
 import HeaderScroll from "@/components/HeaderScroll";
 import MobileMenu from "@/components/MobileMenu";
 import Reveal from "@/components/Reveal";
@@ -128,44 +129,53 @@ const included = [
 
 const galleryImages = [
   {
+    mediaType: "image" as const,
     src: publicAsset("/images/pic-1.jpeg"),
     alt: "Solstolar och parasoll på stranden i Gambia",
     tag: "Stranden",
     wide: true,
   },
   {
+    mediaType: "image" as const,
     src: publicAsset("/images/pic-3.jpeg"),
     alt: "Hängmattor under palmer vid havet",
     tag: "Vilan",
     tall: true,
   },
   {
+    mediaType: "image" as const,
     src: latestAsset("WhatsApp Image 2026-02-19 at 21.51.11.jpeg"),
     alt: "Middag serveras på stranden vid solnedgång",
     tag: "Maten",
   },
   {
-    src: latestAsset("WhatsApp Image 2026-02-19 at 21.50.41.jpeg"),
-    alt: "Djembetrummor samlade på stranden",
+    mediaType: "video" as const,
+    src: publicAsset("/videos/vid-1.mp4"),
+    poster: latestAsset("WhatsApp Image 2026-02-19 at 21.50.41.jpeg"),
+    alt: "Gemensam trumaktivitet i Gambia",
     tag: "Musiken",
   },
   {
+    mediaType: "image" as const,
     src: publicAsset("/images/pic-2.jpeg"),
     alt: "Färgglada båtar i mangroven",
     tag: "Utflykterna",
     tall: true,
   },
   {
+    mediaType: "image" as const,
     src: latestAsset("WhatsApp Image 2026-02-19 at 21.38.05.jpeg"),
     alt: "Resenär vid ett jättelikt kapokträd",
     tag: "Äventyret",
   },
   {
+    mediaType: "image" as const,
     src: latestAsset("WhatsApp Image 2026-02-19 at 21.57.24.jpeg"),
     alt: "Gäster skrattar över en kopp kaffe",
     tag: "Gemenskapen",
   },
   {
+    mediaType: "image" as const,
     src: latestAsset("WhatsApp Image 2026-02-19 at 21.38.05 (1).jpeg"),
     alt: "Mangrovefloden i kvällsljus",
     tag: "Naturen",
@@ -180,9 +190,7 @@ const hosts = [
     role: "Kundaliniyoga · Breathwork · Meditation",
     text: "Svensk yogalärare med bas i Barcelona. Certifierad Kundaliniyogalärare sedan 2013 och över 20 år med yoga och mindfulness.",
     tags: ["🧘 Certifierad 2013", "🌍 20+ år erfarenhet", "🫁 Breathwork", "🥗 Näring & mindset"],
-    mediaType: "video" as const,
-    mediaSrc: publicAsset("/videos/vid-1.mp4"),
-    mediaPoster: publicAsset("/images/ewa.jpeg"),
+    mediaSrc: publicAsset("/images/ewa.jpeg"),
     cta: "Res med Ewa",
   },
   {
@@ -191,9 +199,7 @@ const hosts = [
     role: "Gladiatorerna · Styrka · Energi",
     text: "Känd från Gladiatorerna på TV4. Delta leder passen med disciplin, värme och en energi som smittar av sig på hela gruppen.",
     tags: ["📺 Känd från TV4", "💪 Styrka & kondition", "🔥 Alla nivåer", "🤝 Gruppkänsla"],
-    mediaType: "image" as const,
     mediaSrc: publicAsset("/images/delta.jpeg"),
-    mediaPoster: undefined as string | undefined,
     cta: "Res med Delta",
   },
 ];
@@ -463,10 +469,13 @@ export default function Home() {
                         <strong>{trip.price}</strong>
                         <span>{trip.room}</span>
                       </div>
-                      <a className={styles.cardButton} href="#boka">
-                        Boka din plats
+                      <CheckoutButton
+                        tripId={trip.id}
+                        className={styles.cardButton}
+                      >
+                        Boka & betala
                         <ArrowIcon />
-                      </a>
+                      </CheckoutButton>
                     </div>
                   </div>
                 </Reveal>
@@ -522,13 +531,26 @@ export default function Home() {
                   key={image.src}
                   style={{ "--reveal-delay": `${index * 70}ms` } as React.CSSProperties}
                 >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className={styles.galleryImage}
-                    sizes="(max-width: 700px) 86vw, (max-width: 1100px) 45vw, 30vw"
-                  />
+                  {image.mediaType === "video" ? (
+                    <video
+                      src={image.src}
+                      poster={image.poster}
+                      className={styles.galleryVideo}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      aria-label={image.alt}
+                    />
+                  ) : (
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className={styles.galleryImage}
+                      sizes="(max-width: 700px) 86vw, (max-width: 1100px) 45vw, 30vw"
+                    />
+                  )}
                   <span className={styles.galleryTag}>{image.tag}</span>
                 </Reveal>
               ))}
@@ -551,25 +573,13 @@ export default function Home() {
                   style={{ "--reveal-delay": `${index * 120}ms` } as React.CSSProperties}
                 >
                   <div className={styles.hostMedia}>
-                    {host.mediaType === "video" ? (
-                      <video
-                        src={host.mediaSrc}
-                        poster={host.mediaPoster}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        aria-label={`${host.name} – ${host.role}`}
-                      />
-                    ) : (
-                      <Image
-                        src={host.mediaSrc}
-                        alt={`${host.name} – ${host.role}`}
-                        fill
-                        className={styles.hostImage}
-                        sizes="(max-width: 900px) 92vw, 46vw"
-                      />
-                    )}
+                    <Image
+                      src={host.mediaSrc}
+                      alt={`${host.name} – ${host.role}`}
+                      fill
+                      className={styles.hostImage}
+                      sizes="(max-width: 900px) 92vw, 46vw"
+                    />
                   </div>
                   <div className={styles.hostBody}>
                     <h3>{host.name}</h3>

@@ -698,9 +698,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 14px;
   padding-top: 16px;
   border-top: 1px dashed var(--color-sand);
+}
+
+.checkoutError {
+  width: 100%;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--color-sunset-deep);
+}
+
+.checkoutError a {
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 .launchPrice {
@@ -825,12 +838,16 @@
   grid-row: span 2;
 }
 
-.galleryImage {
+.galleryImage,
+.galleryVideo {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
 }
 
-.galleryTile:hover .galleryImage {
+.galleryTile:hover .galleryImage,
+.galleryTile:hover .galleryVideo {
   transform: scale(1.07);
 }
 
@@ -900,7 +917,6 @@
   overflow: hidden;
 }
 
-.hostMedia video,
 .hostImage {
   width: 100%;
   height: 100%;
@@ -1395,8 +1411,30 @@
 
   .trustList {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .trustList li {
+    align-items: center;
+    min-height: 88px;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 0.88rem;
+    line-height: 1.35;
+  }
+
+  .trustList li span {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    flex: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 1.2rem;
   }
 
   .seatsNote,
@@ -1508,7 +1546,52 @@
 
   .launchCard:hover .launchImage,
   .launchCard:hover .launchMedia video,
-  .galleryTile:hover .galleryImage {
+  .galleryTile:hover .galleryImage,
+  .galleryTile:hover .galleryVideo {
     transform: none;
   }
+}
+
+/* ─── Tack-sida ───────────────────────────────────────────── */
+
+.confirmPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background: var(--gradient-dusk);
+}
+
+.confirmCard {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 48px 36px;
+  border-radius: var(--radius-lg);
+  background: var(--color-paper);
+  box-shadow: var(--shadow-lift);
+  text-align: center;
+}
+
+.confirmCard h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
+
+.confirmCard p {
+  margin: 0;
+  color: var(--color-ink-soft);
+}
+
+.confirmCard p a {
+  font-weight: 700;
+  color: var(--color-sunset-deep);
+}
+
+.confirmIcon {
+  font-size: 2.6rem;
+  line-height: 1;
 }
