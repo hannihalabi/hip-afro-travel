@@ -1002,6 +1002,23 @@
   box-shadow: var(--shadow-soft);
 }
 
+.galleryOpenButton {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: zoom-in;
+}
+
+.galleryOpenButton:focus-visible {
+  outline: 4px solid var(--color-gold);
+  outline-offset: -4px;
+}
+
 .galleryTileWide {
   grid-column: span 2;
 }
@@ -1043,6 +1060,177 @@
   font-weight: 800;
   font-size: 0.82rem;
   white-space: nowrap;
+}
+
+.galleryZoomIcon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(20, 33, 26, 0.72);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.86);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.galleryZoomIcon svg {
+  width: 19px;
+  height: 19px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.galleryTile:hover .galleryZoomIcon,
+.galleryOpenButton:focus-visible .galleryZoomIcon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Bildvisning */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 56px 76px 28px;
+  background: rgba(8, 15, 11, 0.94);
+  backdrop-filter: blur(12px);
+}
+
+.lightboxFigure {
+  width: min(1180px, 100%);
+  margin: 0;
+}
+
+.lightboxMedia {
+  position: relative;
+  width: 100%;
+  height: min(76svh, 820px);
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: #080d0a;
+}
+
+.lightboxImage,
+.lightboxMedia video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lightboxFigure figcaption {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-height: 44px;
+  padding: 14px 56px 0 0;
+  color: #fff;
+}
+
+.lightboxFigure figcaption strong {
+  color: var(--color-gold);
+  font-size: 0.95rem;
+}
+
+.lightboxFigure figcaption span {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.88rem;
+}
+
+.lightboxFigure figcaption small {
+  position: absolute;
+  right: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 700;
+}
+
+.lightboxClose,
+.lightboxNav {
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.lightboxClose:hover,
+.lightboxNav:hover {
+  background: rgba(255, 255, 255, 0.24);
+  transform: scale(1.06);
+}
+
+.lightboxClose:focus-visible,
+.lightboxNav:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+}
+
+.lightboxClose span::before,
+.lightboxClose span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 17px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.lightboxClose span::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.lightboxNav {
+  position: absolute;
+  top: 50%;
+  width: 46px;
+  height: 46px;
+  transform: translateY(-50%);
+}
+
+.lightboxNav:hover {
+  transform: translateY(-50%) scale(1.06);
+}
+
+.lightboxNav svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lightboxPrevious {
+  left: 18px;
+}
+
+.lightboxNext {
+  right: 18px;
 }
 
 /* ─── Värdar ──────────────────────────────────────────────── */
@@ -1352,10 +1540,13 @@
 
 .bookingFormWrap {
   position: relative;
+  min-width: 0;
 }
 
 .bookingForm {
   display: grid;
+  width: 100%;
+  min-width: 0;
   gap: 16px;
   padding: 30px;
   border-radius: var(--radius-lg);
@@ -1378,6 +1569,7 @@
 
 .bookingForm label {
   display: grid;
+  min-width: 0;
   gap: 7px;
   font-weight: 800;
   font-size: 0.9rem;
@@ -1386,6 +1578,8 @@
 
 .bookingForm input,
 .bookingForm select {
+  width: 100%;
+  min-width: 0;
   padding: 13px 16px;
   border-radius: 14px;
   border: 2px solid var(--color-sand);
@@ -1629,6 +1823,59 @@
     gap: 10px;
   }
 
+  .galleryZoomIcon {
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+    transform: none;
+  }
+
+  .lightbox {
+    padding: 66px 12px 22px;
+  }
+
+  .lightboxMedia {
+    height: min(72svh, 700px);
+    border-radius: 12px;
+  }
+
+  .lightboxFigure figcaption {
+    flex-wrap: wrap;
+    gap: 2px 8px;
+    padding-top: 12px;
+    padding-right: 48px;
+  }
+
+  .lightboxFigure figcaption span {
+    width: 100%;
+  }
+
+  .lightboxClose {
+    top: 12px;
+    right: 12px;
+  }
+
+  .lightboxNav {
+    top: auto;
+    bottom: 82px;
+    width: 42px;
+    height: 42px;
+    transform: none;
+    background: rgba(20, 33, 26, 0.74);
+  }
+
+  .lightboxNav:hover {
+    transform: scale(1.06);
+  }
+
+  .lightboxPrevious {
+    left: 22px;
+  }
+
+  .lightboxNext {
+    right: 22px;
+  }
+
   .includedGrid {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -1721,6 +1968,12 @@
   .galleryTile:hover .galleryImage,
   .galleryTile:hover .galleryVideo {
     transform: none;
+  }
+
+  .galleryZoomIcon,
+  .lightboxClose,
+  .lightboxNav {
+    transition: none;
   }
 }
 

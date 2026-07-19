@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import CheckoutButton from "@/components/CheckoutButton";
+import Gallery from "@/components/Gallery";
 import HeaderScroll from "@/components/HeaderScroll";
 import MobileMenu from "@/components/MobileMenu";
 import Reveal from "@/components/Reveal";
@@ -644,39 +645,7 @@ export default function Home() {
               Stranden, maten, musiken och människorna – precis som det ser ut
               på riktigt.
             </SectionHeader>
-            <div className={styles.galleryGrid}>
-              {galleryImages.map((image, index) => (
-                <Reveal
-                  className={`${styles.galleryTile} ${
-                    image.wide ? styles.galleryTileWide : ""
-                  } ${image.tall ? styles.galleryTileTall : ""}`}
-                  key={image.src}
-                  style={{ "--reveal-delay": `${index * 70}ms` } as React.CSSProperties}
-                >
-                  {image.mediaType === "video" ? (
-                    <video
-                      src={image.src}
-                      poster={image.poster}
-                      className={styles.galleryVideo}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      aria-label={image.alt}
-                    />
-                  ) : (
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      className={styles.galleryImage}
-                      sizes="(max-width: 700px) 86vw, (max-width: 1100px) 45vw, 30vw"
-                    />
-                  )}
-                  <span className={styles.galleryTag}>{image.tag}</span>
-                </Reveal>
-              ))}
-            </div>
+            <Gallery items={galleryImages} />
           </div>
         </section>
 
