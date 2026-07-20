@@ -5,6 +5,10 @@ import Gallery from "@/components/Gallery";
 import HeaderScroll from "@/components/HeaderScroll";
 import MobileMenu from "@/components/MobileMenu";
 import Reveal from "@/components/Reveal";
+import {
+  TripCalendarProvider,
+  TripCalendarTrigger,
+} from "@/components/TripCalendar";
 import styles from "./page.module.css";
 
 const repo = "hip-afro-travel";
@@ -132,6 +136,9 @@ const deltaItinerary = [
 const launchTrips = [
   {
     id: "ewa-november",
+    category: "yoga" as const,
+    startDate: "2026-11-08",
+    endDate: "2026-11-15",
     badge: "Först ut",
     badgeTone: "gold" as const,
     host: "Ewa",
@@ -156,6 +163,9 @@ const launchTrips = [
   },
   {
     id: "ewa-februari",
+    category: "yoga" as const,
+    startDate: "2027-02-14",
+    endDate: "2027-02-21",
     badge: "Populär vecka",
     badgeTone: "sunset" as const,
     host: "Ewa",
@@ -180,6 +190,9 @@ const launchTrips = [
   },
   {
     id: "delta",
+    category: "training" as const,
+    startDate: "2027-02-21",
+    endDate: "2027-02-28",
     badge: "Hög energi",
     badgeTone: "palm" as const,
     host: "Delta",
@@ -205,6 +218,18 @@ const launchTrips = [
     itinerary: deltaItinerary,
   },
 ];
+
+const calendarTrips = launchTrips.map((trip) => ({
+  id: trip.id,
+  category: trip.category,
+  title: trip.title,
+  host: trip.host,
+  hostIcon: trip.hostIcon,
+  dates: trip.dates,
+  startDate: trip.startDate,
+  endDate: trip.endDate,
+  price: trip.price,
+}));
 
 const included = [
   { icon: "🚐", label: "Flygplatstransfer" },
@@ -399,7 +424,8 @@ function SectionHeader({
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <TripCalendarProvider trips={calendarTrips}>
+      <div className={styles.page}>
       <header className={styles.header} id="site-header" data-hidden="false">
         <HeaderScroll />
         <div className={styles.container}>
@@ -417,10 +443,12 @@ export default function Home() {
                 </a>
               ))}
             </nav>
-            <a className={`${styles.navCta} ${styles.desktopOnly}`} href="#boka">
+            <TripCalendarTrigger
+              className={`${styles.navCta} ${styles.desktopOnly}`}
+            >
               Boka resa
               <ArrowIcon />
-            </a>
+            </TripCalendarTrigger>
             <MobileMenu links={navLinks} />
           </div>
         </div>
@@ -465,10 +493,10 @@ export default function Home() {
                 på plats.
               </p>
               <div className={styles.heroActions}>
-                <a className={styles.primaryButton} href="#resor">
+                <TripCalendarTrigger className={styles.primaryButton}>
                   Välj din resa
                   <ArrowIcon />
-                </a>
+                </TripCalendarTrigger>
                 <a className={styles.secondaryButton} href="#bilder">
                   Se bilderna
                 </a>
@@ -512,6 +540,7 @@ export default function Home() {
               {launchTrips.map((trip, index) => (
                 <Reveal
                   className={styles.launchCard}
+                  id={`resa-${trip.id}`}
                   key={trip.id}
                   style={{ "--reveal-delay": `${index * 120}ms` } as React.CSSProperties}
                 >
@@ -890,11 +919,12 @@ export default function Home() {
           <span>Från</span>
           <strong>17 000 kr</strong>
         </div>
-        <a className={styles.stickyButton} href="#resor">
+        <TripCalendarTrigger className={styles.stickyButton}>
           Välj resa
           <ArrowIcon />
-        </a>
+        </TripCalendarTrigger>
       </div>
-    </div>
+      </div>
+    </TripCalendarProvider>
   );
 }

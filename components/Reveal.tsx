@@ -7,10 +7,11 @@ import styles from "./Reveal.module.css";
 type RevealProps = {
   children: ReactNode;
   className?: string;
+  id?: string;
   style?: CSSProperties;
 };
 
-export default function Reveal({ children, className, style }: RevealProps) {
+export default function Reveal({ children, className, id, style }: RevealProps) {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function Reveal({ children, className, style }: RevealProps) {
   const classes = [styles.reveal, className].filter(Boolean).join(" ");
 
   return (
-    <div ref={ref} className={classes} style={style}>
+    <div ref={ref} className={classes} id={id} style={style}>
       {children}
     </div>
   );

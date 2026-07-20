@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "../page.module.css";
 
 export const metadata: Metadata = {
-  title: "Tack för din bokning | Hip Afro Travel",
+  title: "Tack för din bokning",
   robots: { index: false },
 };
 

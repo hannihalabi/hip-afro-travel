@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import styles from "@/app/page.module.css";
+import { TripCalendarTrigger } from "@/components/TripCalendar";
 
 type NavLink = {
   href: string;
@@ -48,13 +49,12 @@ export default function MobileMenu({ links }: { links: NavLink[] }) {
             {link.label}
           </a>
         ))}
-        <a
-          href="#boka"
+        <TripCalendarTrigger
           className={styles.mobileCta}
-          onClick={handleClose}
+          onOpen={handleClose}
         >
           Boka resa
-        </a>
+        </TripCalendarTrigger>
       </nav>
     </div>
   );

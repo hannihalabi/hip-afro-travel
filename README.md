@@ -37,6 +37,12 @@ Följande miljövariabel krävs lokalt och i Vercel:
 - `STRIPE_SECRET_KEY` – Stripes hemliga API-nyckel. Använd en testnyckel under
   utveckling och byt till en live-nyckel inför lansering.
 
+Följande miljövariabel är valfri:
+
+- `SITE_URL` – sajtens publika basadress för canonical- och delningsmetadata.
+  Standardvärdet är `https://hip-afro-travel.vercel.app`. Sätt variabeln när
+  sajten får en egen domän.
+
 Skapa `.env.local` för lokal utveckling:
 
 ```bash
