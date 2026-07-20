@@ -321,38 +321,40 @@ const benefits = [
   },
 ];
 
+const experienceQuotes = [
+  {
+    theme: "Energi & balans",
+    quote:
+      "En fantastisk blandning av rörelse, avkoppling och upplevelser – precis den paus från vardagen jag behövde.",
+  },
+  {
+    theme: "Tryggt & personligt",
+    quote:
+      "Jag kände mig välkommen från första dagen. Den lilla gruppen gjorde resan både personlig och avslappnad.",
+  },
+  {
+    theme: "Gemenskap",
+    quote:
+      "Det bästa var människorna, skratten och känslan av att uppleva Gambia tillsammans på riktigt.",
+  },
+];
+
 const timeline = [
   { month: "NOV", year: "2026", label: "Yoga med Ewa", dates: "8–15 nov" },
   { month: "FEB", year: "2027", label: "Yoga med Ewa", dates: "14–21 feb" },
   { month: "FEB", year: "2027", label: "Träning med Delta", dates: "21–28 feb" },
 ];
 
-function LogoMark({ className }: { className?: string }) {
+function BrandLogo({ className }: { className?: string }) {
   return (
-    <svg
+    <Image
       className={className}
-      viewBox="0 0 48 48"
-      fill="none"
-      aria-hidden="true"
-    >
-      <circle cx="24" cy="24" r="23" fill="url(#logoSun)" />
-      <circle cx="24" cy="19" r="8.5" fill="#FDF8F0" />
-      <path
-        d="M2 32c4-2.6 8-2.6 12 0s8 2.6 12 0 8-2.6 12-0 6 2.2 8 2.2V46H2z"
-        fill="#143826"
-      />
-      <path
-        d="M4 38c3.4-2.2 6.8-2.2 10.2 0s6.8 2.2 10.2 0 6.8-2.2 10.2 0 6.6 2.1 9.4 1.4V46H4z"
-        fill="#1E5038"
-        opacity="0.85"
-      />
-      <defs>
-        <linearGradient id="logoSun" x1="6" y1="6" x2="42" y2="42">
-          <stop stopColor="#F2A93B" />
-          <stop offset="1" stopColor="#E85D2F" />
-        </linearGradient>
-      </defs>
-    </svg>
+      src={publicAsset("/logo/hipafro-logo.jpeg")}
+      alt=""
+      width={1024}
+      height={1024}
+      sizes="112px"
+    />
   );
 }
 
@@ -403,7 +405,7 @@ export default function Home() {
         <div className={styles.container}>
           <div className={styles.headerInner}>
             <a className={styles.brand} href="#hero" aria-label="Hip Afro Travel">
-              <LogoMark className={styles.brandMark} />
+              <BrandLogo className={styles.brandMark} />
               <span className={styles.brandText}>
                 Hip Afro <em>Travel</em>
               </span>
@@ -718,6 +720,36 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ─── KÄNSLAN ──────────────────────────────────────── */}
+        <section className={styles.voiceSection}>
+          <div className={styles.container}>
+            <SectionHeader
+              kicker="Känslan vi vill skapa"
+              title="Ord att ta med sig hem."
+            >
+              Exempel på hur veckan är tänkt att upplevas – varmt, personligt
+              och fullt av ny energi.
+            </SectionHeader>
+            <div className={styles.voiceGrid}>
+              {experienceQuotes.map((item, index) => (
+                <Reveal
+                  className={styles.voiceCard}
+                  key={item.theme}
+                  style={{
+                    "--reveal-delay": `${index * 100}ms`,
+                  } as React.CSSProperties}
+                >
+                  <span className={styles.quoteMark} aria-hidden="true">
+                    “
+                  </span>
+                  <blockquote>{item.quote}</blockquote>
+                  <span className={styles.voiceTheme}>{item.theme}</span>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ─── BOKA ─────────────────────────────────────────── */}
         <section className={styles.bookingSection} id="boka">
           <div className={styles.container}>
@@ -818,7 +850,7 @@ export default function Home() {
         <section className={styles.finalCta}>
           <div className={styles.container}>
             <Reveal className={styles.finalCtaInner}>
-              <LogoMark className={styles.finalCtaMark} />
+              <BrandLogo className={styles.finalCtaMark} />
               <h2>Redo för Gambia?</h2>
               <p>Först in får först välja vecka och rum.</p>
               <a className={styles.primaryButton} href="#boka">
@@ -834,7 +866,7 @@ export default function Home() {
         <div className={styles.container}>
           <div className={styles.footerInner}>
             <div className={styles.footerBrand}>
-              <LogoMark className={styles.footerMark} />
+              <BrandLogo className={styles.footerMark} />
               <strong>Hip Afro Travel</strong>
             </div>
             <span>Tre resor till Gambia vintern 2026/2027.</span>

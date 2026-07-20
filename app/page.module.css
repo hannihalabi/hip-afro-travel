@@ -175,9 +175,11 @@
 }
 
 .brandMark {
-  width: 40px;
-  height: 40px;
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
   border-radius: 50%;
+  background: #fff;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
@@ -1378,6 +1380,61 @@
   font-size: 0.95rem;
 }
 
+/* ─── Känslan efter resan ────────────────────────────────── */
+
+.voiceSection {
+  padding-block: 90px;
+  background: var(--color-sunset-soft);
+}
+
+.voiceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.voiceCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  padding: 28px;
+  border: 1px solid rgba(232, 93, 47, 0.12);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  box-shadow: var(--shadow-soft);
+}
+
+.quoteMark {
+  height: 48px;
+  color: var(--color-sunset);
+  font-family: Georgia, serif;
+  font-size: 4.5rem;
+  line-height: 0.9;
+}
+
+.voiceCard blockquote {
+  margin: 10px 0 24px;
+  color: var(--color-ink-soft);
+  font-family: var(--font-display-stack);
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.voiceTheme {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: auto;
+  padding: 7px 13px;
+  border-radius: var(--radius-pill);
+  background: var(--color-gold-soft);
+  color: var(--color-sunset-deep);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
 /* ─── Boka ────────────────────────────────────────────────── */
 
 .bookingSection {
@@ -1617,9 +1674,11 @@
 }
 
 .finalCtaMark {
-  width: 74px;
-  height: 74px;
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
   border-radius: 50%;
+  background: #fff;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   animation: floaty 4s ease-in-out infinite;
 }
@@ -1661,9 +1720,11 @@
 }
 
 .footerMark {
-  width: 34px;
-  height: 34px;
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
   border-radius: 50%;
+  background: #fff;
 }
 
 .footerContact {
@@ -1716,6 +1777,10 @@
 
   .benefitGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .voiceGrid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1887,6 +1952,19 @@
 
   .benefitGrid {
     grid-template-columns: 1fr;
+  }
+
+  .voiceSection {
+    padding-block: 64px;
+  }
+
+  .voiceGrid {
+    gap: 12px;
+  }
+
+  .voiceCard {
+    min-height: 0;
+    padding: 24px;
   }
 
   .bookingForm {
