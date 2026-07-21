@@ -881,11 +881,10 @@ export default function Home() {
             <Reveal className={styles.finalCtaInner}>
               <BrandLogo className={styles.finalCtaMark} />
               <h2>Redo för Gambia?</h2>
-              <p>Först in får först välja vecka och rum.</p>
-              <a className={styles.primaryButton} href="#boka">
-                Skicka intresse nu
+              <TripCalendarTrigger className={styles.primaryButton}>
+                Visa reskalender
                 <ArrowIcon />
-              </a>
+              </TripCalendarTrigger>
             </Reveal>
           </div>
         </section>

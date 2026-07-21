@@ -380,11 +380,14 @@
   display: grid;
   place-items: center;
   min-width: 0;
-  aspect-ratio: 1;
+}
+
+.calendarEmptyDay,
+.calendarDay {
+  min-height: 42px;
 }
 
 .calendarWeekday {
-  aspect-ratio: auto;
   min-height: 24px;
   color: var(--color-muted);
   font-size: 0.62rem;
@@ -2307,6 +2310,7 @@
   }
 
   .calendarDay {
+    min-height: 44px;
     border-radius: 8px;
     font-size: 0.7rem;
   }
