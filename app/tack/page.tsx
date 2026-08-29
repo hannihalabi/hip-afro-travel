@@ -22,8 +22,8 @@ export default function TackPage() {
         </p>
         <p>
           Frågor? Ring <a href="tel:0701507074">070-150 70 74</a> eller mejla{" "}
-          <a href="mailto:Jennifer.dixon@hipafrotravel.com">
-            Jennifer.dixon@hipafrotravel.com
+          <a href="mailto:info@hipafrotravel.com">
+            info@hipafrotravel.com
           </a>
           .
         </p>

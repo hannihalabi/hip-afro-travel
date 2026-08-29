@@ -10,13 +10,13 @@ const TRIPS: Record<
   "resa-1": {
     name: "Kundaliniyoga & hormonell balans med Ewa · 10–17 feb 2026",
     description:
-      "7 dagar i Gambia. Del i dubbelrum. Boende, transfer, utflykter och matmeny med fisk, kött, vegetariskt och veganskt ingår – flyg bokas separat.",
+      "7 dagar i Gambia. Del i dubbelrum. Boende i Yogavilla, frukost, middag, transfer, workshops och utflykter enligt resebeskrivningen ingår. Flyg bokas separat. Bokningen bekräftas av Hipafrotravel efter genomförd betalning.",
     unitAmount: 1_700_000,
   },
   "resa-2": {
     name: "Kundaliniyoga & hormonell balans med Ewa · 21–28 feb 2026",
     description:
-      "7 dagar i Gambia. Del i dubbelrum. Boende, transfer, utflykter och matmeny med fisk, kött, vegetariskt och veganskt ingår – flyg bokas separat.",
+      "7 dagar i Gambia. Del i dubbelrum. Boende i Yogavilla, frukost, middag, transfer, workshops och utflykter enligt resebeskrivningen ingår. Flyg bokas separat. Bokningen bekräftas av Hipafrotravel efter genomförd betalning.",
     unitAmount: 1_700_000,
   },
 };

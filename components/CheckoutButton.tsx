@@ -51,7 +51,7 @@ export default function CheckoutButton({
       {status === "error" ? (
         <span className={styles.checkoutError} role="alert">
           Betalningen kunde inte startas just nu –{" "}
-          <a href="#boka">skicka en intresseanmälan</a> så hör vi av oss.
+          <a href="#boka">skicka en fråga</a> så hjälper vi dig.
         </span>
       ) : null}
     </>

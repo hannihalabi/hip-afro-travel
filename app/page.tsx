@@ -70,7 +70,7 @@ const heroChips = [
 
 const trustPoints = [
   { icon: "🇸🇪", label: "Svensk värd på plats" },
-  { icon: "🏡", label: "Boende & mat ingår" },
+  { icon: "🏡", label: "Boende, frukost & middag" },
   { icon: "🚐", label: "Transfer & utflykter ingår" },
   { icon: "✈️", label: "Flyg bokas separat" },
 ];
@@ -220,18 +220,18 @@ const calendarTrips = launchTrips
   }));
 
 const included = [
-  { icon: "🚐", label: "Flygplatstransfer" },
-  { icon: "🏡", label: "Boende i huset" },
-  { icon: "🏋️", label: "Träning alla nivåer" },
-  { icon: "🫁", label: "Stretch & breathwork" },
-  { icon: "🛶", label: "Utvalda utflykter" },
+  { icon: "🏡", label: "Boende i Yogavilla" },
+  { icon: "🍽️", label: "Frukost & middag" },
+  { icon: "🏋️", label: "Träning enligt program" },
+  { icon: "🫁", label: "Yoga & breathwork" },
+  { icon: "🧭", label: "Workshops" },
+  { icon: "🛶", label: "Utflykter enligt program" },
   {
-    icon: "🍽️",
-    label: "Matmeny för alla",
-    detail: "Fisk · Kött · Vegetariskt · Veganskt",
+    icon: "🚐",
+    label: "Transfer enligt beskrivning",
+    detail: "Lokala tjänster som anges ingår",
   },
   { icon: "🇸🇪", label: "Svensk & lokal värd" },
-  { icon: "🎁", label: "Verktyg att ta hem" },
 ];
 
 const galleryImages = [
@@ -634,6 +634,12 @@ export default function Home() {
                           <ArrowIcon />
                         </CheckoutButton>
                       )}
+                      {!trip.isComingSoon ? (
+                        <p className={styles.termsNote}>
+                          Genom att boka och betala bekräftar du att du tagit
+                          del av reseinformationen och Hipafrotravels villkor.
+                        </p>
+                      ) : null}
                     </div>
                   </div>
                 </Reveal>
@@ -811,14 +817,16 @@ export default function Home() {
                 <p className={styles.kicker}>Boka</p>
                 <h2>Säkra din plats i solen.</h2>
                 <div className={styles.priceLine}>
-                  <span className={styles.priceEyebrow}>Från</span>
+                  <span className={styles.priceEyebrow}>Pris</span>
                   <strong className={styles.priceAmount}>17 000 kr</strong>
                   <small>per person, del i dubbelrum</small>
                 </div>
                 <ul className={styles.bookingChecklist}>
-                  <li>Ingen betalning nu</li>
-                  <li>Vi återkommer med platsstatus</li>
-                  <li>Du bekräftar när allt känns rätt</li>
+                  <li>Hela resans pris betalas vid bokning</li>
+                  <li>Bokningen bekräftas efter genomförd betalning</li>
+                  <li>Minst 8 betalande deltagare krävs</li>
+                  <li>Besked om genomförande ges senast 90 dagar före avresa</li>
+                  <li>Flyg, reseförsäkring och resehandlingar ordnas separat</li>
                 </ul>
                 <div className={styles.contactRow}>
                   <a className={styles.contactChip} href="tel:0701507074">
@@ -826,7 +834,7 @@ export default function Home() {
                   </a>
                   <a
                     className={styles.contactChip}
-                    href="mailto:Jennifer.dixon@hipafrotravel.com"
+                    href="mailto:info@hipafrotravel.com"
                   >
                     <span aria-hidden="true">✉️</span> Mejla oss
                   </a>
@@ -836,13 +844,13 @@ export default function Home() {
               <Reveal className={styles.bookingFormWrap}>
                 <form
                   className={styles.bookingForm}
-                  action="mailto:info@hipafrotravel.se"
+                  action="mailto:info@hipafrotravel.com"
                   method="post"
                   encType="text/plain"
                 >
-                  <h3>Skicka intresseanmälan</h3>
+                  <h3>Frågor före bokning</h3>
                   <p className={styles.formHint}>
-                    Tar under en minut · Inte bindande
+                    Vi hjälper dig med platsstatus, flygfrågor och reseinformation.
                   </p>
                   <label>
                     Namn
@@ -872,7 +880,7 @@ export default function Home() {
                     </select>
                   </label>
                   <button type="submit" className={styles.formButton}>
-                    Skicka intresse
+                    Skicka fråga
                     <ArrowIcon />
                   </button>
                 </form>
@@ -910,8 +918,8 @@ export default function Home() {
             </span>
             <div className={styles.footerContact}>
               <a href="tel:0701507074">070-150 70 74</a>
-              <a href="mailto:Jennifer.dixon@hipafrotravel.com">
-                Jennifer.dixon@hipafrotravel.com
+              <a href="mailto:info@hipafrotravel.com">
+                info@hipafrotravel.com
               </a>
             </div>
           </div>

@@ -144,7 +144,7 @@ export async function createSocialImage() {
                 fontWeight: 500,
               }}
             >
-              Yoga, träning, värme och gemenskap · Från 17 000 kr
+              Yoga, träning, värme och gemenskap · 17 000 kr
             </div>
           </div>
         </div>

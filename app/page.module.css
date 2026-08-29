@@ -1312,6 +1312,14 @@
   text-decoration: underline;
 }
 
+.termsNote {
+  width: 100%;
+  margin: -2px 0 0;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
 .launchPrice {
   display: grid;
 }
