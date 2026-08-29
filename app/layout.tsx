@@ -4,7 +4,7 @@ import "./globals.css";
 
 const title = "Hip Afro Travel | Yoga- och träningsresor till Gambia";
 const description =
-  "Tre resor till Gambia vintern 2026/2027: Kundaliniyoga med Ewa och träningsresa med Delta från Gladiatorerna. Boende, mat, träning och utflykter ingår. Från 17 000 kr.";
+  "Två resor till Gambia i februari 2026: 10–17 februari och 21–28 februari. Boende, mat, träning och utflykter ingår. Från 17 000 kr. Delta kommer snart.";
 
 function getSiteUrl() {
   const configuredUrl = process.env.SITE_URL;

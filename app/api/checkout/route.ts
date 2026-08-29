@@ -7,20 +7,14 @@ const TRIPS: Record<
   string,
   { name: string; description: string; unitAmount: number }
 > = {
-  "ewa-november": {
-    name: "Kundaliniyoga & hormonell balans med Ewa · 8–15 nov 2026",
+  "resa-1": {
+    name: "Kundaliniyoga & hormonell balans med Ewa · 10–17 feb 2026",
     description:
       "7 dagar i Gambia. Del i dubbelrum. Boende, transfer, utflykter och matmeny med fisk, kött, vegetariskt och veganskt ingår – flyg bokas separat.",
     unitAmount: 1_700_000,
   },
-  "ewa-februari": {
-    name: "Kundaliniyoga & hormonell balans med Ewa · 14–21 feb 2027",
-    description:
-      "7 dagar i Gambia. Del i dubbelrum. Boende, transfer, utflykter och matmeny med fisk, kött, vegetariskt och veganskt ingår – flyg bokas separat.",
-    unitAmount: 1_700_000,
-  },
-  delta: {
-    name: "Träningsresa med Delta · 21–28 feb 2027",
+  "resa-2": {
+    name: "Kundaliniyoga & hormonell balans med Ewa · 21–28 feb 2026",
     description:
       "7 dagar i Gambia. Del i dubbelrum. Boende, transfer, utflykter och matmeny med fisk, kött, vegetariskt och veganskt ingår – flyg bokas separat.",
     unitAmount: 1_700_000,

@@ -1167,6 +1167,16 @@
   font-weight: 600;
 }
 
+.comingSoonNote {
+  border: 1px solid var(--color-sand);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+  padding: 16px;
+  color: var(--color-muted);
+  font-weight: 650;
+  font-size: 0.92rem;
+}
+
 .detailsIcon {
   position: relative;
   display: grid;
@@ -1322,6 +1332,17 @@
   padding: 12px 20px;
   font-size: 0.92rem;
   white-space: nowrap;
+}
+
+.cardButtonDisabled,
+.cardButtonDisabled:hover,
+.cardButtonDisabled:active {
+  background: var(--color-palm-deep);
+  cursor: not-allowed;
+  opacity: 0.75;
+  filter: none;
+  transform: none;
+  box-shadow: none;
 }
 
 .seatsNote {

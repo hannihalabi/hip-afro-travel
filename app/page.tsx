@@ -26,6 +26,34 @@ function latestAsset(file: string) {
   return publicAsset(`/pic-latest/${encodeURIComponent(file)}`);
 }
 
+type TripCategory = "yoga" | "training";
+type BadgeTone = "gold" | "sunset" | "palm";
+type MediaType = "image" | "video";
+
+type LaunchTrip = {
+  id: string;
+  category: TripCategory;
+  startDate: string;
+  endDate: string;
+  badge: string;
+  badgeTone: BadgeTone;
+  host: string;
+  hostIcon: string;
+  title: string;
+  dates: string;
+  month: string;
+  price: string;
+  room: string;
+  summary: string;
+  chips: { icon: string; label: string }[];
+  mediaType: MediaType;
+  mediaSrc: string;
+  mediaPoster?: string;
+  mediaAlt: string;
+  itinerary: typeof ewaItinerary;
+  isComingSoon?: boolean;
+};
+
 const navLinks = [
   { href: "#resor", label: "Resor" },
   { href: "#ingar", label: "Det ingår" },
@@ -35,7 +63,7 @@ const navLinks = [
 
 const heroChips = [
   { icon: "🧘", label: "Yoga med Ewa" },
-  { icon: "💪", label: "Träning med Delta" },
+  { icon: "💪", label: "Delta kommer snart" },
   { icon: "🏝️", label: "7 dagar i Gambia" },
   { icon: "👥", label: "Liten grupp" },
 ];
@@ -90,62 +118,19 @@ const ewaItinerary = [
   },
 ];
 
-const deltaItinerary = [
+const launchTrips: LaunchTrip[] = [
   {
-    day: "Dag 1",
-    title: "Ankomst & välkommen",
-    text: "Transfer från flygplatsen, incheckning, gemensam middag och genomgång av veckan.",
-  },
-  {
-    day: "Dag 2",
-    title: "Kom igång",
-    text: "Första styrkepasset med Delta, frukost och återhämtning vid strand eller pool.",
-  },
-  {
-    day: "Dag 3",
-    title: "Styrka & energi",
-    text: "Träning anpassad efter nivå, gemensam måltid och eftermiddag för egen tid.",
-  },
-  {
-    day: "Dag 4",
-    title: "Aktiv återhämtning",
-    text: "Rörlighet och stretch följt av en utvald gemensam utflykt i Gambia.",
-  },
-  {
-    day: "Dag 5",
-    title: "Utmaning & lagkänsla",
-    text: "Ett energifyllt gruppass med Delta, återhämtning och gemensam reflektion.",
-  },
-  {
-    day: "Dag 6",
-    title: "Träning möter kultur",
-    text: "Morgonpass, lokal upplevelse och en avslappnad kväll tillsammans med gruppen.",
-  },
-  {
-    day: "Dag 7",
-    title: "Finalpass",
-    text: "Veckans avslutande träningspass, fri tid och gemensam avslutningsmiddag.",
-  },
-  {
-    day: "Dag 8",
-    title: "Hemresa",
-    text: "Frukost, utcheckning och gemensam transfer till flygplatsen.",
-  },
-];
-
-const launchTrips = [
-  {
-    id: "ewa-november",
-    category: "yoga" as const,
-    startDate: "2026-11-08",
-    endDate: "2026-11-15",
-    badge: "Först ut",
-    badgeTone: "gold" as const,
+    id: "resa-1",
+    category: "yoga",
+    startDate: "2026-02-10",
+    endDate: "2026-02-17",
+    badge: "Bokning öppen",
+    badgeTone: "gold",
     host: "Ewa",
     hostIcon: "🧘",
     title: "Kundaliniyoga & hormonell balans",
-    dates: "8–15 nov 2026",
-    month: "November 2026",
+    dates: "10–17 feb 2026",
+    month: "Februari 2026",
     price: "17 000 kr",
     room: "del i dubbelrum",
     summary: "Landa i lugnet. En vecka som ger nervsystemet vila och kroppen balans.",
@@ -155,24 +140,24 @@ const launchTrips = [
       { icon: "🌸", label: "Hormonell balans" },
       { icon: "🌅", label: "Vila & värme" },
     ],
-    mediaType: "image" as const,
+    mediaType: "image",
     mediaSrc: publicAsset("/images/ewa.jpeg"),
     mediaPoster: undefined as string | undefined,
     mediaAlt: "Ewa i meditation under palmerna vid havet",
     itinerary: ewaItinerary,
   },
   {
-    id: "ewa-februari",
-    category: "yoga" as const,
-    startDate: "2027-02-14",
-    endDate: "2027-02-21",
-    badge: "Populär vecka",
-    badgeTone: "sunset" as const,
+    id: "resa-2",
+    category: "yoga",
+    startDate: "2026-02-21",
+    endDate: "2026-02-28",
+    badge: "Bokning öppen",
+    badgeTone: "sunset",
     host: "Ewa",
     hostIcon: "🧘",
     title: "Kundaliniyoga & hormonell balans",
-    dates: "14–21 feb 2027",
-    month: "Februari 2027",
+    dates: "21–28 feb 2026",
+    month: "Februari 2026",
     price: "17 000 kr",
     room: "del i dubbelrum",
     summary: "Samma älskade upplägg – mitt i svenska vintern när kroppen behöver det som mest.",
@@ -182,7 +167,7 @@ const launchTrips = [
       { icon: "🌸", label: "Hormonell balans" },
       { icon: "☀️", label: "Sol i februari" },
     ],
-    mediaType: "image" as const,
+    mediaType: "image",
     mediaSrc: publicAsset("/images/ewa.jpeg"),
     mediaPoster: undefined as string | undefined,
     mediaAlt: "Kundaliniyoga vid havet i Gambia",
@@ -190,46 +175,49 @@ const launchTrips = [
   },
   {
     id: "delta",
-    category: "training" as const,
-    startDate: "2027-02-21",
-    endDate: "2027-02-28",
-    badge: "Hög energi",
-    badgeTone: "palm" as const,
+    category: "training",
+    startDate: "2026-03-01",
+    endDate: "2026-03-08",
+    badge: "Kommer snart",
+    badgeTone: "palm",
     host: "Delta",
     hostIcon: "💪",
     title: "Träningsresa med Delta",
-    dates: "21–28 feb 2027",
-    month: "Februari 2027",
-    price: "17 000 kr",
-    room: "del i dubbelrum",
-    summary: "Styrka, disciplin och glädje – träna med Delta från Gladiatorerna.",
+    dates: "Datum presenteras snart",
+    month: "Förhandsvisning",
+    price: "Intresseanmälan öppnar senare",
+    room: "håll utkik efter datum och pris",
+    summary: "Styrka, energi och gemenskap – en kommande träningsresa med Delta.",
     chips: [
       { icon: "💪", label: "Styrkepass" },
       { icon: "🔥", label: "Alla nivåer" },
       { icon: "🏖️", label: "Strand & grupp" },
-      { icon: "😌", label: "Återhämtning" },
+      { icon: "🤝", label: "Gruppkänsla" },
     ],
-    mediaType: "video" as const,
+    mediaType: "video",
     mediaSrc: publicAsset(
       `/delta/${encodeURIComponent("WhatsApp Video 2026-05-03 at 20.25.10.mp4")}`
     ),
     mediaPoster: publicAsset("/images/delta.jpeg"),
     mediaAlt: "Delta från Gladiatorerna tränar",
-    itinerary: deltaItinerary,
+    itinerary: [],
+    isComingSoon: true,
   },
 ];
 
-const calendarTrips = launchTrips.map((trip) => ({
-  id: trip.id,
-  category: trip.category,
-  title: trip.title,
-  host: trip.host,
-  hostIcon: trip.hostIcon,
-  dates: trip.dates,
-  startDate: trip.startDate,
-  endDate: trip.endDate,
-  price: trip.price,
-}));
+const calendarTrips = launchTrips
+  .filter((trip) => !trip.isComingSoon)
+  .map((trip) => ({
+    id: trip.id,
+    category: trip.category,
+    title: trip.title,
+    host: trip.host,
+    hostIcon: trip.hostIcon,
+    dates: trip.dates,
+    startDate: trip.startDate,
+    endDate: trip.endDate,
+    price: trip.price,
+  }));
 
 const included = [
   { icon: "🚐", label: "Flygplatstransfer" },
@@ -315,11 +303,11 @@ const hosts = [
   {
     id: "delta",
     name: "Delta",
-    role: "Gladiatorerna · Styrka · Energi",
-    text: "Känd från Gladiatorerna på TV4. Delta leder passen med disciplin, värme och en energi som smittar av sig på hela gruppen.",
-    tags: ["📺 Känd från TV4", "💪 Styrka & kondition", "🔥 Alla nivåer", "🤝 Gruppkänsla"],
+    role: "Kommer snart",
+    text: "Mer information om Delta och kommande träningsresor publiceras snart.",
+    tags: ["💪 Styrka", "🔥 Energi", "🤝 Gruppkänsla", "⏳ Kommer snart"],
     mediaSrc: publicAsset("/images/delta.jpeg"),
-    cta: "Res med Delta",
+    cta: "Kommer snart",
   },
 ];
 
@@ -365,9 +353,9 @@ const experienceQuotes = [
 ];
 
 const timeline = [
-  { month: "NOV", year: "2026", label: "Yoga med Ewa", dates: "8–15 nov" },
-  { month: "FEB", year: "2027", label: "Yoga med Ewa", dates: "14–21 feb" },
-  { month: "FEB", year: "2027", label: "Träning med Delta", dates: "21–28 feb" },
+  { month: "FEB", year: "2026", label: "Kundaliniyoga med Ewa", dates: "10–17 feb" },
+  { month: "FEB", year: "2026", label: "Kundaliniyoga med Ewa", dates: "21–28 feb" },
+  { month: "SNART", year: "", label: "Träningsresa med Delta", dates: "Kommer snart" },
 ];
 
 function BrandLogo({ className }: { className?: string }) {
@@ -479,7 +467,7 @@ export default function Home() {
               <p className={styles.heroPill}>
                 <span className={styles.liveDot} aria-hidden="true" />
                 <span>
-                  Gambia · Vinter 2026/2027
+                  Gambia · Februari 2026
                   <span className={styles.mobileHide}> · Bokningen är öppen</span>
                 </span>
               </p>
@@ -533,8 +521,8 @@ export default function Home() {
         {/* ─── RESOR ────────────────────────────────────────── */}
         <section className={styles.launchSection} id="resor">
           <div className={styles.container}>
-            <SectionHeader kicker="Välj din resa" title="Tre veckor. Tre energier.">
-              Samma varma bas i Gambia – du väljer datum, ledare och fokus.
+            <SectionHeader kicker="Välj din resa" title="Resor med sol, rörelse och återhämtning.">
+              Två februaridatum är öppna för bokning – och Delta kommer snart.
             </SectionHeader>
             <div className={styles.launchGrid}>
               {launchTrips.map((trip, index) => (
@@ -570,9 +558,11 @@ export default function Home() {
                     >
                       {trip.badge}
                     </span>
-                    <span className={styles.dateBadge}>
-                      <span aria-hidden="true">📅</span> {trip.dates}
-                    </span>
+                    {!trip.isComingSoon ? (
+                      <span className={styles.dateBadge}>
+                        <span aria-hidden="true">📅</span> {trip.dates}
+                      </span>
+                    ) : null}
                     <span className={styles.hostBadge}>
                       <span aria-hidden="true">{trip.hostIcon}</span>
                       Med {trip.host}
@@ -589,44 +579,61 @@ export default function Home() {
                         </span>
                       ))}
                     </div>
-                    <details className={styles.tripDetails}>
-                      <summary>
-                        <span>
-                          <strong>Läs mer om resan</strong>
-                          <small>Se upplägget dag för dag</small>
-                        </span>
-                        <span className={styles.detailsIcon} aria-hidden="true" />
-                      </summary>
-                      <div className={styles.itinerary}>
-                        <p className={styles.itineraryNote}>
-                          Preliminärt upplägg – tider och aktiviteter kan
-                          justeras efter väder och lokala förutsättningar.
-                        </p>
-                        <ol className={styles.itineraryList}>
-                          {trip.itinerary.map((item) => (
-                            <li key={item.day}>
-                              <span>{item.day}</span>
-                              <div>
-                                <strong>{item.title}</strong>
-                                <p>{item.text}</p>
-                              </div>
-                            </li>
-                          ))}
-                        </ol>
+                    {trip.itinerary.length > 0 ? (
+                      <details className={styles.tripDetails}>
+                        <summary>
+                          <span>
+                            <strong>Läs mer om resan</strong>
+                            <small>Se upplägget dag för dag</small>
+                          </span>
+                          <span className={styles.detailsIcon} aria-hidden="true" />
+                        </summary>
+                        <div className={styles.itinerary}>
+                          <p className={styles.itineraryNote}>
+                            Preliminärt upplägg – tider och aktiviteter kan
+                            justeras efter väder och lokala förutsättningar.
+                          </p>
+                          <ol className={styles.itineraryList}>
+                            {trip.itinerary.map((item) => (
+                              <li key={item.day}>
+                                <span>{item.day}</span>
+                                <div>
+                                  <strong>{item.title}</strong>
+                                  <p>{item.text}</p>
+                                </div>
+                              </li>
+                            ))}
+                          </ol>
+                        </div>
+                      </details>
+                    ) : (
+                      <div className={styles.comingSoonNote}>
+                        Datum, upplägg och bokning presenteras när programmet
+                        är klart.
                       </div>
-                    </details>
+                    )}
                     <div className={styles.launchFooter}>
                       <div className={styles.launchPrice}>
                         <strong>{trip.price}</strong>
                         <span>{trip.room}</span>
                       </div>
-                      <CheckoutButton
-                        tripId={trip.id}
-                        className={styles.cardButton}
-                      >
-                        Boka & betala
-                        <ArrowIcon />
-                      </CheckoutButton>
+                      {trip.isComingSoon ? (
+                        <button
+                          type="button"
+                          className={`${styles.cardButton} ${styles.cardButtonDisabled}`}
+                          disabled
+                        >
+                          Ej bokningsbar än
+                        </button>
+                      ) : (
+                        <CheckoutButton
+                          tripId={trip.id}
+                          className={styles.cardButton}
+                        >
+                          Boka & betala
+                          <ArrowIcon />
+                        </CheckoutButton>
+                      )}
                     </div>
                   </div>
                 </Reveal>
@@ -683,9 +690,9 @@ export default function Home() {
         {/* ─── VÄRDAR ───────────────────────────────────────── */}
         <section className={styles.hostSection} id="vardar">
           <div className={styles.container}>
-            <SectionHeader kicker="Dina värdar" title="Två ledare. Var sin superkraft.">
-              Du reser aldrig anonymt – Ewa och Delta leder sina veckor
-              personligen.
+            <SectionHeader kicker="Dina värdar" title="Personligt, tryggt och nära.">
+              Du reser aldrig anonymt – Ewa leder resorna personligen och mer
+              om Delta kommer snart.
             </SectionHeader>
             <div className={styles.hostGrid}>
               {hosts.map((host, index) => (
@@ -729,7 +736,7 @@ export default function Home() {
         <section className={styles.benefitSection} id="varfor">
           <div className={styles.container}>
             <SectionHeader kicker="Varför Hip Afro Travel" title="Därför bokar man oss.">
-              Fyra löften som gäller alla tre resorna.
+              Fyra löften som gäller båda resorna.
             </SectionHeader>
             <div className={styles.benefitGrid}>
               {benefits.map((benefit, index) => (
@@ -782,7 +789,7 @@ export default function Home() {
         {/* ─── BOKA ─────────────────────────────────────────── */}
         <section className={styles.bookingSection} id="boka">
           <div className={styles.container}>
-            <div className={styles.timeline} aria-label="Vinterns tre veckor">
+            <div className={styles.timeline} aria-label="Vinterns två resor">
               {timeline.map((stop, index) => (
                 <div className={styles.timelineStop} key={`${stop.dates}-${stop.label}`}>
                   <span className={styles.timelineDot} aria-hidden="true">
@@ -851,10 +858,9 @@ export default function Home() {
                   </label>
                   <label>
                     Vilken resa gäller det?
-                    <select name="trip" defaultValue="Kundaliniyoga med Ewa · 8–15 nov 2026">
-                      <option>Kundaliniyoga med Ewa · 8–15 nov 2026</option>
-                      <option>Kundaliniyoga med Ewa · 14–21 feb 2027</option>
-                      <option>Träningsresa med Delta · 21–28 feb 2027</option>
+                    <select name="trip" defaultValue="Kundaliniyoga med Ewa · 10–17 feb 2026">
+                      <option>Kundaliniyoga med Ewa · 10–17 feb 2026</option>
+                      <option>Kundaliniyoga med Ewa · 21–28 feb 2026</option>
                     </select>
                   </label>
                   <label>
@@ -897,7 +903,7 @@ export default function Home() {
               <BrandLogo className={styles.footerMark} />
               <strong>Hip Afro Travel</strong>
             </div>
-            <span>Tre resor till Gambia vintern 2026/2027.</span>
+            <span>Två resor till Gambia i februari 2026.</span>
             <span>
               Hip Afro Travel drivs som enskild firma. Planering,
               administration och kundkontakt sker i Sverige.

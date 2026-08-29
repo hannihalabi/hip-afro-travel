@@ -267,8 +267,8 @@ export function TripCalendarProvider({
             <p className={styles.kicker}>Resekalender</p>
             <h2 id="trip-calendar-title">När vill du resa?</h2>
             <p id="trip-calendar-description">
-              Tre noga utvalda veckor i Gambia. Jämför datumen och välj den
-              energi som passar dig bäst.
+              Två noga utvalda veckor i Gambia. Jämför datumen och välj den
+              vecka som passar dig bäst.
             </p>
             <div className={styles.calendarLegend} aria-label="Färgförklaring">
               <span data-tone="yoga">
