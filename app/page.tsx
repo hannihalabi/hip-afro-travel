@@ -76,6 +76,19 @@ const trustPoints = [
   { icon: "✈️", label: "Flyg bokas separat" },
 ];
 
+const packingList = [
+  "Träningskläder för flera träningspass",
+  "Yogamatta",
+  "Solskydd med hög SPF",
+  "After sun",
+  "Myggmedel, exempelvis Mygga",
+  "Läppbalsam med solskydd",
+  "Tunn långärmad tröja för kvällarna",
+  "20 euro eller 20 dollar till flygplatsavgifter vid både in- och utresa",
+  "Powerbank",
+  "Mobil och laddare",
+];
+
 const ewaItinerary = [
   {
     day: "Dag 1",
@@ -792,6 +805,24 @@ export default function Home() {
                           <span className={styles.detailsIcon} aria-hidden="true" />
                         </summary>
                         <CompactTravelInfo />
+                      </details>
+                    ) : null}
+                    {!trip.isComingSoon ? (
+                      <details className={`${styles.tripDetails} ${styles.tripPackingDetails}`}>
+                        <summary>
+                          <span>
+                            <strong>Packlista</strong>
+                            <small>Saker att ta med till Gambia</small>
+                          </span>
+                          <span className={styles.detailsIcon} aria-hidden="true" />
+                        </summary>
+                        <div className={styles.tripPackingList}>
+                          <ul>
+                            {packingList.map((item) => (
+                              <li key={item}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
                       </details>
                     ) : null}
                     <div className={styles.launchFooter}>

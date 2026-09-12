@@ -1356,6 +1356,45 @@
   line-height: 1.5;
 }
 
+.tripPackingDetails {
+  background: var(--color-gold-soft);
+}
+
+.tripPackingDetails .detailsIcon {
+  background: var(--color-sunset-deep);
+}
+
+.tripPackingList {
+  padding: 16px 18px 18px;
+  border-top: 1px solid var(--color-sand);
+  background: var(--color-paper);
+}
+
+.tripPackingList ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tripPackingList li {
+  position: relative;
+  padding-left: 26px;
+  color: var(--color-ink-soft);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.tripPackingList li::before {
+  content: "✓";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--color-palm);
+  font-weight: 900;
+}
+
 .launchFooter {
   margin-top: auto;
   display: flex;
