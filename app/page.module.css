@@ -1325,6 +1325,13 @@
   line-height: 1.45;
 }
 
+.termsNote a {
+  color: var(--color-sunset-deep);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .launchPrice {
   display: grid;
 }
@@ -1898,6 +1905,209 @@
   font-weight: 800;
 }
 
+/* ─── Bra att veta ───────────────────────────────────────── */
+
+.travelInfoSection {
+  padding-block: 90px;
+  scroll-margin-top: 76px;
+  background: var(--color-paper);
+}
+
+.importantInfoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.importantInfoCard {
+  padding: 26px;
+  border: 1px solid rgba(23, 33, 27, 0.08);
+  border-top: 5px solid var(--color-gold);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  box-shadow: var(--shadow-soft);
+}
+
+.importantInfoCard:nth-child(2) {
+  border-top-color: var(--color-palm);
+}
+
+.importantInfoCard:nth-child(3) {
+  border-top-color: var(--color-ocean);
+}
+
+.travelInfoIcon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  background: var(--color-gold-soft);
+  font-size: 1.35rem;
+}
+
+.importantInfoCard:nth-child(2) .travelInfoIcon {
+  background: var(--color-palm-soft);
+}
+
+.importantInfoCard:nth-child(3) .travelInfoIcon {
+  background: var(--color-ocean-soft);
+}
+
+.importantInfoCard h3 {
+  margin: 0 0 14px;
+  font-size: 1.2rem;
+}
+
+.importantInfoCard p {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.importantInfoCard p + p {
+  margin-top: 12px;
+}
+
+.importantInfoCard .travelInfoTip {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--color-ocean-soft);
+  color: var(--color-ink);
+  font-size: 0.84rem;
+}
+
+.practicalInfoList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+  margin-top: 28px;
+}
+
+.practicalInfoItem {
+  border: 1px solid rgba(23, 33, 27, 0.1);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  box-shadow: 0 5px 18px rgba(23, 33, 27, 0.05);
+  overflow: hidden;
+}
+
+.practicalInfoItem summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 64px;
+  padding: 14px 18px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 800;
+}
+
+.practicalInfoItem summary::-webkit-details-marker {
+  display: none;
+}
+
+.practicalInfoItem summary:hover {
+  background: var(--color-gold-soft);
+}
+
+.practicalInfoHeading {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.practicalInfoHeading > span {
+  font-size: 1.15rem;
+}
+
+.practicalInfoIcon {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--color-palm-soft);
+  color: var(--color-palm);
+  transition: transform 0.2s ease;
+}
+
+.practicalInfoIcon::before,
+.practicalInfoIcon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.practicalInfoIcon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.practicalInfoItem[open] .practicalInfoIcon {
+  transform: rotate(45deg);
+}
+
+.practicalInfoBody {
+  padding: 18px;
+  border-top: 1px solid var(--color-sand);
+}
+
+.practicalInfoBody p,
+.practicalInfoBody ul {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.practicalInfoBody p + p {
+  margin-top: 12px;
+}
+
+.practicalInfoBody ul {
+  padding-left: 20px;
+}
+
+.practicalInfoBody li + li {
+  margin-top: 6px;
+}
+
+.travelInfoReminder {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+  padding: 18px 22px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-dusk);
+  color: #fff;
+}
+
+.travelInfoReminder > span {
+  font-size: 1.4rem;
+}
+
+.travelInfoReminder p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.92rem;
+}
+
+.travelInfoReminder strong {
+  color: #fff;
+}
+
 /* ─── Boka ────────────────────────────────────────────────── */
 
 .bookingSection {
@@ -2245,6 +2455,10 @@
   .voiceGrid {
     grid-template-columns: 1fr;
   }
+
+  .importantInfoGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 900px) {
@@ -2261,6 +2475,10 @@
   }
 
   .bookingGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .practicalInfoList {
     grid-template-columns: 1fr;
   }
 
@@ -2440,6 +2658,7 @@
   .gallerySection,
   .hostSection,
   .benefitSection,
+  .travelInfoSection,
   .bookingSection {
     padding-block: 64px;
   }

@@ -59,6 +59,7 @@ const navLinks = [
   { href: "#ingar", label: "Det ingår" },
   { href: "#bilder", label: "Bilder" },
   { href: "#vardar", label: "Värdar" },
+  { href: "#bra-att-veta", label: "Bra att veta" },
 ];
 
 const heroChips = [
@@ -273,6 +274,94 @@ const included = [
     detail: "Lokala tjänster som anges ingår",
   },
   { icon: "🇸🇪", label: "Svensk & lokal värd" },
+];
+
+const importantTravelInfo = [
+  {
+    icon: "💉",
+    title: "Vaccinationer",
+    paragraphs: [
+      "För inresa i Gambia finns normalt inga krav på specifika vaccinationer. Det finns däremot rekommendationer om vaccinationer inför resa till Gambia.",
+      "Vi rekommenderar därför att du kontaktar en vaccinationscentral eller annan vårdgivare i god tid före avresa för personlig rådgivning om vilka vaccinationer och eventuella förebyggande åtgärder som rekommenderas för just din resa.",
+      "Observera att vaccinationskrav kan förekomma vid mellanlandning eller transit genom andra länder. Kontrollera därför även vilka regler som gäller för din flygrutt.",
+    ],
+  },
+  {
+    icon: "🛡️",
+    title: "Reseförsäkring",
+    paragraphs: [
+      "Vi rekommenderar starkt att du tecknar en extra reseförsäkring med ett omfattande skydd inför resan till Gambia.",
+      "Försäkringen bör exempelvis omfatta sjukdom och olycksfall, vårdkostnader, hemtransport, avbokning, bagage och andra oförutsedda händelser. Kontrollera alltid försäkringens villkor och vad som ingår innan avresa, så att du har ett försäkringsskydd som passar just din resa.",
+      "Hipafrotravel rekommenderar att du tecknar en extra reseförsäkring även om du redan har ett reseskydd genom din hemförsäkring eller ditt betalkort.",
+    ],
+  },
+  {
+    icon: "✈️",
+    title: "Säkerhetsavgift vid flygplatsen",
+    paragraphs: [
+      "Vid ankomst och avresa via Banjuls internationella flygplats kan en säkerhetsavgift på 20 USD eller motsvarande belopp i annan accepterad valuta förekomma.",
+      "Vi rekommenderar därför att du har motsvarande belopp tillgängligt både vid ankomst och hemresa.",
+    ],
+    tip: "Kontrollera alltid aktuella regler och avgifter före avresa, eftersom bestämmelser kan ändras.",
+  },
+];
+
+const practicalTravelInfo = [
+  {
+    icon: "⚖️",
+    title: "Lagar och lokala värderingar",
+    paragraphs: [
+      "Gambia har egna lagar, regler och kulturella normer som kan skilja sig från dem vi är vana vid i Sverige.",
+      "Som resenär ansvarar du själv för att känna till och följa de lagar och regler som gäller i landet du besöker. Vi rekommenderar att du före avresa tar del av aktuell reseinformation från svenska myndigheter och respekterar lokala traditioner och sedvänjor under din vistelse.",
+    ],
+  },
+  {
+    icon: "💱",
+    title: "Valuta och betalning",
+    paragraphs: [
+      "Den lokala valutan är gambisk dalasi (GMD).",
+      "Det finns banker och uttagsautomater i bland annat Kololi/Senegambia, Serrekunda och Banjul. Uttagsautomater och kortbetalning kan dock ibland vara begränsade eller inte fungera.",
+      "Vi rekommenderar därför att du har med dig kontanter i exempelvis EUR eller USD. Det finns möjlighet att växla valuta på växlingskontor och på vissa hotell.",
+    ],
+  },
+  {
+    icon: "🕐",
+    title: "Tidsskillnad",
+    paragraphs: [],
+    bullets: [
+      "Sommartid: Gambia ligger 2 timmar efter svensk tid.",
+      "Vintertid: Gambia ligger 1 timme efter svensk tid.",
+    ],
+  },
+  {
+    icon: "🔌",
+    title: "El",
+    paragraphs: [
+      "Elspänningen är 220 V. På vissa boenden kan adapter behövas. Adapter finns vanligtvis att köpa på plats.",
+    ],
+  },
+  {
+    icon: "🗣️",
+    title: "Språk",
+    paragraphs: [
+      "Engelska är Gambias officiella språk. Landet har flera olika folkgrupper, språk och kulturella traditioner.",
+    ],
+  },
+  {
+    icon: "♻️",
+    title: "Plastpåsar",
+    paragraphs: [
+      "Gambia har regler kring användning och försäljning av plastpåsar. Vi rekommenderar att du undviker att ta med onödiga plastpåsar och använder återanvändbara alternativ när det är möjligt.",
+    ],
+  },
+  {
+    icon: "🧳",
+    title: "Bagage",
+    paragraphs: [
+      "Observera att bagage kan vägas vid flygplatsen i Banjul, inklusive handbagage. Eventuell övervikt kan medföra en extra kostnad som betalas direkt på flygplatsen.",
+      "Kontrollera alltid ditt flygbolags aktuella regler för tillåten bagagevikt och eventuella avgifter före avresa.",
+    ],
+  },
 ];
 
 const galleryImages = [
@@ -682,7 +771,8 @@ export default function Home() {
                       {!trip.isComingSoon ? (
                         <p className={styles.termsNote}>
                           Genom att boka och betala bekräftar du att du tagit
-                          del av reseinformationen och Hipafrotravels villkor.
+                          del av <a href="#bra-att-veta">reseinformationen</a>{" "}
+                          och Hipafrotravels villkor.
                         </p>
                       ) : null}
                     </div>
@@ -834,6 +924,78 @@ export default function Home() {
                 </Reveal>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ─── BRA ATT VETA ─────────────────────────────────── */}
+        <section className={styles.travelInfoSection} id="bra-att-veta">
+          <div className={styles.container}>
+            <SectionHeader
+              kicker="Inför avresan"
+              title="Bra att veta inför resan till Gambia."
+            >
+              Praktisk information som hjälper dig att förbereda resan och
+              känna dig trygg både före avresa och på plats.
+            </SectionHeader>
+
+            <div className={styles.importantInfoGrid}>
+              {importantTravelInfo.map((item, index) => (
+                <Reveal
+                  className={styles.importantInfoCard}
+                  key={item.title}
+                  style={{
+                    "--reveal-delay": `${index * 80}ms`,
+                  } as React.CSSProperties}
+                >
+                  <span className={styles.travelInfoIcon} aria-hidden="true">
+                    {item.icon}
+                  </span>
+                  <h3>{item.title}</h3>
+                  {item.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                  {item.tip ? (
+                    <p className={styles.travelInfoTip}>
+                      <strong>Tips:</strong> {item.tip}
+                    </p>
+                  ) : null}
+                </Reveal>
+              ))}
+            </div>
+
+            <div className={styles.practicalInfoList}>
+              {practicalTravelInfo.map((item) => (
+                <details className={styles.practicalInfoItem} key={item.title}>
+                  <summary>
+                    <span className={styles.practicalInfoHeading}>
+                      <span aria-hidden="true">{item.icon}</span>
+                      {item.title}
+                    </span>
+                    <span className={styles.practicalInfoIcon} aria-hidden="true" />
+                  </summary>
+                  <div className={styles.practicalInfoBody}>
+                    {item.paragraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                    {item.bullets ? (
+                      <ul>
+                        {item.bullets.map((bullet) => (
+                          <li key={bullet}>{bullet}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+                </details>
+              ))}
+            </div>
+
+            <Reveal className={styles.travelInfoReminder}>
+              <span aria-hidden="true">ℹ️</span>
+              <p>
+                <strong>Information kan ändras.</strong> Kontrollera alltid
+                aktuella regler, rekommendationer och avgifter före avresa.
+              </p>
+            </Reveal>
           </div>
         </section>
 
