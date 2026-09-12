@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev --webpack -H 127.0.0.1",
     "build": "next build --webpack",
-    "lint": "eslint"
+    "lint": "eslint",
+    "translate": "npm run build && node scripts/generate-translations.mjs"
   },
   "dependencies": {
     "next": "^16.2.10",

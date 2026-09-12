@@ -8,20 +8,55 @@ const PROMOTION_COUPON_ID = "hipafro_start26_7000_sek";
 
 // Priserna sätts här på servern – frontend skickar bara ett trip-id och kan
 // aldrig påverka beloppet.
+type CheckoutLocale = "sv" | "en" | "de" | "fr" | "es";
+
+const SUPPORTED_LOCALES = new Set<CheckoutLocale>(["sv", "en", "de", "fr", "es"]);
+
+const CHECKOUT_COPY: Record<CheckoutLocale, { trip: string; description: string }> = {
+  sv: {
+    trip: "Kundaliniyoga & hormonell balans med Ewa",
+    description: "7 dagar i Gambia. Del i dubbelrum. Boende i Yogavilla, frukost, middag enligt reseprogrammet, transfer, workshops och utflykter enligt resebeskrivningen ingår. Flyg och personliga kostnader ingår inte. Bokningen blir bindande efter genomförd betalning och bekräftelse från Hipafrotravel.",
+  },
+  en: {
+    trip: "Kundalini yoga & hormonal balance with Ewa",
+    description: "7 days in The Gambia. Shared double room. Accommodation at Yogavilla, breakfast, dinner according to the itinerary, transfers, workshops and excursions described in the trip are included. Flights and personal expenses are not included. The booking becomes binding after completed payment and confirmation from Hipafrotravel.",
+  },
+  de: {
+    trip: "Kundalini-Yoga & hormonelles Gleichgewicht mit Ewa",
+    description: "7 Tage in Gambia. Unterbringung im Doppelzimmer. Unterkunft in der Yogavilla, Frühstück, Abendessen laut Reiseprogramm, Transfers, Workshops und die beschriebenen Ausflüge sind inklusive. Flüge und persönliche Ausgaben sind nicht inbegriffen. Die Buchung wird nach erfolgter Zahlung und Bestätigung durch Hipafrotravel verbindlich.",
+  },
+  fr: {
+    trip: "Kundalini yoga & équilibre hormonal avec Ewa",
+    description: "7 jours en Gambie. Chambre double partagée. L’hébergement à la Yogavilla, le petit-déjeuner, les dîners prévus au programme, les transferts, les ateliers et les excursions décrites sont inclus. Les vols et les dépenses personnelles ne sont pas inclus. La réservation devient ferme après paiement et confirmation par Hipafrotravel.",
+  },
+  es: {
+    trip: "Kundalini yoga y equilibrio hormonal con Ewa",
+    description: "7 días en Gambia. Habitación doble compartida. Se incluyen el alojamiento en Yogavilla, el desayuno, las cenas según el programa, los traslados, los talleres y las excursiones descritas. Los vuelos y los gastos personales no están incluidos. La reserva será vinculante una vez realizado el pago y recibida la confirmación de Hipafrotravel.",
+  },
+};
+
 const TRIPS: Record<
   string,
-  { name: string; description: string; unitAmount: number }
+  { dates: Record<CheckoutLocale, string>; unitAmount: number }
 > = {
   "resa-1": {
-    name: "Kundaliniyoga & hormonell balans med Ewa · 10–17 feb 2027",
-    description:
-      "7 dagar i Gambia. Del i dubbelrum. Boende i Yogavilla, frukost, middag enligt reseprogrammet, transfer, workshops och utflykter enligt resebeskrivningen ingår. Flyg och personliga kostnader ingår inte. Bokningen blir bindande efter genomförd betalning och bekräftelse från Hipafrotravel.",
+    dates: {
+      sv: "10–17 feb 2027",
+      en: "10–17 Feb 2027",
+      de: "10.–17. Feb. 2027",
+      fr: "10–17 févr. 2027",
+      es: "10–17 feb 2027",
+    },
     unitAmount: 1_700_000,
   },
   "resa-2": {
-    name: "Kundaliniyoga & hormonell balans med Ewa · 21–28 feb 2027",
-    description:
-      "7 dagar i Gambia. Del i dubbelrum. Boende i Yogavilla, frukost, middag enligt reseprogrammet, transfer, workshops och utflykter enligt resebeskrivningen ingår. Flyg och personliga kostnader ingår inte. Bokningen blir bindande efter genomförd betalning och bekräftelse från Hipafrotravel.",
+    dates: {
+      sv: "21–28 feb 2027",
+      en: "21–28 Feb 2027",
+      de: "21.–28. Feb. 2027",
+      fr: "21–28 févr. 2027",
+      es: "21–28 feb 2027",
+    },
     unitAmount: 1_700_000,
   },
 };
@@ -119,8 +154,9 @@ export async function POST(request: Request) {
   }
 
   let tripId: unknown;
+  let requestedLocale: unknown;
   try {
-    ({ tripId } = await request.json());
+    ({ tripId, locale: requestedLocale } = await request.json());
   } catch {
     return NextResponse.json({ error: "Ogiltig förfrågan" }, { status: 400 });
   }
@@ -129,6 +165,13 @@ export async function POST(request: Request) {
   if (!trip || typeof tripId !== "string") {
     return NextResponse.json({ error: "Okänd resa" }, { status: 400 });
   }
+
+  const locale: CheckoutLocale =
+    typeof requestedLocale === "string" &&
+    SUPPORTED_LOCALES.has(requestedLocale as CheckoutLocale)
+      ? (requestedLocale as CheckoutLocale)
+      : "sv";
+  const copy = CHECKOUT_COPY[locale];
 
   const origin =
     request.headers.get("origin") ?? new URL(request.url).origin;
@@ -139,7 +182,7 @@ export async function POST(request: Request) {
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      locale: "sv",
+      locale,
       allow_promotion_codes: true,
       payment_method_types: ["card", "klarna"],
       line_items: [
@@ -150,8 +193,8 @@ export async function POST(request: Request) {
             currency: "sek",
             unit_amount: trip.unitAmount,
             product_data: {
-              name: trip.name,
-              description: trip.description,
+              name: `${copy.trip} · ${trip.dates[locale]}`,
+              description: copy.description,
             },
           },
         },

@@ -1,0 +1,114 @@
+.switcher {
+  position: fixed;
+  z-index: 100;
+  top: 82px;
+  right: max(18px, calc((100vw - 1180px) / 2));
+  color: var(--color-ink);
+}
+
+.switcher summary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 82px;
+  min-height: 42px;
+  padding: 9px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.82rem;
+  font-weight: 800;
+  backdrop-filter: blur(12px);
+}
+
+.switcher summary::-webkit-details-marker {
+  display: none;
+}
+
+.chevron {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.switcher[open] .chevron {
+  transform: rotate(180deg);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  display: grid;
+  width: 190px;
+  padding: 7px;
+  border: 1px solid rgba(23, 33, 27, 0.1);
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow-lift);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 11px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--color-ink-soft);
+  cursor: pointer;
+  text-align: left;
+}
+
+.option:hover,
+.option[data-selected="true"] {
+  background: var(--color-palm-soft);
+  color: var(--color-palm-deep);
+}
+
+.option[data-selected="true"] {
+  font-weight: 800;
+}
+
+.option small {
+  color: var(--color-muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  .switcher[data-home="true"] {
+    top: 10px;
+    right: calc(4vw + 58px);
+  }
+
+  .switcher[data-home="true"] summary {
+    min-height: 46px;
+  }
+}
+
+@media (max-width: 700px) {
+  .switcher {
+    top: 76px;
+    right: 14px;
+  }
+
+  .switcher summary {
+    min-width: 74px;
+    min-height: 40px;
+    padding: 8px 11px;
+  }
+
+  .switcher[data-home="true"] {
+    top: 10px;
+    right: calc(4vw + 58px);
+  }
+
+  .switcher[data-home="true"] summary {
+    min-height: 46px;
+  }
+}

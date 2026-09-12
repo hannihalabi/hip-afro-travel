@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import "./globals.css";
 
 const title = "Hip Afro Travel | Yoga- och träningsresor till Gambia";
@@ -69,7 +70,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sv" className={`${display.variable} ${body.variable}`}>
-      <body>{children}</body>
+      <body>
+        <LanguageSwitcher />
+        {children}
+      </body>
     </html>
   );
 }

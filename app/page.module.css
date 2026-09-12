@@ -2216,56 +2216,6 @@
   background: var(--color-sand);
 }
 
-.timeline {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 54px;
-}
-
-.timelineStop {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 20px;
-  border-radius: var(--radius-md);
-  background: var(--color-white);
-  box-shadow: var(--shadow-soft);
-}
-
-.timelineDot {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  flex: none;
-  border-radius: 50%;
-  background: var(--gradient-sunset);
-  color: #fff;
-  font-weight: 800;
-  font-size: 1.05rem;
-}
-
-.timelineInfo strong {
-  display: block;
-  font-size: 0.95rem;
-  font-weight: 800;
-}
-
-.timelineInfo span {
-  display: block;
-  color: var(--color-muted);
-  font-size: 0.88rem;
-  font-weight: 600;
-}
-
-.timelineInfo small {
-  display: block;
-  color: var(--color-sunset-deep);
-  font-weight: 800;
-  font-size: 0.82rem;
-}
-
 .bookingGrid {
   display: grid;
   grid-template-columns: 1fr 1.05fr;
@@ -2581,12 +2531,6 @@
 
   .practicalInfoList {
     grid-template-columns: 1fr;
-  }
-
-  .timeline {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin-bottom: 40px;
   }
 
   .tripCalendarYears {

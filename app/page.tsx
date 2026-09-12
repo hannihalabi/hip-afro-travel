@@ -495,12 +495,6 @@ const experienceQuotes = [
   },
 ];
 
-const timeline = [
-  { month: "FEB", year: "2027", label: "Kundaliniyoga med Ewa", dates: "10–17 feb" },
-  { month: "FEB", year: "2027", label: "Kundaliniyoga med Ewa", dates: "21–28 feb" },
-  { month: "SNART", year: "", label: "Träningsresa med Delta", dates: "Kommer snart" },
-];
-
 function BrandLogo({ className }: { className?: string }) {
   return (
     <Image
@@ -1082,23 +1076,6 @@ export default function Home() {
         {/* ─── BOKA ─────────────────────────────────────────── */}
         <section className={styles.bookingSection} id="boka">
           <div className={styles.container}>
-            <div className={styles.timeline} aria-label="Vinterns två resor">
-              {timeline.map((stop, index) => (
-                <div className={styles.timelineStop} key={`${stop.dates}-${stop.label}`}>
-                  <span className={styles.timelineDot} aria-hidden="true">
-                    {index + 1}
-                  </span>
-                  <div className={styles.timelineInfo}>
-                    <strong>
-                      {stop.month} {stop.year}
-                    </strong>
-                    <span>{stop.label}</span>
-                    <small>{stop.dates}</small>
-                  </div>
-                </div>
-              ))}
-            </div>
-
             <div className={styles.bookingGrid}>
               <Reveal className={styles.bookingCopy}>
                 <p className={styles.kicker}>Boka</p>
