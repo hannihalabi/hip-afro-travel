@@ -13,15 +13,15 @@ const TRIPS: Record<
   { name: string; description: string; unitAmount: number }
 > = {
   "resa-1": {
-    name: "Kundaliniyoga & hormonell balans med Ewa · 10–17 feb 2026",
+    name: "Kundaliniyoga & hormonell balans med Ewa · 10–17 feb 2027",
     description:
-      "7 dagar i Gambia. Del i dubbelrum. Boende i Yogavilla, frukost, middag, transfer, workshops och utflykter enligt resebeskrivningen ingår. Flyg bokas separat. Bokningen bekräftas av Hipafrotravel efter genomförd betalning.",
+      "7 dagar i Gambia. Del i dubbelrum. Boende i Yogavilla, frukost, middag enligt reseprogrammet, transfer, workshops och utflykter enligt resebeskrivningen ingår. Flyg och personliga kostnader ingår inte. Bokningen blir bindande efter genomförd betalning och bekräftelse från Hipafrotravel.",
     unitAmount: 1_700_000,
   },
   "resa-2": {
-    name: "Kundaliniyoga & hormonell balans med Ewa · 21–28 feb 2026",
+    name: "Kundaliniyoga & hormonell balans med Ewa · 21–28 feb 2027",
     description:
-      "7 dagar i Gambia. Del i dubbelrum. Boende i Yogavilla, frukost, middag, transfer, workshops och utflykter enligt resebeskrivningen ingår. Flyg bokas separat. Bokningen bekräftas av Hipafrotravel efter genomförd betalning.",
+      "7 dagar i Gambia. Del i dubbelrum. Boende i Yogavilla, frukost, middag enligt reseprogrammet, transfer, workshops och utflykter enligt resebeskrivningen ingår. Flyg och personliga kostnader ingår inte. Bokningen blir bindande efter genomförd betalning och bekräftelse från Hipafrotravel.",
     unitAmount: 1_700_000,
   },
 };

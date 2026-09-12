@@ -164,15 +164,15 @@ const launchTrips: LaunchTrip[] = [
   {
     id: "resa-1",
     category: "yoga",
-    startDate: "2026-02-10",
-    endDate: "2026-02-17",
+    startDate: "2027-02-10",
+    endDate: "2027-02-17",
     badge: "Bokning öppen",
     badgeTone: "gold",
     host: "Ewa",
     hostIcon: "🧘",
     title: "Kundaliniyoga & hormonell balans",
-    dates: "10–17 feb 2026",
-    month: "Februari 2026",
+    dates: "10–17 feb 2027",
+    month: "Februari 2027",
     price: "17 000 kr",
     room: "del i dubbelrum",
     summary: "Landa i lugnet. En vecka som ger nervsystemet vila och kroppen balans.",
@@ -191,15 +191,15 @@ const launchTrips: LaunchTrip[] = [
   {
     id: "resa-2",
     category: "yoga",
-    startDate: "2026-02-21",
-    endDate: "2026-02-28",
+    startDate: "2027-02-21",
+    endDate: "2027-02-28",
     badge: "Bokning öppen",
     badgeTone: "sunset",
     host: "Ewa",
     hostIcon: "🧘",
     title: "Kundaliniyoga & hormonell balans",
-    dates: "21–28 feb 2026",
-    month: "Februari 2026",
+    dates: "21–28 feb 2027",
+    month: "Februari 2027",
     price: "17 000 kr",
     room: "del i dubbelrum",
     summary: "Samma älskade upplägg – mitt i svenska vintern när kroppen behöver det som mest.",
@@ -218,8 +218,8 @@ const launchTrips: LaunchTrip[] = [
   {
     id: "delta",
     category: "training",
-    startDate: "2026-03-01",
-    endDate: "2026-03-08",
+    startDate: "2027-03-01",
+    endDate: "2027-03-08",
     badge: "Kommer snart",
     badgeTone: "palm",
     host: "Delta",
@@ -263,7 +263,7 @@ const calendarTrips = launchTrips
 
 const included = [
   { icon: "🏡", label: "Boende i Yogavilla" },
-  { icon: "🍽️", label: "Frukost & middag" },
+  { icon: "🍽️", label: "Frukost & middag enligt program" },
   { icon: "🏋️", label: "Träning enligt program" },
   { icon: "🫁", label: "Yoga & breathwork" },
   { icon: "🧭", label: "Workshops" },
@@ -483,8 +483,8 @@ const experienceQuotes = [
 ];
 
 const timeline = [
-  { month: "FEB", year: "2026", label: "Kundaliniyoga med Ewa", dates: "10–17 feb" },
-  { month: "FEB", year: "2026", label: "Kundaliniyoga med Ewa", dates: "21–28 feb" },
+  { month: "FEB", year: "2027", label: "Kundaliniyoga med Ewa", dates: "10–17 feb" },
+  { month: "FEB", year: "2027", label: "Kundaliniyoga med Ewa", dates: "21–28 feb" },
   { month: "SNART", year: "", label: "Träningsresa med Delta", dates: "Kommer snart" },
 ];
 
@@ -536,6 +536,42 @@ function SectionHeader({
         <h2>{title}</h2>
         {children ? <p className={styles.sectionLead}>{children}</p> : null}
       </Reveal>
+    </div>
+  );
+}
+
+function CompactTravelInfo() {
+  const travelInfo = [...importantTravelInfo, ...practicalTravelInfo];
+
+  return (
+    <div className={styles.tripTravelInfo}>
+      {travelInfo.map((item) => (
+        <section className={styles.tripTravelInfoGroup} key={item.title}>
+          <h4>
+            <span aria-hidden="true">{item.icon}</span>
+            {item.title}
+          </h4>
+          {item.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+          {"bullets" in item && item.bullets ? (
+            <ul>
+              {item.bullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
+          ) : null}
+          {"tip" in item && item.tip ? (
+            <p className={styles.tripTravelInfoTip}>
+              <strong>Tips:</strong> {item.tip}
+            </p>
+          ) : null}
+        </section>
+      ))}
+      <p className={styles.tripTravelInfoReminder}>
+        <strong>Information kan ändras.</strong> Kontrollera alltid aktuella
+        regler, rekommendationer och avgifter före avresa.
+      </p>
     </div>
   );
 }
@@ -597,7 +633,7 @@ export default function Home() {
               <p className={styles.heroPill}>
                 <span className={styles.liveDot} aria-hidden="true" />
                 <span>
-                  Gambia · Februari 2026
+                  Gambia · Februari 2027
                   <span className={styles.mobileHide}> · Bokningen är öppen</span>
                 </span>
               </p>
@@ -746,6 +782,18 @@ export default function Home() {
                         är klart.
                       </div>
                     )}
+                    {!trip.isComingSoon ? (
+                      <details className={`${styles.tripDetails} ${styles.tripTravelDetails}`}>
+                        <summary>
+                          <span>
+                            <strong>Bra att veta inför resan</strong>
+                            <small>Vaccinationer, försäkring och praktiska tips</small>
+                          </span>
+                          <span className={styles.detailsIcon} aria-hidden="true" />
+                        </summary>
+                        <CompactTravelInfo />
+                      </details>
+                    ) : null}
                     <div className={styles.launchFooter}>
                       <div className={styles.launchPrice}>
                         <strong>{trip.price}</strong>
@@ -772,7 +820,7 @@ export default function Home() {
                         <p className={styles.termsNote}>
                           Genom att boka och betala bekräftar du att du tagit
                           del av <a href="#bra-att-veta">reseinformationen</a>{" "}
-                          och Hipafrotravels villkor.
+                          och <a href="/resevillkor">Hipafrotravels villkor</a>.
                         </p>
                       ) : null}
                     </div>
@@ -791,7 +839,8 @@ export default function Home() {
         <section className={styles.includedSection} id="ingar">
           <div className={styles.container}>
             <SectionHeader kicker="Enkelt att förstå" title="Allt detta ingår.">
-              Ett pris, inga överraskningar. Du bokar bara flyget själv.
+              Det som ingår framgår av reseprogrammet. Flyg och personliga
+              kostnader tillkommer.
             </SectionHeader>
             <div className={styles.includedGrid}>
               {included.map((item, index) => (
@@ -1073,9 +1122,9 @@ export default function Home() {
                   </label>
                   <label>
                     Vilken resa gäller det?
-                    <select name="trip" defaultValue="Kundaliniyoga med Ewa · 10–17 feb 2026">
-                      <option>Kundaliniyoga med Ewa · 10–17 feb 2026</option>
-                      <option>Kundaliniyoga med Ewa · 21–28 feb 2026</option>
+                    <select name="trip" defaultValue="Kundaliniyoga med Ewa · 10–17 feb 2027">
+                      <option>Kundaliniyoga med Ewa · 10–17 feb 2027</option>
+                      <option>Kundaliniyoga med Ewa · 21–28 feb 2027</option>
                     </select>
                   </label>
                   <label>
@@ -1118,7 +1167,7 @@ export default function Home() {
               <BrandLogo className={styles.footerMark} />
               <strong>Hip Afro Travel</strong>
             </div>
-            <span>Två resor till Gambia i februari 2026.</span>
+            <span>Två resor till Gambia i februari 2027.</span>
             <span>
               Hip Afro Travel drivs som enskild firma. Planering,
               administration och kundkontakt sker i Sverige.
@@ -1128,6 +1177,7 @@ export default function Home() {
               <a href="mailto:info@hipafrotravel.com">
                 info@hipafrotravel.com
               </a>
+              <a href="/resevillkor">Boknings- och resevillkor</a>
             </div>
           </div>
         </div>

@@ -1294,6 +1294,68 @@
   margin-top: 2px;
 }
 
+.tripTravelDetails {
+  background: var(--color-palm-soft);
+}
+
+.tripTravelInfo {
+  padding: 2px 16px 18px;
+  border-top: 1px solid var(--color-sand);
+  background: var(--color-paper);
+}
+
+.tripTravelInfoGroup {
+  padding-block: 14px;
+  border-bottom: 1px solid var(--color-sand);
+}
+
+.tripTravelInfoGroup h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  color: var(--color-palm-deep);
+  font-size: 0.88rem;
+}
+
+.tripTravelInfoGroup p,
+.tripTravelInfoGroup ul {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.tripTravelInfoGroup p + p {
+  margin-top: 8px;
+}
+
+.tripTravelInfoGroup ul {
+  padding-left: 18px;
+}
+
+.tripTravelInfoGroup li + li {
+  margin-top: 4px;
+}
+
+.tripTravelInfoGroup .tripTravelInfoTip {
+  margin-top: 10px;
+  padding: 9px 11px;
+  border-radius: 10px;
+  background: var(--color-ocean-soft);
+  color: var(--color-ink-soft);
+}
+
+.tripTravelInfoReminder {
+  margin: 14px 0 0;
+  padding: 11px 12px;
+  border-radius: 10px;
+  background: var(--color-palm-soft);
+  color: var(--color-palm-deep);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
 .launchFooter {
   margin-top: auto;
   display: flex;
@@ -2496,6 +2558,29 @@
 @media (max-width: 700px) {
   .mobileHide {
     display: none;
+  }
+
+  .heroChips {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 10px;
+  }
+
+  .heroChips .chip {
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    min-height: 52px;
+    padding: 9px 10px;
+    font-size: clamp(0.74rem, 3.4vw, 0.86rem);
+    line-height: 1.25;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .heroChips .chip > span {
+    flex: none;
   }
 
   .tripCalendarDialog {

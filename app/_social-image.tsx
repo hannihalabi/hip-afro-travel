@@ -120,7 +120,7 @@ export async function createSocialImage() {
                 fontWeight: 700,
               }}
             >
-              Gambia · Februari 2026
+              Gambia · Februari 2027
             </div>
             <div
               style={{

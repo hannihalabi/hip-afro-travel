@@ -4,7 +4,7 @@ import "./globals.css";
 
 const title = "Hip Afro Travel | Yoga- och träningsresor till Gambia";
 const description =
-  "Två resor till Gambia i februari 2026: 10–17 februari och 21–28 februari. Boende i Yogavilla, frukost, middag, träning och utflykter ingår. Pris 17 000 kr per person. Flyg bokas separat.";
+  "Två resor till Gambia i februari 2027: 10–17 februari och 21–28 februari. Boende i Yogavilla, frukost, middag, träning och utflykter ingår. Pris 17 000 kr per person. Flyg bokas separat.";
 
 function getSiteUrl() {
   const configuredUrl = process.env.SITE_URL;
