@@ -55,6 +55,12 @@ Stripe Checkout är konfigurerat för kort och Klarna. Klarna måste vara
 aktiverat för kontot i Stripe Dashboard. Apple Pay kan visas automatiskt av
 Stripe när kundens enhet och webbläsare stöder det.
 
+Checkouten visar även ett fält för rabattkoder. Vid den första checkouten
+skapar servern automatiskt kampanjkoden `START26` i det aktuella Stripe-läget
+(test eller live). Koden ger ett fast avdrag på 7 000 kr på hela bokningen.
+Om en aktiv `START26` redan finns kontrolleras att den har rätt belopp innan
+checkout-sessionen skapas.
+
 ## Deployment
 
 Hela projektet deployas på Vercel från repositoryts rot. Någon separat

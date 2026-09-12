@@ -78,43 +78,84 @@ const trustPoints = [
 const ewaItinerary = [
   {
     day: "Dag 1",
-    title: "Ankomst & välkommen",
-    text: "Transfer från flygplatsen, incheckning, gemensam middag och introduktion till veckan.",
+    title: "Ankomst",
+    activities: [
+      "Upphämtning vid flygplatsen",
+      "Transfer till huset och incheckning",
+      "Lunch",
+      "Tid att landa och komma till ro",
+      "Middag & samling",
+    ],
   },
   {
     day: "Dag 2",
-    title: "Landa i kroppen",
-    text: "Kundaliniyoga, frukost, tid vid havet och ett mjukt pass med breathwork.",
+    title: null,
+    activities: [
+      "Morgonmeditation",
+      "Frukost",
+      "Workshop om baobab, moringa och soursop",
+      "Egen tid kl. 12.00–17.00",
+      "Yogapass",
+      "Middag",
+    ],
   },
   {
     day: "Dag 3",
-    title: "Hormonell balans",
-    text: "Yoga och meditation med fokus på återhämtning, följt av workshop och egen tid.",
+    title: null,
+    activities: [
+      "Morgonmeditation",
+      "Frukost",
+      "Utflykt till Kartong",
+      "Lunch på egen bekostnad",
+      "Båtutflykt till Kartong (Pelikan Island)",
+      "Middag i Senegambia (egen bekostnad)",
+    ],
   },
   {
     day: "Dag 4",
-    title: "Upptäck Gambia",
-    text: "Utvald gemensam utflykt, lokala smaker och en lugn kväll tillbaka vid boendet.",
+    title: null,
+    activities: [
+      "Morgonmeditation",
+      "Frukost",
+      "Egen tid kl. 12.00–17.00",
+      "Yogapass",
+      "Middag",
+    ],
   },
   {
     day: "Dag 5",
-    title: "Fördjupning",
-    text: "Morgonpraktik, breathwork och gott om utrymme för vila, strand och reflektion.",
+    title: null,
+    activities: [
+      "Morgonmeditation",
+      "Frukost",
+      "Egen tid kl. 12.00–17.00",
+      "Yogapass",
+      "Middag",
+    ],
   },
   {
     day: "Dag 6",
-    title: "Kultur & gemenskap",
-    text: "Ett mjukare pass, lokal upplevelse och gemensam middag med gruppen.",
+    title: null,
+    activities: [
+      "Morgonmeditation",
+      "Frukost",
+      "Egen tid kl. 12.00–17.00",
+      "Yogapass",
+      "Middag",
+      "Campfire och avslutningskväll",
+    ],
   },
   {
     day: "Dag 7",
-    title: "Integrera veckan",
-    text: "Avslutande yogapass, fri tid och en gemensam cirkel som knyter ihop upplevelsen.",
-  },
-  {
-    day: "Dag 8",
     title: "Hemresa",
-    text: "Frukost, utcheckning och gemensam transfer till flygplatsen.",
+    activities: [
+      "Morgonmeditation",
+      "Frukost",
+      "Egen tid kl. 12.00–16.00",
+      "Utcheckning",
+      "Transfer och lämning på flygplatsen",
+      "Hemresa",
+    ],
   },
 ];
 
@@ -583,7 +624,7 @@ export default function Home() {
                       <details className={styles.tripDetails}>
                         <summary>
                           <span>
-                            <strong>Läs mer om resan</strong>
+                            <strong>Yogaresa – dagsprogram</strong>
                             <small>Se upplägget dag för dag</small>
                           </span>
                           <span className={styles.detailsIcon} aria-hidden="true" />
@@ -598,8 +639,12 @@ export default function Home() {
                               <li key={item.day}>
                                 <span>{item.day}</span>
                                 <div>
-                                  <strong>{item.title}</strong>
-                                  <p>{item.text}</p>
+                                  {item.title ? <strong>{item.title}</strong> : null}
+                                  <ul className={styles.itineraryActivities}>
+                                    {item.activities.map((activity) => (
+                                      <li key={activity}>{activity}</li>
+                                    ))}
+                                  </ul>
                                 </div>
                               </li>
                             ))}

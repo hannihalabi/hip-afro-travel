@@ -1230,7 +1230,7 @@
   list-style: none;
 }
 
-.itineraryList li {
+.itineraryList > li {
   position: relative;
   display: grid;
   grid-template-columns: 52px 1fr;
@@ -1238,11 +1238,11 @@
   padding-bottom: 18px;
 }
 
-.itineraryList li:last-child {
+.itineraryList > li:last-child {
   padding-bottom: 0;
 }
 
-.itineraryList li::before {
+.itineraryList > li::before {
   content: "";
   position: absolute;
   top: 28px;
@@ -1252,11 +1252,11 @@
   background: var(--color-sand);
 }
 
-.itineraryList li:last-child::before {
+.itineraryList > li:last-child::before {
   display: none;
 }
 
-.itineraryList li > span {
+.itineraryList > li > span {
   position: relative;
   z-index: 1;
   display: grid;
@@ -1271,22 +1271,27 @@
   white-space: nowrap;
 }
 
-.itineraryList li div {
+.itineraryList > li > div {
   min-width: 0;
 }
 
-.itineraryList li strong {
+.itineraryList > li strong {
   display: block;
   margin-bottom: 3px;
   font-size: 0.86rem;
   line-height: 1.35;
 }
 
-.itineraryList li p {
+.itineraryActivities {
   margin: 0;
+  padding-left: 17px;
   color: var(--color-muted);
   font-size: 0.8rem;
   line-height: 1.5;
+}
+
+.itineraryActivities li + li {
+  margin-top: 2px;
 }
 
 .launchFooter {
